@@ -15,30 +15,30 @@ public:
 
     vector<vector<string> > backtrack(string start, string end, map<string, vector<string> >& parents){
         bool isDone = false;
-		vector<vector<string> > currV;
-		currV.push_back(vector<string>());
-		currV[0].push_back(end);
-		while(true){
-			int pos = currV[0].size() - 1;
-			vector<vector<string> > nextV;
-			for(int i = 0; i < currV.size(); i++){
-				vector<string> prt = parents[currV[i][pos]];
-				if(prt[0] == start)
-					isDone = true;
-				for(int j = 0; j < prt.size(); j++){
-					currV[i].push_back(prt[j]);
-					nextV.push_back(currV[i]);
-					currV[i].pop_back();
-				}
-			}
-			currV = nextV;
-			if(isDone)
-				break;
-		}
-		
-		for(int i = 0; i < currV.size(); i++)
-			reverse(currV[i].begin(), currV[i].end());
-		return currV;		
+        vector<vector<string> > currV;
+        currV.push_back(vector<string>());
+        currV[0].push_back(end);
+        while(true){
+            int pos = currV[0].size() - 1;
+            vector<vector<string> > nextV;
+            for(int i = 0; i < currV.size(); i++){
+                vector<string> prt = parents[currV[i][pos]];
+                if(prt[0] == start)
+                    isDone = true;
+                for(int j = 0; j < prt.size(); j++){
+                    currV[i].push_back(prt[j]);
+                    nextV.push_back(currV[i]);
+                    currV[i].pop_back();
+                }
+            }
+            currV = nextV;
+            if(isDone)
+                break;
+        }
+        
+        for(int i = 0; i < currV.size(); i++)
+            reverse(currV[i].begin(), currV[i].end());
+        return currV;       
     }
     
     vector<vector<string> > findLadders(string start, string end, set<string>& dict){
@@ -71,11 +71,11 @@ public:
                         }
 
                         if(!foundEnd && (colors.find(nextStr) == colors.end() || colors[nextStr] == GRAY) && dict.find(nextStr) != dict.end()){
-                        	if(colors.find(nextStr) == colors.end()){
-                        		nextQ.push(nextStr);
-                        		colors[nextStr] = GRAY;
-                        		strFound.push_back(nextStr);	
-                        	}
+                            if(colors.find(nextStr) == colors.end()){
+                                nextQ.push(nextStr);
+                                colors[nextStr] = GRAY;
+                                strFound.push_back(nextStr);    
+                            }
                             parents[nextStr].push_back(currStr);
                         }
                     }
@@ -92,34 +92,34 @@ public:
                 colors[strFound[i]] = BLACK;
         }
        
-		return res;
+        return res;
     }
 };
 
 
 int main(){
-	string start = "red";
-	string end = "tax";
-	set<string> dict;
-	dict.insert("ted");
-	dict.insert("tex");
-	dict.insert("red");
-	dict.insert("tax");
-	dict.insert("tad");
-	dict.insert("den");
-	dict.insert("rex");
-	dict.insert("pee");
-	Solution solution;
-	vector<vector<string> > res = solution.findLadders(start, end, dict);
-	
-	for(int i = 0; i < res.size(); i++){
-		for(int j = 0; j < res[i].size(); j++)
-			cout << res[i][j] << " ";
-		cout << "\n";
-	}
-	cout << endl;
+    string start = "red";
+    string end = "tax";
+    set<string> dict;
+    dict.insert("ted");
+    dict.insert("tex");
+    dict.insert("red");
+    dict.insert("tax");
+    dict.insert("tad");
+    dict.insert("den");
+    dict.insert("rex");
+    dict.insert("pee");
+    Solution solution;
+    vector<vector<string> > res = solution.findLadders(start, end, dict);
+    
+    for(int i = 0; i < res.size(); i++){
+        for(int j = 0; j < res[i].size(); j++)
+            cout << res[i][j] << " ";
+        cout << "\n";
+    }
+    cout << endl;
 
-	return 0;
+    return 0;
 }
 
 
