@@ -13,13 +13,13 @@ public:
         }
         return true;
     }
-    
+
     void partitionHelper(string s, int start, vector<string>& sol, vector<vector<string> >& res){
         if(start == s.size()){
             res.push_back(sol);
-            return; 
-        }   
-        
+            return;
+        }
+
         for(int end = start; end < s.size(); end++){
             if(isPalindrome(s, start, end)){
                 sol.push_back(s.substr(start, end - start + 1));
@@ -28,7 +28,7 @@ public:
             }
         }
     }
-    
+
     vector<vector<string> > partition(string s){
         vector<vector<string> > res;
         vector<string> sol;

@@ -1,7 +1,7 @@
 /*
  * time: O(logn)
  */
- 
+
 #include <iostream>
 using namespace std;
 
@@ -13,16 +13,16 @@ public:
 
         if(x == 0)
             return 0;
-        
+
         if(x == 1)
             return 1;
-            
+
         if(x == -1)
             return n % 2? -1 : 1;
-        
+
         if(n < 0)
             return 1.0 / pow(x, -n);
-            
+
         double half = pow(x, n / 2);
         if(n % 2)
             return x * half * half;
@@ -35,7 +35,7 @@ public:
 int main(){
     double x = 0;
     int n = 8;
-    
+
     Solution solution;
     double res = solution.pow(x, n);
     cout << res << endl;

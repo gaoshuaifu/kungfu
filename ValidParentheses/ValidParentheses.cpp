@@ -11,10 +11,10 @@ public:
     bool isValid(string s){
         int n = s.size();
         if(n % 2) return false;
-        
+
         stack<char> stk;
         for(int i = 0; i < n; i++){
-            char c = s[i];  
+            char c = s[i];
             if(stk.empty()){
                 if(c == ')' || c == ']' || c == '}')
                     return false;
@@ -26,7 +26,7 @@ public:
             else
                 stk.push(c);
         }
-        
+
         return stk.empty();
     }
 };

@@ -9,10 +9,10 @@ public:
     int removeDuplicates(int A[], int n){
         if(n == 0)
             return 0;
-        
+
         int j = 1;
         int count = 1;
-        
+
         for(int i = 1; i < n; i++){
             if(A[i] != A[i - 1]){
                 A[j] = A[i];
@@ -36,7 +36,7 @@ public:
     int removeDuplicates(int A[], int n){
         if(n == 0)
             return 0;
-            
+
         int j = 0;
         int count = 1;
         for(int i = 1; i < n; i++){
@@ -53,17 +53,17 @@ public:
                 count++;
             }
         }
-        return j + 1;   
+        return j + 1;
     }
 };
 
 int main(){
     int A[] = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
     int n = sizeof(A) / sizeof(A[0]);
-    
+
     Solution solution;
     int res = solution.removeDuplicates(A, n);
-    
+
     cout << res << endl;
     for(int i = 0; i < res; i++)
         cout << A[i] << " ";

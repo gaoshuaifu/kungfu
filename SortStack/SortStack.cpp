@@ -9,15 +9,15 @@ public:
         while(!stk.empty()){
             int tmp = stk.top();
             stk.pop();
-            
+
             while(!buff.empty() && tmp > buff.top()){
                 stk.push(buff.top());
-                buff.pop(); 
+                buff.pop();
             }
-            
+
             buff.push(tmp);
         }
-        
+
         while(!buff.empty()){
             stk.push(buff.top());
             buff.pop();
@@ -32,14 +32,14 @@ int main(){
     stk.push(1);
     stk.push(2);
     stk.push(4);
-    
+
     Solution solution;
     solution.sortStack(stk);
-    
+
     while(!stk.empty()){
         cout << stk.top() << "\n";
         stk.pop();
     }
-    
-    return 0;   
+
+    return 0;
 }

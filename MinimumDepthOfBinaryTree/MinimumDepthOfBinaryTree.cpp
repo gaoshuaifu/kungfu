@@ -39,30 +39,30 @@ public:
     int minDepth(TreeNode *root) {
        if(!root)
            return 0;
-       
+
        if(!root->left && !root->right)
            return 1;
-       
+
        if(root->left && !root->right)
            return minDepth(root->left) + 1;
-       
+
        if(!root->left && root->right)
            return minDepth(root->right) + 1;
-    
+
        return min(minDepth(root->left), minDepth(root->right)) + 1;
     }
 };
 
 class Solution1{
-public: 
+public:
     int minDepth(TreeNode* root){
         if(!root)
             return 0;
-        
+
         queue<TreeNode*> currQ;
         currQ.push(root);
         int depth = 1;
-        
+
         while(!currQ.empty()){
             queue<TreeNode*> nextQ;
             while(!currQ.empty()){
@@ -83,11 +83,11 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     int res = solution.minDepth(root);
     cout << res << endl;
-    
-    return 0;   
+
+    return 0;
 }
 

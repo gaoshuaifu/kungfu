@@ -16,12 +16,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -38,7 +38,7 @@ void print(ListNode* head){
 
 
 class Solution{
-public:    
+public:
     ListNode* deleteDuplicates(ListNode* head){
         ListNode* curr = head;
         while(curr){
@@ -55,7 +55,7 @@ public:
 };
 
 class Solution1{
-public:    
+public:
     ListNode* deleteDuplicates(ListNode* head){
         if(!head) return NULL;
         ListNode* curr = head;
@@ -77,7 +77,7 @@ public:
 
 
 int main(){
-    int array[] = {1, 1, 2, 3, 3, 4}; 
+    int array[] = {1, 1, 2, 3, 3, 4};
     ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
     print(list);
     Solution solution;

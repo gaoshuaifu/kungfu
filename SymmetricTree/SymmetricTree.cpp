@@ -37,7 +37,7 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << endl;
     print(root->right);
@@ -48,7 +48,7 @@ public:
     bool isSymmetricHelper(TreeNode* left, TreeNode* right){
         if(!left && !right)
             return true;
-        
+
         if((!left && right) || (left && !right) || (left->val != right->val))
             return false;
 
@@ -67,12 +67,12 @@ public:
     bool isSymmetric(TreeNode* root){
         if(!root)
             return true;
-        
+
         queue<TreeNode*> leftQ;
         queue<TreeNode*> rightQ;
         leftQ.push(root->left);
         rightQ.push(root->right);
-        
+
         while(!leftQ.empty() && !rightQ.empty()){
             TreeNode* left = leftQ.front();
             TreeNode* right = rightQ.front();
@@ -87,7 +87,7 @@ public:
             rightQ.push(right->right);
             rightQ.push(right->left);
         }
-        
+
         return leftQ.empty() && rightQ.empty();
     }
 };

@@ -13,9 +13,9 @@ public:
     int threeSumClosest(vector<int>& num, int target){
         int n = num.size();
         assert(n >= 3);
-        
+
         sort(num.begin(), num.end());
-        
+
         int minDiff = INT_MAX;
         int closestSum;
         int i = 0;
@@ -52,7 +52,7 @@ int main(){
     int a[] = {-1, 2, 1, -4};
     vector<int> num = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
     int target = 1;
-    
+
     Solution solution;
     int closestSum = solution.threeSumClosest(num, target);
     cout << closestSum << endl;

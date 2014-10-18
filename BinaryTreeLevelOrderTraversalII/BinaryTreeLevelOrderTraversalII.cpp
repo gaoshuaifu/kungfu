@@ -38,14 +38,14 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<vector<int> > levelOrderBottom(TreeNode* root){ 
+    vector<vector<int> > levelOrderBottom(TreeNode* root){
         vector<vector<int> > res;
         if(root == NULL)
             return res;
-            
+
         queue<TreeNode*> currQ;
         currQ.push(root);
-        
+
         while(!currQ.empty()){
             vector<int> levelNodes;
             queue<TreeNode*> nextQ;
@@ -60,7 +60,7 @@ public:
             }
             res.push_back(levelNodes);
             currQ = nextQ;
-        }   
+        }
         reverse(res.begin(), res.end());
         return res;
     }
@@ -68,7 +68,7 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<vector<int> > res = solution.levelOrder(root);
     for(int i = 0; i < res.size(); i++){
@@ -77,7 +77,7 @@ int main(){
         cout << "\n";
     }
     cout << endl;
-    
+
     return 0;
 }
 

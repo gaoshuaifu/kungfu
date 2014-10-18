@@ -5,31 +5,31 @@ using namespace std;
 class Solution{
 public:
     enum Type{VOWEL, CONSONANT, NLETTER};
-    
+
     int lower(char c){
         if(c >= 'A' && c <= 'Z')
             return c - 'A' + 'a';
         else
             return c;
     }
-    
+
     bool isVowel(char c){
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'; 
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
-    
+
     bool isY(char c){
-        return c == 'y';    
+        return c == 'y';
     }
-    
+
     bool isConsonant(char c){
-        return (c >= 'a' && c <= 'z') && !isVowel(c) && !isY(c);    
+        return (c >= 'a' && c <= 'z') && !isVowel(c) && !isY(c);
     }
-    
+
     bool isNonLetter(char c){
-        return (c < 'a' || c > 'z');    
+        return (c < 'a' || c > 'z');
     }
-    
-    int productSum(string s){   
+
+    int productSum(string s){
         int n = s.size();
         int sum = 0;
         int product = 1;
@@ -48,7 +48,7 @@ public:
                     sum += product;
                     product = 1;
                 }
-                last = NLETTER;             
+                last = NLETTER;
             }
             else if(isVowel(c)){
                 product *= c - 'a' + 1;
@@ -68,7 +68,7 @@ public:
                 }
             }
         }
-        
+
         if(last == VOWEL)
             sum += product;
         return sum;
@@ -78,9 +78,9 @@ public:
 int main(){
     Solution solution;
 
-    cout << solution.productSum("Google Guy") << endl;  
-    cout << solution.productSum("Yyyyy") << endl;   
-    cout << solution.productSum("myopia") << endl;  
-    cout << solution.productSum("Quietly") << endl; 
-    cout << solution.productSum("I'm Feeling Yucky") << endl;   
+    cout << solution.productSum("Google Guy") << endl;
+    cout << solution.productSum("Yyyyy") << endl;
+    cout << solution.productSum("myopia") << endl;
+    cout << solution.productSum("Quietly") << endl;
+    cout << solution.productSum("I'm Feeling Yucky") << endl;
 }

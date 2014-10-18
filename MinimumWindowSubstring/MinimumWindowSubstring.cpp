@@ -12,12 +12,12 @@ public:
     string minWindow(string S, string T){
         int minLen = INT_MAX;
         string minStr = "";
-        
+
         int needFind[256] = {0};
         int hasFound[256] = {0};
         for(int i = 0; i < T.size(); i++)
             needFind[T[i]]++;
-        
+
         int start = 0;
         int end = 0;
         int count = 0;
@@ -26,30 +26,30 @@ public:
                 end++;
                 continue;
             }
-            
+
             if(hasFound[S[end]] < needFind[S[end]])
                 count++;
-            hasFound[S[end]]++; 
-  
+            hasFound[S[end]]++;
+
             if(count < T.size()){
                 end++;
                 continue;
             }
-            
+
             while(needFind[S[start]] == 0 || hasFound[S[start]] > needFind[S[start]]){
                 if(hasFound[S[start]] > needFind[S[start]])
                     hasFound[S[start]]--;
-                start++;                        
+                start++;
             }
             int len = end - start + 1;
             if(len < minLen){
                 minLen = len;
                 minStr = S.substr(start, minLen);
             }
-            
+
             end++;
         }
-        
+
         return minStr;
     }
 };
@@ -60,28 +60,28 @@ public:
     string minWindow(string S, string T){
         string minStr = "";
         int minLen = INT_MAX;
-        
+
         int needFind[256] = {0};
         int hasFound[256] = {0};
         for(int i = 0; i < T.size(); i++)
             needFind[T[i]]++;
-        
+
         int start = 0;
         int end = 0;
         int count = 0;
         while(end < S.size()){
             if(hasFound[S[end]] < needFind[S[end]])
                 count++;
-            hasFound[S[end]]++; 
-            
+            hasFound[S[end]]++;
+
             if(count < T.size()){
                 end++;
                 continue;
             }
-                
+
             while(hasFound[S[start]] > needFind[S[start]]){
                 hasFound[S[start]]--;
-                start++;                        
+                start++;
             }
             int len = end - start + 1;
             if(len < minLen){
@@ -97,10 +97,10 @@ public:
 int main(){
     string S = "ADOBECODEBANC";
     string T = "ABC";
-    
+
     Solution solution;
     string res = solution.minWindow(S, T);
     cout << res << endl;
-    
+
     return 0;
 }

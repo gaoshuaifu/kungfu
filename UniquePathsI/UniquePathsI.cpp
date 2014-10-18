@@ -15,7 +15,7 @@ public:
         vector<int> curr(n, 0);
         for(int j = 0; j < n; j++)
             curr[j] = 1;
-        
+
         for(int i = 1; i < m; i++){
             vector<int> next(n, 0);
             next[0] = 1;

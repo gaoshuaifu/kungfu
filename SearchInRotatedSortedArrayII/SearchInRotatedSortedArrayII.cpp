@@ -19,11 +19,11 @@ public:
 int main(){
     int A[] = {4, 5, 6, 7, 0, 1, 2};
     int target = 2;
-    
+
     Solution solution;
     int res = solution.search(A, sizeof(A)/sizeof(A[0]), target);
     cout << res << endl;
-    
+
     return 0;
 }
 

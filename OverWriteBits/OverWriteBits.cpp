@@ -10,16 +10,16 @@ void print(unsigned int x){
 }
 
 class Solution{
-public: 
+public:
     unsigned int overwrite(unsigned int x, int high, int low, unsigned int y){
         unsigned int mask = 0;
         mask |= (~0 << high);
         mask |= (1 << (low - 1)) - 1;
-        
+
         x &= mask;
-        
+
         x |= (y << (low - 1));
-        
+
         return x;
     }
 };
@@ -29,10 +29,10 @@ int main(){
     unsigned int y = 19;
     print(x);
     print(y);
-    
+
     Solution solution;
     x = solution.overwrite(x, 5, 1, y);
     print(x);
-    
-    return 0;   
+
+    return 0;
 }

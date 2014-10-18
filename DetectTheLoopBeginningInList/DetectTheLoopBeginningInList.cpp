@@ -5,7 +5,7 @@ struct ListNode{
     int val;
     ListNode* next;
     ListNode(int val){
-        this->val = val;    
+        this->val = val;
     }
 };
 
@@ -16,7 +16,7 @@ ListNode* initialize(){
     ListNode* node4 = new ListNode(4);
     ListNode* node5 = new ListNode(5);
     ListNode* node6 = new ListNode(6);
-    ListNode* node7 = new ListNode(7);  
+    ListNode* node7 = new ListNode(7);
     node1->next = node2;
     node2->next = node3;
     node3->next = node4;
@@ -41,15 +41,15 @@ public:
                 break;
             }
         }
-        
+
         if(!meet) return NULL;
-        
+
         slow = head;
         while(slow != fast){
             slow = slow->next;
             fast = fast->next;
         }
-        
+
         return slow;
     }
 };
@@ -60,5 +60,5 @@ int main(){
     Solution solution;
     ListNode* res = solution.loopBeginning(head);
     cout << res->val << endl;
-    return 0;   
+    return 0;
 }

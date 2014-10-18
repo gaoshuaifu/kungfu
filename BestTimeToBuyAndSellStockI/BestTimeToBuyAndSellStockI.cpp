@@ -24,11 +24,11 @@ public:
 int main(){
     int priceArray[] = {1, 4, 2};
     vector<int> prices = vector<int>(priceArray, priceArray + sizeof(priceArray) / sizeof(int));
-    
+
     Solution solution;
     int res = solution.maxProfit(prices);
     cout << res << endl;
-    
+
     return 0;
 }
 

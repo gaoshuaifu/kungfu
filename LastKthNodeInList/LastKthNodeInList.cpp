@@ -17,12 +17,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -39,31 +39,31 @@ void print(ListNode* head){
 
 
 class Solution{
-public:    
+public:
     ListNode* lastKth(ListNode* head, int k){
         ListNode* post = head;
         int i;
         for(i = 0; i < k; i++){
-            if(post) 
+            if(post)
                 post = post->next;
-            else 
+            else
                 break;
         }
-        
+
         if(i < k) return NULL;
-        
+
         ListNode* curr = head;
         while(post){
             post = post->next;
             curr = curr->next;
         }
-            
+
         return curr;
     }
 };
 
 int main(){
-    int array[] = {5, 4, 3, 2, 1}; 
+    int array[] = {5, 4, 3, 2, 1};
     ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
     Solution solution;
     for(int i = 1; i <= 7; i++){

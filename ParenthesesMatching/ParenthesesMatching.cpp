@@ -8,7 +8,7 @@ public:
     bool isMatchingHelper(string& str, int& left, int index){
         if(index == str.size())
             return left == 0;
-            
+
         if(str[index] == '(')
             left++;
         else{
@@ -17,10 +17,10 @@ public:
             else
                 return false;
         }
-        
+
         return isMatchingHelper(str, left, index + 1);
     }
-    
+
     bool isMatching(string str){
         int left = 0;
         return isMatchingHelper(str, left, 0);
@@ -31,29 +31,29 @@ class Solution1{
 public:
     bool isMatching(string str){
         int left = 0;
-        
+
         for(int i = 0; i < str.size(); i++){
-            if(str[i] == '(')   
+            if(str[i] == '(')
                 left++;
             else{
-                if(left > 0)    
+                if(left > 0)
                     left--;
-                else 
+                else
                     return false;
             }
         }
-        
+
         return left == 0;
-    }   
+    }
 };
 
 class Solution2{
 public:
     bool isMatching(string str){
-        stack<char> stk;    
-        
+        stack<char> stk;
+
         for(int i = 0; i < str.size(); i++){
-            if(str[i] == '(')   
+            if(str[i] == '(')
                 stk.push(str[i]);
             else{
                 if(!stk.empty())
@@ -62,9 +62,9 @@ public:
                     return false;
             }
         }
-        
+
         return stk.empty();
-    }   
+    }
 };
 
 int main(){
@@ -72,9 +72,9 @@ int main(){
     vector<string> strs;
     strs.push_back("(())");
     strs.push_back("(()(");
-    
+
     for(int i = 0; i < strs.size(); i++)
         cout << strs[i] << "\t" << solution.isMatching(strs[i]) << "\n";
-    
+
     return 0;
 }

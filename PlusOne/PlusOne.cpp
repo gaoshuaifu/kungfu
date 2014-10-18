@@ -20,10 +20,10 @@ public:
                 break;
             }
         }
-        
+
         if(i < 0)
             digits.insert(digits.begin(), 1);
-        
+
         return digits;
     }
 };
@@ -44,7 +44,7 @@ public:
         }
         if(carry > 0)
             digits.insert(digits.begin(), carry);
-        
+
         return digits;
     }
 };
@@ -53,7 +53,7 @@ public:
 int main(){
     int a[] = {9, 9};
     vector<int> digits = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
-    
+
     Solution solution;
     vector<int> res = solution.plusOne(digits);
     for(int i = 0; i < res.size(); i++)

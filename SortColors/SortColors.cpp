@@ -8,7 +8,7 @@ using namespace std;
 /*
 
 --------------------------------------
-|       |i         |j       k|       |  
+|       |i         |j       k|       |
 --------------------------------------
 
 */
@@ -38,14 +38,14 @@ public:
 int main(){
     int A[] = {2, 1, 0, 0, 0, 1, 1, 2, 2, 0, 1, 2, 2, 1, 0};
     int n = sizeof(A) / sizeof(A[0]);
-    
+
     Solution solution;
     solution.sortColors(A, n);
-    
+
     for(int i = 0; i < n; i++)
         cout << A[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

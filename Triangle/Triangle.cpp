@@ -9,11 +9,11 @@ using namespace std;
 
 class Solution{
 public:
-    int minimumTotal(vector<vector<int> >& triangle){ 
+    int minimumTotal(vector<vector<int> >& triangle){
         int n = triangle.size();
-        
+
         vector<int> curr(n + 1, 0);
-    
+
         for(int i = n - 1; i >= 0; i--){
             vector<int> next(i + 1, 0);
             for(int j = 0; j < i + 1; j++)
@@ -22,12 +22,12 @@ public:
         }
 
         return curr[0];
-    } 
+    }
 };
 
 class Solution1{
 public:
-    int minimumTotal(vector<vector<int> >& triangle){ 
+    int minimumTotal(vector<vector<int> >& triangle){
         int n = triangle.size();
         for(int i = 0; i < n; i++)
             assert(triangle[i].size() == i + 1);
@@ -57,7 +57,7 @@ public:
         }
 
         return minTotal;
-    } 
+    }
 };
 
 int main(){
@@ -72,7 +72,7 @@ int main(){
     row.push_back(3);
     row.push_back(4);
     triangle.push_back(row);
-    
+
     row.clear();
     row.push_back(6);
     row.push_back(5);

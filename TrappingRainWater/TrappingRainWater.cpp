@@ -18,7 +18,7 @@ public:
         }
 
         int sum = 0;
-        
+
         int maxLeft = 0;
         for(int i = 0; i < maxIndex; i++){
             maxLeft = max(maxLeft, A[i]);

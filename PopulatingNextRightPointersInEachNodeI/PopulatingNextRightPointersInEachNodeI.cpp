@@ -51,17 +51,17 @@ public:
     void connect(TreeLinkNode* root){
         if(!root || !root->left || !root->left)
             return;
-        
+
         root->left->next = root->right;
-        
+
         if(root->next)
             root->right->next = root->next->left;
         else
             root->right->next = NULL;
-        
+
         connect(root->left);
         connect(root->right);
-    }       
+    }
 };
 
 int main(){
@@ -69,7 +69,7 @@ int main(){
     Solution solution;
     solution.connect(root);
     print(root);
-    
-    return 0;   
+
+    return 0;
 }
 

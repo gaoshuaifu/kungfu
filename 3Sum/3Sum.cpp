@@ -11,10 +11,10 @@ public:
     vector<vector<int> > threeSum(vector<int>& num){
         vector<vector<int> > res;
         int n = num.size();
-        
+
         sort(num.begin(), num.end());
-        
-        int i = 0; 
+
+        int i = 0;
         while(i < n - 2){
             int first = num[i];
             int j = i + 1;
@@ -22,7 +22,7 @@ public:
             while(j < k){
                 int second = num[j];
                 int third = num[k];
-                int sum = first + second + third;           
+                int sum = first + second + third;
                 if(sum == 0){
                     vector<int> sol;
                     sol.push_back(first);
@@ -36,7 +36,7 @@ public:
                 }
                 if(sum < 0)
                     while(j < k && num[j] == second)
-                        j++;            
+                        j++;
                 if(sum > 0)
                     while(j < k && num[k] == third)
                         k--;
@@ -51,7 +51,7 @@ public:
 int main(){
     int a[] = {-1, 0, 1, 2, -1, -4};
     vector<int> num = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
-    
+
     Solution solution;
     vector<vector<int> > res = solution.threeSum(num);
     for(int i = 0; i < res.size(); i++){

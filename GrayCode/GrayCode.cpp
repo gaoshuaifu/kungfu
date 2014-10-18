@@ -8,9 +8,9 @@ using namespace std;
 class Solution{
 public:
     unsigned int getGrayCode(unsigned int x){
-        return (x >> 1) ^ x;    
+        return (x >> 1) ^ x;
     }
-    
+
     vector<int> grayCode(int n){
         vector<int> res;
         int m = 1 << n;

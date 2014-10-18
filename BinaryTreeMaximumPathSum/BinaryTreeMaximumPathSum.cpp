@@ -45,7 +45,7 @@ public:
         res = max(res, sum);
         return max(max(left, right) + root->val, 0);
     }
-    
+
     int maxPathSum(TreeNode* root) {
         int res = INT_MIN;
         maxPathSumHelper(root, res);
@@ -55,11 +55,11 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     int res = solution.maxPathSum(root);
     cout << res << endl;
-    
+
     return 0;
 }
 

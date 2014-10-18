@@ -16,12 +16,12 @@ struct ListNode{
 ListNode* initializeList(char array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -38,17 +38,17 @@ void print(ListNode* head){
 
 
 class Solution{
-public:    
+public:
     bool isVowel(char c){
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';    
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
     }
-    
+
     ListNode* deleteDuplicates(ListNode* head){
         ListNode* tmp = new ListNode('z');
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         while(curr){
             if(isVowel(curr->val)){
                 prev->next = curr->next;
@@ -60,7 +60,7 @@ public:
                 curr = curr->next;
             }
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;
@@ -68,7 +68,7 @@ public:
 };
 
 int main(){
-    char array[] = {'a', 'b', 'c', 'd', 'e'}; 
+    char array[] = {'a', 'b', 'c', 'd', 'e'};
     ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
     print(list);
     Solution solution;

@@ -11,18 +11,18 @@ public:
         int n = s.size();
         stack<int> stk;
         stk.push(-1);
-        
+
         for(int i = 0; i < n; i++){
             if(stk.top() < 0){
                 stk.push(i);
-                continue;   
+                continue;
             }
             if(s[stk.top()] == '(' && s[i] == ')')
                 stk.pop();
             else
                 stk.push(i);
         }
-        
+
         int maxLen = 0;
         int out = n;
         while(!stk.empty()){

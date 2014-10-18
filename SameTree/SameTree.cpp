@@ -56,7 +56,7 @@ TreeNode* initialize2(){
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << endl;
     print(root->right);
@@ -67,10 +67,10 @@ public:
     bool isSameTree(TreeNode* root1, TreeNode* root2){
         if(!root1 && !root2)
             return true;
-            
+
         if((root1 && !root2) || (!root1 && root2) || (root1->val != root2->val))
             return false;
-        
+
         return isSameTree(root1->left, root2->left) && isSameTree(root1->right, root2->right);
     }
 };
@@ -82,7 +82,7 @@ public:
         queue<TreeNode*> q2;
         q1.push(root1);
         q2.push(root2);
-        
+
         while(!q1.empty() && !q2.empty()){
             TreeNode* node1 = q1.front();
             TreeNode* node2 = q2.front();
@@ -97,7 +97,7 @@ public:
             q2.push(node2->left);
             q2.push(node2->right);
         }
-        
+
         return q1.empty() && q2.empty();
     }
 };

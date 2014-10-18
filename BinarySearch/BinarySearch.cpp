@@ -22,15 +22,15 @@ public:
 };
 
 int main(){
-    int a[] = {1, 3, 5, 7, 9};  
+    int a[] = {1, 3, 5, 7, 9};
     vector<int> A(a, a + sizeof(a) / sizeof(a[0]));
-    
+
     Solution solution;
     for(int i = 0; i <= 10; i++){
         cout << "index of " << i << " is " << solution.binarySearch(A, i) << "\n\n";
-        
+
     }
-    
+
     return 0;
 }
 

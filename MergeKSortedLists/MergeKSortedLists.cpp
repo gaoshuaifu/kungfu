@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -39,7 +39,7 @@ void print(ListNode* head){
 }
 
 class Solution{
-public: 
+public:
     struct Greater{
         bool operator() (const ListNode* a, const ListNode* b) {
             return a->val > b->val;
@@ -48,13 +48,13 @@ public:
 
     ListNode* mergeKLists(vector<ListNode*>& lists){
         int n = lists.size();
-            
+
         priority_queue<ListNode*, vector<ListNode*>, Greater> minHeap;
         for(int i = 0; i < n; i++){
             if(lists[i])
                 minHeap.push(lists[i]);
         }
-            
+
         ListNode* head = NULL;
         ListNode* tail;
         while(!minHeap.empty()){
@@ -71,7 +71,7 @@ public:
             if(node->next)
                 minHeap.push(node->next);
         }
-        
+
         return head;
     }
 };
@@ -87,7 +87,7 @@ int main(){
     lists.push_back(list1);
     lists.push_back(list2);
     lists.push_back(list3);
-    
+
     Solution solution;
     ListNode* res = solution.mergeKLists(lists);
     print(res);

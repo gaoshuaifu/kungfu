@@ -38,19 +38,19 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(!root)
         return;
-    
+
     print(root->left);
     cout << root->val << " ";
     print(root->right);
 }
 
 class Solution{
-public: 
+public:
     void countDuplicateHelper(TreeNode* curr, TreeNode*& prev, int& count){
         if(!curr) return;
-        
+
         countDuplicateHelper(curr->left, prev, count);
-        
+
         if(!prev)
             prev = curr;
         else{
@@ -58,10 +58,10 @@ public:
                 count++;
             prev = curr;
         }
-        
+
         countDuplicateHelper(curr->right, prev, count);
     }
-    
+
     int countDuplicate(TreeNode* root){
         int count = 0;
         TreeNode* prev = NULL;
@@ -71,7 +71,7 @@ public:
 };
 
 class Solution1{
-public: 
+public:
     int countDuplicate(TreeNode* root){
         int count = 0;
         stack<TreeNode*> stk;
@@ -85,7 +85,7 @@ public:
             else{
                 curr = stk.top();
                 stk.pop();
-                
+
                 if(!prev)
                     prev = curr;
                 else{
@@ -93,7 +93,7 @@ public:
                         count++;
                     prev = curr;
                 }
-                
+
                 curr = curr->right;
             }
         }

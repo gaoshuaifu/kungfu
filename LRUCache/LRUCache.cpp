@@ -19,7 +19,7 @@ private:
     map<K, Node<K, T>* > mapping;
     Node<K, T>* head;
     Node<K, T>* tail;
-    
+
 public:
     LRUCache(size_t size){
         nodes = new Node<K, T>[size];
@@ -32,21 +32,21 @@ public:
         tail->prev = head;
         tail->next = NULL;
     }
-    
+
     ~LRUCache(){
-        delete[] nodes; 
+        delete[] nodes;
         delete head;
         delete tail;
     }
-    
+
     bool containsKey(K key){
-        return mapping.find(key) != mapping.end();  
+        return mapping.find(key) != mapping.end();
     }
 
     void put(K key, T data){
         if(mapping.find(key) != mapping.end())
             return;
-        
+
         Node<K, T>* node;
         if(freeNodes.size() > 0){
             node = freeNodes.back();
@@ -58,17 +58,17 @@ public:
             node->next->prev = node->prev;
             mapping.erase(node->key);
         }
-        
+
         mapping[key] = node;
         node->key = key;
         node->data = data;
-        
+
         node->prev = head;
         node->next = head->next;
         head->next->prev = node;
         head->next = node;
     }
-    
+
     T get(K key){
         Node<K, T>* node = mapping[key];
         node->prev->next = node->next;
@@ -79,7 +79,7 @@ public:
         head->next = node;
         return node->data;
     }
-    
+
     void print(){
         Node<K, T>* node = head->next;
         while(node != tail){
@@ -92,30 +92,30 @@ public:
 
 int main(){
     LRUCache<char, char> cache(5);
-    
+
     cache.put('A', 'a');
     cache.print();
-    
+
     cache.put('B', 'b');
     cache.print();
-    
+
     cache.put('C', 'c');
     cache.print();
-    
+
     cache.put('D', 'd');
     cache.print();
-    
+
     cache.put('E', 'e');
     cache.print();
-    
+
     cache.put('F', 'f');
     cache.print();
-    
+
     cache.get('B');
     cache.print();
-    
+
     cache.put('G', 'g');
     cache.print();
-    
+
     return 0;
 }

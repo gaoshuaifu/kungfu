@@ -35,12 +35,12 @@ public:
             if(isDone)
                 break;
         }
-        
+
         for(int i = 0; i < currV.size(); i++)
             reverse(currV[i].begin(), currV[i].end());
-        return currV;       
+        return currV;
     }
-    
+
     vector<vector<string> > findLadders(string start, string end, set<string>& dict){
         vector<vector<string> > res;
 
@@ -50,7 +50,7 @@ public:
         colors[start] = BLACK;
         map<string, vector<string> > parents;
         bool foundEnd = false;
-        
+
         while(!currQ.empty()){
             queue<string> nextQ;
             vector<string> strFound;
@@ -64,7 +64,7 @@ public:
                             continue;
                         string nextStr = currStr;
                         nextStr[i] = c;
-                        
+
                         if(nextStr == end){
                             foundEnd = true;
                             parents[nextStr].push_back(currStr);
@@ -74,7 +74,7 @@ public:
                             if(colors.find(nextStr) == colors.end()){
                                 nextQ.push(nextStr);
                                 colors[nextStr] = GRAY;
-                                strFound.push_back(nextStr);    
+                                strFound.push_back(nextStr);
                             }
                             parents[nextStr].push_back(currStr);
                         }
@@ -91,7 +91,7 @@ public:
             for(int i = 0; i < strFound.size(); i++)
                 colors[strFound[i]] = BLACK;
         }
-       
+
         return res;
     }
 };
@@ -111,7 +111,7 @@ int main(){
     dict.insert("pee");
     Solution solution;
     vector<vector<string> > res = solution.findLadders(start, end, dict);
-    
+
     for(int i = 0; i < res.size(); i++){
         for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << " ";

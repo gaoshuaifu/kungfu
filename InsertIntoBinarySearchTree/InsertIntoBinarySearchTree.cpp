@@ -38,25 +38,25 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(!root)
         return;
-    
+
     print(root->left);
     cout << root->val << " ";
     print(root->right);
 }
 
 class Solution{
-public: 
+public:
     bool insert(TreeNode*& root, int value){
         if(!root){
             root = new TreeNode(value);
             return true;
         }
-        
+
         TreeNode* curr = root;
         while(true){
             if(root->val == value)
                 return false;
-            
+
             if(curr->val > value){
                 if(!curr->left){
                     curr->left = new TreeNode(value);
@@ -78,11 +78,11 @@ public:
 };
 
 class Solution1{
-public: 
+public:
     bool insertHelper(TreeNode*& root, int value){
         if(root->val == value)
             return false;
-        
+
         else if(root->val > value){
             if(!root->left){
                 root->left = new TreeNode(value);
@@ -97,16 +97,16 @@ public:
                 return true;
             }
             else
-                return insertHelper(root->right, value);            
+                return insertHelper(root->right, value);
         }
     }
-    
+
     bool insert(TreeNode*& root, int value){
         if(!root){
             root = new TreeNode(value);
             return true;
         }
-        
+
         return insertHelper(root, value);
     }
 };
@@ -115,34 +115,34 @@ int main(){
     TreeNode* root = NULL;
     Solution solution;
     bool success;
-    
+
     cout << solution.insert(root, 4) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 2) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 1) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 3) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 6) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 7) << "\n";
     print(root);
     cout << "\n";
-    
+
     cout << solution.insert(root, 5) << "\n";
     print(root);
     cout << "\n";
-    
+
     return 0;
 }

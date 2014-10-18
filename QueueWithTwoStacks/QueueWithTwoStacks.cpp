@@ -18,25 +18,25 @@ private:
 
 public:
     void push(T val){
-        inStk.push(val);    
+        inStk.push(val);
     }
-    
+
     void pop(){
         if(outStk.empty())
             moveFromInToOut();
         outStk.pop();
     }
-    
+
     T front(){
         if(outStk.empty())
             moveFromInToOut();
         return outStk.top();
     }
-    
+
     bool empty(){
         return inStk.empty() && outStk.empty();
     }
-    
+
     int size(){
         return inStk.size() + outStk.size();
     }
@@ -44,7 +44,7 @@ public:
 
 int main(){
     QueueWithTwoStacks<int> q;
-    
+
     for(int i = 1; i <= 10; i++){
         q.push(i);
         cout << q.front() << " " << q.size() << "\n";
@@ -54,6 +54,6 @@ int main(){
         cout << q.front() << " " << q.size() << "\n";
         q.pop();
     }
-    
+
     return 0;
 }

@@ -14,17 +14,17 @@ public:
         count = 0;
         pthread_mutex_init(&mutex, NULL);
     }
-    
+
     ~Counter(){
-        pthread_mutex_destroy(&mutex);  
+        pthread_mutex_destroy(&mutex);
     }
-    
+
     void increment(){
         pthread_mutex_lock(&mutex);
         count++;
         pthread_mutex_unlock(&mutex);
     }
-    
+
     int getCount(){
         int res;
         pthread_mutex_lock(&mutex);
@@ -44,26 +44,26 @@ void* run(void* arg){
 int main(){
     // create shared counter
     Counter* counter = new Counter();
-    
+
     // create attr
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
-    
+
     // create threads
     pthread_t threads[NUM_THREAD];
     for(int i = 0; i < NUM_THREAD; i++)
         pthread_create(&threads[i], &attr, run, counter);
-    
+
     // join all threads.
     for(int i = 0; i < NUM_THREAD; i++)
         pthread_join(threads[i], NULL);
-    
+
     // destroy the attribute.
     pthread_attr_destroy(&attr);
-    
+
     // print result
     cout << counter->getCount() << endl;
-    
-    pthread_exit(NULL); 
+
+    pthread_exit(NULL);
 }

@@ -3,17 +3,17 @@
  */
 #include <iostream>
 #include <vector>
-#include <map> 
+#include <map>
 #include <algorithm>
 using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &numbers, int target) { 
+    vector<int> twoSum(vector<int> &numbers, int target) {
         vector<int> res(2, -1);
         int n = numbers.size();
         map<int, int> mapping;
-        
+
         for(int i = 0; i < n; i++){
             if(mapping.find(target - numbers[i]) != mapping.end()){
                 res[0] = mapping[target - numbers[i]] + 1;
@@ -21,8 +21,8 @@ public:
                 return res;
             }
             else
-                mapping[numbers[i]] = i;    
-        }   
+                mapping[numbers[i]] = i;
+        }
         return res;
     }
 };

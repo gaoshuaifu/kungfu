@@ -7,7 +7,7 @@ using namespace std;
 
 
 class Solution {
-public: 
+public:
     bool isValid(string& s, int start, int end){
         string str = s.substr(start, end - start + 1);
         int n = str.size();
@@ -19,8 +19,8 @@ public:
             return str >= "100" && str <= "255";
         else
             return false;
-    }   
-    
+    }
+
     string transform(vector<string>& sol){
         assert(sol.size() == 4);
         string str = "";
@@ -31,12 +31,12 @@ public:
         str += sol[3];
         return str;
     }
-    
+
     void restoreIpAddressesHelper(string& s, int start, vector<string>& sol, vector<string>& res){
         if(sol.size() == 4){
             if(start == s.size())
                 res.push_back(transform(sol));
-            return;             
+            return;
         }
 
         for(int end = start; end < min(start + 3, (int)s.size()); end++){
@@ -47,7 +47,7 @@ public:
             }
         }
     }
-    
+
     vector<string> restoreIpAddresses(string s) {
         vector<string> res;
         vector<string> sol;
@@ -57,7 +57,7 @@ public:
 };
 
 int main(){
-    string s = "25525511135";   
+    string s = "25525511135";
     Solution solution;
     vector<string> res = solution.restoreIpAddresses(s);
     for(int i = 0; i < res.size(); i++)

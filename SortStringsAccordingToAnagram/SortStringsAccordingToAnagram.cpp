@@ -16,7 +16,7 @@ public:
             return aa < bb;
         }
     };
-    
+
     void anagramSort(vector<string>& strs){
         sort(strs.begin(), strs.end(), LessThan());
     }
@@ -26,15 +26,15 @@ class Solution1{
 public:
     void anagramSort(vector<string>& strs){
         map<string, vector<string> > mapping;
-        
+
         for(int i = 0; i < strs.size(); i++){
             string key = strs[i];
             sort(key.begin(), key.end());
             mapping[key].push_back(strs[i]);
         }
-        
+
         strs.clear();
-        
+
         for(map<string, vector<string> >::iterator it = mapping.begin(); it != mapping.end(); it++){
             sort(it->second.begin(), it->second.end());
             strs.insert(strs.end(), it->second.begin(), it->second.end());
@@ -44,18 +44,18 @@ public:
 
 int main(){
     vector<string> strs;
-    strs.push_back("aab");  
-    strs.push_back("baa");  
-    strs.push_back("abc");  
-    strs.push_back("cba");  
-    strs.push_back("bbc");  
+    strs.push_back("aab");
+    strs.push_back("baa");
+    strs.push_back("abc");
+    strs.push_back("cba");
+    strs.push_back("bbc");
     strs.push_back("cbc");
 
     Solution solution;
     solution.anagramSort(strs);
-    
+
     for(int i = 0; i < strs.size(); i++)
         cout << strs[i] << "\n";
-    
+
     return 0;
 }

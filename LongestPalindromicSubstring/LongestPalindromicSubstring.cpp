@@ -7,7 +7,7 @@
 using namespace std;
 
 class Solution{
-public: 
+public:
     string longestPalindrome(string s){
         int n = s.size();
         int maxLen = 0;

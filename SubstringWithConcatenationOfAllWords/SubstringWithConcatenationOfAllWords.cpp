@@ -7,17 +7,17 @@
 using namespace std;
 
 class Solution{
-public: 
+public:
     vector<int> findSubstring(string S, vector<string>& L){
         vector<int> res;
         int l = S.size();
         int m = L.size();
         int n = L[0].size();
-        
+
         map<string, int> needFind;
         for(int i = 0; i < m; i++)
             needFind[L[i]]++;
-        
+
         for(int i = 0; i <= l - m * n; i++){
             map<string, int> hasFound;
             int j;
@@ -42,13 +42,13 @@ int main(){
     vector<string> L;
     L.push_back("foo");
     L.push_back("bar");
-    
+
     Solution solution;
     vector<int> res = solution.findSubstring(S, L);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

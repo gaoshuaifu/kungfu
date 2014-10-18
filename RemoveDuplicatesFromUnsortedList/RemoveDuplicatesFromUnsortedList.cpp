@@ -17,12 +17,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -39,17 +39,17 @@ void print(ListNode* head){
 
 
 class Solution{
-public:    
+public:
     ListNode* deleteDuplicates(ListNode* head){
         if(!head)
             return head;
-        
+
         map<int, bool> visited;
         visited[head->val] = true;
-        
+
         ListNode* prev = head;
         ListNode* curr = head->next;
-        
+
         while(curr){
             if(visited[curr->val]){
                 prev->next = curr->next;
@@ -62,13 +62,13 @@ public:
                 curr = curr->next;
             }
         }
-        
+
         return head;
     }
 };
 
 int main(){
-    int array[] = {2, 1, 4, 4, 3, 2, 1, 3, 2}; 
+    int array[] = {2, 1, 4, 4, 3, 2, 1, 3, 2};
     ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
     print(list);
     Solution solution;

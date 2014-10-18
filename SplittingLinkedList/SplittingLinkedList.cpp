@@ -17,12 +17,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -39,20 +39,20 @@ void print(ListNode* head){
 
 class Solution{
 public:
-    void partition(ListNode* head, ListNode*& left, ListNode*& right){  
+    void partition(ListNode* head, ListNode*& left, ListNode*& right){
         if(!head){
             left = NULL;
             right = NULL;
             return;
         }
-        
+
         ListNode* slow = head;
         ListNode* fast = head;
         while(fast && fast->next && fast->next->next){
             slow = slow->next;
             fast = fast->next->next;
         }
-        
+
         left = head;
         right = slow->next;
         slow->next = NULL;
@@ -61,7 +61,7 @@ public:
 
 
 int main(){
-    int array[] = {1, 2, 3, 4, 5}; 
+    int array[] = {1, 2, 3, 4, 5};
     ListNode* head = initializeList(array, sizeof(array) / sizeof(array[0]));
     Solution solution;
     ListNode* left;

@@ -38,7 +38,7 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << " ";
     print(root->right);
@@ -51,30 +51,30 @@ public:
         TreeNode* prev = tmp;
         TreeNode* first = NULL;
         TreeNode* second = NULL;
-        
+
         TreeNode* curr = root;
         stack<TreeNode*> stk;
-        
+
         while(curr || !stk.empty()){
             if(curr){
-                stk.push(curr); 
+                stk.push(curr);
                 curr = curr->left;
             }
             else{
                 curr = stk.top();
                 stk.pop();
-                
+
                 if(prev->val > curr->val){
                     if(!first)
                         first = prev;
                     second = curr;
                 }
                 prev = curr;
-    
+
                 curr = curr->right;
             }
         }
-        
+
         if(first && second)
             swap(first->val, second->val);
         delete tmp;
@@ -85,27 +85,27 @@ class Solution1{
 public:
     void recoverTreeHelper(TreeNode* curr, TreeNode*& prev, TreeNode*& first, TreeNode*& second){
         if(!curr) return;
-        
+
         recoverTreeHelper(curr->left, prev, first, second);
-        
+
         if(prev->val > curr->val){
             if(!first)
                 first = prev;
             second = curr;
         }
         prev = curr;
-        
+
         recoverTreeHelper(curr->right, prev, first, second);
     }
-    
+
     void recoverTree(TreeNode* root){
         TreeNode* tmp = new TreeNode(INT_MIN);
         TreeNode* prev = tmp;
         TreeNode* first = NULL;
         TreeNode* second = NULL;
-        
+
         recoverTreeHelper(root, prev, first, second);
-        
+
         if(first && second)
             swap(first->val, second->val);
         delete tmp;

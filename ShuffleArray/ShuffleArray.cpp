@@ -7,12 +7,12 @@ using namespace std;
 // random num between 0 and n
 int rand0toN(int n){
     if(n == 0) return 0;
-    
+
     n++;
     int upper = RAND_MAX / n * n;
     int r;
     do{
-        r = rand(); 
+        r = rand();
     } while(r >= upper);
     return r % n;
 }
@@ -34,13 +34,13 @@ int main(){
     vector<int> num;
     for(int i = 1; i <= 10; i++)
         num.push_back(i);
-    
+
     Solution solution;
     solution.shuffle(num);
-    
+
     for(int i = 0; i < num.size(); i++)
         cout << num[i] << " ";
     cout << endl;
-    
-    return 0;   
+
+    return 0;
 }

@@ -17,7 +17,7 @@ void printNumber(ListNode* l){
     for(ListNode* p = l; p != NULL; p = p->next){
         if(p->next == NULL)
             cout << p->val;
-        else 
+        else
             cout << p->val << "->";
     }
     cout << endl;
@@ -32,7 +32,7 @@ public:
         ListNode* p2 = l2;
         int digit;
         int carry = 0;
-        
+
         while(p1 || p2){
             int sum = 0;
             if(p1){
@@ -53,7 +53,7 @@ public:
         }
         if(carry > 0)
             tail->next = new ListNode(carry);
-        
+
         return head;
     }
 };
@@ -66,7 +66,7 @@ int main(){
     p1->next = new ListNode(6);
     p1 = p1->next;
     printNumber(l1);
-    
+
     ListNode* l2 = new ListNode(6);
     ListNode* p2 = l2;
     p2->next = new ListNode(7);
@@ -76,11 +76,11 @@ int main(){
     p2->next = new ListNode(9);
     p2 = p2->next;
     printNumber(l2);
-    
+
     Solution solution;
     ListNode* l3 = solution.addTwoNumbers(l1, l2);
     printNumber(l3);
-        
+
     return 0;
 }
 

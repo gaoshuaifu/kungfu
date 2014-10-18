@@ -7,7 +7,7 @@ using namespace std;
 
 class Solution{
 public:
-    void precompute(char* pat, int n, int* PI){ 
+    void precompute(char* pat, int n, int* PI){
         PI[0] = -1;
         int j = -1;
         for(int i = 1; i < n; i++){
@@ -18,16 +18,16 @@ public:
             PI[i] = j;
         }
     }
-    
-    char* strStr(char* str, char* pat){     
+
+    char* strStr(char* str, char* pat){
         int m = strlen(str);
         int n = strlen(pat);
-        
+
         if(n == 0) return str;
-        
+
         int PI[n];
         precompute(pat, n, PI);
-        
+
         int j = -1;
         for(int i = 0; i < m; i++){
             while(j > -1 && pat[j + 1] != str[i])
@@ -46,7 +46,7 @@ public:
     char* strStr(char* str, char* pat){
         int m = strlen(str);
         int n = strlen(pat);
-        
+
         for(int i = 0; i < m - n + 1; i++){
             bool isMatch = true;
             for(int j = 0; j < n; j++){
@@ -55,7 +55,7 @@ public:
                     break;
                 }
             }
-            if(isMatch) 
+            if(isMatch)
                 return str + i;
         }
         return NULL;

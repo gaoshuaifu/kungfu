@@ -12,20 +12,20 @@ public:
     int ladderLength(string start, string end, set<string>& dict){
         if(start == end)
             return 1;
-        
+
         int dist = 2;
         queue<string> currQ;
         set<string> visited;
-        currQ.push(start);      
+        currQ.push(start);
         visited.insert(start);
-        
+
         while(!currQ.empty()){
             queue<string> nextQ;
-            
+
             while(!currQ.empty()){
                 string currStr = currQ.front();
                 currQ.pop();
-                
+
                 for(int i = 0; i < currStr.size(); i++){
                     string nextStr = currStr;
                     for(char c = 'a'; c <= 'z'; c++){

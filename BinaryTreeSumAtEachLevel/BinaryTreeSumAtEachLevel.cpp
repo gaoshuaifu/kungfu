@@ -44,19 +44,19 @@ public:
             return 0;
         return max(getHeight(root->left), getHeight(root->right)) + 1;
     }
-    
+
     void sumAtLevel(TreeNode* root, int level, int&sum){
         if(!root) return;
-        
+
         if(level == 1){
             sum += root->val;
             return;
         }
-        
+
         sumAtLevel(root->left, level - 1, sum);
         sumAtLevel(root->right, level - 1, sum);
     }
-    
+
     vector<int> sumAtEachLevel(TreeNode* root){
         vector<int> res;
         int height = getHeight(root);
@@ -71,11 +71,11 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<int> res = solution.sumAtEachLevel(root);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << "\n";
-    
+
     return 0;
 }

@@ -9,7 +9,7 @@ public:
         int n = s.size();
         string res;
         map<char, int> mapping;
-        
+
         int start = 0;
         int end = 0;
         while(end < n){
@@ -18,10 +18,10 @@ public:
                 end++;
                 continue;
             }
-            
+
             if(end - start > res.size())
                 res = s.substr(start, end - start);
-            
+
             while(mapping.size() == 2){
                 mapping[s[start]]--;
                 if(mapping[s[start]] == 0)
@@ -31,7 +31,7 @@ public:
         }
         if(end - start > res.size())
             res = s.substr(start, end - start);
-        
+
         return res;
     }
 };
@@ -42,5 +42,5 @@ int main(){
     string s = "abababababcccddd";
     string res = solution.longestSubstr(s);
     cout << res << endl;
-    return 0;   
+    return 0;
 }

@@ -53,7 +53,7 @@ public:
     TreeNode* connect(TreeNode* root){
         TreeNode* tmp = new TreeNode(INT_MIN);
         TreeNode* tail = tmp;
-        
+
         stack<TreeNode*> stk;
         TreeNode* curr = root;
         while(!stk.empty() || curr){
@@ -64,21 +64,21 @@ public:
             else{
                 curr = stk.top();
                 stk.pop();
-                
+
                 tail->right = curr;
                 curr->left = tail;
                 tail = curr;
-                
+
                 curr = curr->right;
             }
         }
-        
+
         TreeNode* head = tmp->right;
         head->left = tail;
         tail->right = head;
         delete tmp;
         return head;
-    }       
+    }
 };
 
 class Solution1{
@@ -86,25 +86,25 @@ public:
     void connectHelper(TreeNode* root, TreeNode*& tail){
         if(!root) return;
         connectHelper(root->left, tail);
-        
+
         tail->right = root;
         root->left = tail;
         tail = root;
-        
+
         connectHelper(root->right, tail);
     }
-    
+
     TreeNode* connect(TreeNode* root){
         TreeNode* tmp = new TreeNode(INT_MIN);
         TreeNode* tail = tmp;
         connectHelper(root, tail);
-        
+
         TreeNode* head = tmp->right;
         head->left = tail;
         tail->right = head;
         delete tmp;
         return head;
-    }       
+    }
 };
 
 int main(){
@@ -113,5 +113,5 @@ int main(){
     TreeNode* head = solution.connect(root);
     printHead2Tail(head);
     printTail2Head(head);
-    return 0;   
+    return 0;
 }

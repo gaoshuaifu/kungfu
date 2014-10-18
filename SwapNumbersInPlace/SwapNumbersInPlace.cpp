@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution{
 public:
-    void swap(int& a, int& b){  
+    void swap(int& a, int& b){
         int n = 8 * sizeof(int);
         for(int i = 0; i < n; i++){
             if((a & (1 << i)) ^ (b & (1 << i))){
@@ -16,7 +16,7 @@ public:
 
 class Solution1{
 public:
-    void swap(int& a, int& b){  
+    void swap(int& a, int& b){
         a = a ^ b;
         b = a ^ b;
         a = a ^ b;
@@ -26,7 +26,7 @@ public:
 
 class Solution2{
 public:
-    void swap(int& a, int& b){  
+    void swap(int& a, int& b){
         a = a - b;
         b = a + b;
         a = b - a;
@@ -42,5 +42,5 @@ int main(){
     solution.swap(a, b);
     cout << a << " " << b << endl;
 
-    return 0;   
+    return 0;
 }

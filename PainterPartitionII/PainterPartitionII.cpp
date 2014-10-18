@@ -8,7 +8,7 @@ using namespace std;
 
 void print(vector<int>& L, int width){
     int n = L.size();
-    
+
     int s = 0;
     for(int i = 0; i < n - 1; i++){
         s += L[i];
@@ -17,7 +17,7 @@ void print(vector<int>& L, int width){
             cout << '|';
             s = 0;
         }
-        else 
+        else
             cout << ' ';
     }
     cout << L[n - 1] << endl;
@@ -31,7 +31,7 @@ public:
             res = max(res, L[i]);
         return res;
     }
-    
+
     int sumArray(vector<int>& L){
         int res = 0;
         for(int i = 0; i < L.size(); i++)
@@ -41,18 +41,18 @@ public:
 
     int paintersNeeded(vector<int>& L, int window){
         int sum = 0;
-        int painters = 0;   
+        int painters = 0;
         for(int i = 0; i < L.size() - 1; i++){
             sum += L[i];
             if(sum <= window && sum + L[i + 1]> window){
-                painters++;         
+                painters++;
                 sum = 0;
             }
         }
         painters++;
         return painters;
     }
-    
+
     int partition(vector<int>& L, int k){
         int low = maxArray(L);
         int high = sumArray(L);
@@ -64,7 +64,7 @@ public:
             else
                 low = mid + 1;
         }
-        
+
         return low;
     }
 };
@@ -73,10 +73,10 @@ int main(){
     int A[] = {100, 200, 300, 400, 500, 600, 700, 800, 900};
     vector<int> L(A, A + sizeof(A) / sizeof(A[0]));
     int k = 3;
-    
+
     Solution solution;
     int width = solution.partition(L, k);
-    print(L, width);    
-    
+    print(L, width);
+
     return 0;
-}   
+}

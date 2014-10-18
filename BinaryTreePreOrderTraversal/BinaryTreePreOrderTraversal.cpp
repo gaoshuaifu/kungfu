@@ -38,9 +38,9 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<int> preorderTraversal(TreeNode* root){ 
+    vector<int> preorderTraversal(TreeNode* root){
         vector<int> res;
-        
+
         stack<TreeNode*> stk;
         TreeNode* curr = root;
         while(curr != NULL || !stk.empty()){
@@ -55,20 +55,20 @@ public:
                 curr = curr->right;
             }
         }
-        
+
         return res;
     }
 };
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<int> res = solution.preorderTraversal(root);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

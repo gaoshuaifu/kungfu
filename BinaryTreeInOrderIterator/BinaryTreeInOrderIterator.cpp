@@ -38,27 +38,27 @@ TreeNode* initialize(){
 class BinaryTreeInOrderIterator{
 private:
     stack<TreeNode*> stk;
-    
+
     void reachLeftMost(TreeNode* curr){
         while(curr){
             stk.push(curr);
             curr = curr->left;
         }
     }
-    
+
 public:
     BinaryTreeInOrderIterator(TreeNode* root){
         reachLeftMost(root);
     }
-    
+
     bool hasNext(){
         return !stk.empty();
     }
-    
+
     TreeNode* next(){
         if(!hasNext())
             return NULL;
-        
+
         TreeNode* curr = stk.top();
         stk.pop();
         reachLeftMost(curr->right);
@@ -68,13 +68,13 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     BinaryTreeInOrderIterator it(root);
-    
+
     while(it.hasNext())
         cout << it.next()->val << " ";
     cout << endl;
-    
+
     return 0;
 }
 

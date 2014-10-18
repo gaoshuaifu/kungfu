@@ -36,7 +36,7 @@ public:
     TreeNode* sortedArrayToBSTHelper(vector<int>& num, int low, int high){
         if(low > high)
             return NULL;
-            
+
         int mid = (low + high) / 2;
         TreeNode* root = new TreeNode(num[mid]);
         root->left = sortedArrayToBSTHelper(num, low, mid - 1);
@@ -53,14 +53,14 @@ public:
 int main(){
     int numArr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     vector<int> num(numArr, numArr + sizeof(numArr) / sizeof(numArr[0]));
-    
+
     Solution solution;
     TreeNode* root = solution.sortedArrayToBST(num);
-    
+
     vector<int> inorderRes;
     inorderTraverse(root, inorderRes);
     print(inorderRes);
-    
-    return 0;   
+
+    return 0;
 }
 

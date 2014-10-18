@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -39,37 +39,37 @@ void print(ListNode* head){
 }
 
 class Solution{
-public: 
+public:
     int getLength(ListNode* head){
         int n = 0;
         for(ListNode* curr = head; curr; curr = curr->next)
             n++;
         return n;
     }
-    
+
     ListNode* rotateRight(ListNode* head, int k){
         int n = getLength(head);
         if(n == 0)
             return head;
-        
+
         k = k % n;
         if(k == 0)
             return head;
-        
+
         ListNode* post = head;
         for(int i = 0; i < k; i++)
             post = post->next;
-        
+
         ListNode* curr = head;
         while(post->next){
             curr = curr->next;
             post = post->next;
         }
-        
+
         post->next = head;
         head = curr->next;
         curr->next = NULL;
-        
+
         return head;
     }
 };

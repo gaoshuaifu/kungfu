@@ -41,30 +41,30 @@ public:
     void traverseLeftEdges(TreeNode* root, bool isLeftMost, vector<int>& res){
         if(!root)
             return;
-        
+
         if(isLeftMost || (!root->left && !root->right))
             res.push_back(root->val);
-        
+
         traverseLeftEdges(root->left, isLeftMost, res);
         traverseLeftEdges(root->right, isLeftMost && !root->left, res);
     }
-    
+
     void traverseRightEdges(TreeNode* root, bool isRightMost, vector<int>& res){
         if(!root)
             return;
-        
+
         traverseRightEdges(root->left, isRightMost && !root->right, res);
         traverseRightEdges(root->right, isRightMost, res);
-        
+
         if(isRightMost || (!root->left && !root->right))
             res.push_back(root->val);
     }
-    
-    vector<int> traverseOuterEdges(TreeNode* root){ 
+
+    vector<int> traverseOuterEdges(TreeNode* root){
         vector<int> res;
         if(!root)
             return res;
-        
+
         res.push_back(root->val);
         traverseLeftEdges(root->left, true, res);
         traverseRightEdges(root->right, true, res);
@@ -75,13 +75,13 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<int> res = solution.traverseOuterEdges(root);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

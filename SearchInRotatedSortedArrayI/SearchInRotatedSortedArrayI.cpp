@@ -11,10 +11,10 @@ public:
         int high = n - 1;
         while(low <= high){
             int mid = low + (high - low) / 2;
-            
+
             if(target == A[mid])
                 return mid;
-            
+
             if(A[low] <= A[mid]){
                 if(A[low] <= target && target < A[mid])
                     high = mid - 1;
@@ -24,7 +24,7 @@ public:
             else{
                 if(A[mid] < target && target <= A[high])
                     low = mid + 1;
-                else    
+                else
                     high = mid - 1;
             }
         }
@@ -35,11 +35,11 @@ public:
 int main(){
     int A[] = {4, 5, 6, 7, 0, 1, 2};
     int target = 2;
-    
+
     Solution solution;
     int res = solution.search(A, sizeof(A)/sizeof(A[0]), target);
     cout << res << endl;
-    
+
     return 0;
 }
 

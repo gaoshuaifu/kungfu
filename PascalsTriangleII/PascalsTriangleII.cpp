@@ -1,4 +1,4 @@
-/*  
+/*
  * time: O(n^2), space O(n)
  */
 #include <iostream>
@@ -28,13 +28,13 @@ public:
 
 int main(){
     int rowIndex = 5;
-    
+
     Solution solution;
     vector<int> res = solution.getRow(rowIndex);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

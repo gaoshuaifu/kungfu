@@ -21,20 +21,20 @@ struct Interval{
 };
 
 class Solution{
-public: 
+public:
     struct LessThan{
         bool operator()(const Interval a, const Interval b){
-            return a.start < b.start;   
+            return a.start < b.start;
         }
     };
-    
+
     vector<Interval> merge(vector<Interval>& intervals){
         vector<Interval> res;
         int n = intervals.size();
         if(n == 0) return res;
-            
+
         sort(intervals.begin(), intervals.end(), LessThan());
-        
+
         Interval prev = intervals[0];
         for(int i = 1; i < n; i++){
             Interval curr = intervals[i];
@@ -46,7 +46,7 @@ public:
                 prev.end = max(prev.end, curr.end);
         }
         res.push_back(prev);
-        
+
         return res;
     }
 };
@@ -57,13 +57,13 @@ int main(){
     intervals.push_back(Interval(8, 10));
     intervals.push_back(Interval(2, 6));
     intervals.push_back(Interval(15, 18));
-    
+
     Solution solution;
     vector<Interval> res = solution.merge(intervals);
-    
+
     for(int i = 0; i < res.size(); i++)
         cout << res[i].start << ", " << res[i].end << endl;
-    
+
     return 0;
 }
 

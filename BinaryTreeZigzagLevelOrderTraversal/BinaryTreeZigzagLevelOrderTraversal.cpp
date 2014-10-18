@@ -38,7 +38,7 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<vector<int> > zigzagLevelOrder(TreeNode* root){ 
+    vector<vector<int> > zigzagLevelOrder(TreeNode* root){
         vector<vector<int> > res;
         if(root == NULL)
             return res;
@@ -46,7 +46,7 @@ public:
         stack<TreeNode*> currStk;
         currStk.push(root);
         bool toRight = true;
-        
+
         while(!currStk.empty()){
             vector<int> levelNodes;
             stack<TreeNode*> nextStk;
@@ -58,7 +58,7 @@ public:
                     if(node->left)
                         nextStk.push(node->left);
                     if(node->right)
-                        nextStk.push(node->right);  
+                        nextStk.push(node->right);
                 }
                 else{
                     if(node->right)
@@ -77,7 +77,7 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<vector<int> > res = solution.zigzagLevelOrder(root);
     for(int i = 0; i < res.size(); i++){
@@ -86,7 +86,7 @@ int main(){
         cout << "\n";
     }
     cout << endl;
-    
+
     return 0;
 }
 

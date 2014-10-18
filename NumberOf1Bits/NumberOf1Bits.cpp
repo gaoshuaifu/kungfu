@@ -2,7 +2,7 @@
 using namespace std;
 
 class Solution{
-public: 
+public:
     int numOfOnes(unsigned int x){
         int count = 0;
         while(x != 0){
@@ -15,7 +15,7 @@ public:
 
 class Solution1{
 public:
-    int numOfOnes(unsigned int x){  
+    int numOfOnes(unsigned int x){
         int count = 0;
         for(int i = 0; i < 32; i++){
             if(x & (1 << i))
@@ -27,10 +27,10 @@ public:
 
 int main(){
     Solution solution;
-    
+
     unsigned int x = 0xF0F0F0F0;
     int res = solution.numOfOnes(x);
     cout << res << endl;
-    
+
     return 0;
 }

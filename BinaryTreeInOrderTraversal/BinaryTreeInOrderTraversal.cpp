@@ -38,7 +38,7 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<int> inorderTraversal(TreeNode* root){ 
+    vector<int> inorderTraversal(TreeNode* root){
         vector<int> res;
         stack<TreeNode*> stk;
         TreeNode* curr = root;
@@ -46,7 +46,7 @@ public:
             if(curr){
                 stk.push(curr);
                 curr = curr->left;
-            }   
+            }
             else{
                 curr = stk.top();
                 stk.pop();
@@ -63,12 +63,12 @@ public:
     void inorderTraversalHelper(TreeNode* root, vector<int>& res){
         if(!root)
             return;
-        
+
         inorderTraversalHelper(root->left, res);
         res.push_back(root->val);
         inorderTraversalHelper(root->right, res);
     }
-    
+
     vector<int> inorderTraversal(TreeNode* root){
         vector<int> res;
         inorderTraversalHelper(root, res);
@@ -78,13 +78,13 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<int> res = solution.inorderTraversal(root);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

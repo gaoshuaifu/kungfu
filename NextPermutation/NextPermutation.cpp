@@ -16,18 +16,18 @@ public:
             if(num[i] < num[i + 1])
                 break;
         }
-        
+
         if(i < 0){
             reverse(num.begin(), num.end());
             return;
         }
-        
+
         int j;
         for(j = n - 1; j > i; j--){
             if(num[j] > num[i])
                 break;
         }
-        
+
         swap(num[i], num[j]);
         reverse(num.begin() + i + 1, num.end());
     }
@@ -44,15 +44,15 @@ int main(){
     int a[] = {1, 2, 3, 4};
     vector<int> num = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
     print(num);
-    
-    
+
+
     Solution solution;
-    
+
     for(int i = 0; i < 24; i++){
         solution.nextPermutation(num);
         print(num);
     }
-    
+
     return 0;
 }
 

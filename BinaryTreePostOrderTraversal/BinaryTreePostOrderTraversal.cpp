@@ -38,17 +38,17 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<int> postorderTraversal(TreeNode* root){ 
+    vector<int> postorderTraversal(TreeNode* root){
         vector<int> res;
         if(!root)
             return res;
-        
+
         stack<TreeNode*> stk;
         stk.push(root);
-        
+
         TreeNode* prev = NULL;
         TreeNode* curr = NULL;
-        
+
         while(!stk.empty()){
             curr = stk.top();
             if(!prev || prev->left == curr || prev->right == curr){
@@ -66,7 +66,7 @@ public:
                 stk.pop();
             }
             prev = curr;
-        }           
+        }
 
         return res;
     }
@@ -75,16 +75,16 @@ public:
 
 class Solution1{
 public:
-    vector<int> postorderTraversal(TreeNode* root){ 
+    vector<int> postorderTraversal(TreeNode* root){
         vector<int> res;
         if(!root)
             return res;
-        
+
         stack<TreeNode*> output;
-        
+
         stack<TreeNode*> stk;
         stk.push(root);
-        
+
         while(!stk.empty()){
             TreeNode* curr = stk.top();
             stk.pop();
@@ -93,27 +93,27 @@ public:
                 stk.push(curr->left);
             if(curr->right)
                 stk.push(curr->right);
-        }           
+        }
 
         while(!output.empty()){
             TreeNode* curr = output.top();
             res.push_back(curr->val);
             output.pop();
         }
-        
+
         return res;
     }
 };
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<int> res = solution.postorderTraversal(root);
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;
-    
+
     return 0;
 }
 

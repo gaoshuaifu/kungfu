@@ -38,7 +38,7 @@ public:
         for(int i = 0; i < 9; i++){
             int hasFound[9] = {0};
             for(int j = 0; j < 9; j++){
-                int k = i / 3 * 3 + j / 3; 
+                int k = i / 3 * 3 + j / 3;
                 int l = i % 3 * 3 + j % 3;
                 char c = board[k][l];
                 if(c == '.')
@@ -65,14 +65,14 @@ int main(){
         {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
         {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
     };
-    
+
     vector<vector<char> > board;
     for(int i = 0; i < 9; i++){
         vector<char> row = vector<char>(a[i], a[i] + 9);
         board.push_back(row);
-    }   
-    
-    Solution solution;  
+    }
+
+    Solution solution;
     cout << solution.isValidSudoku(board) << endl;
 
     return 0;

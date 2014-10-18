@@ -11,7 +11,7 @@ public:
         int n = prices.size();
         if(n <= 1)
             return 0;
-            
+
         vector<int> left = vector<int>(n, 0);
         int minPrice = prices[0];
         int maxProfit = 0;
@@ -20,7 +20,7 @@ public:
             maxProfit = max(maxProfit, prices[i] - minPrice);
             left[i] = maxProfit;
         }
-        
+
         vector<int> right = vector<int>(n, 0);
         int maxPrice = prices[n - 1];
         maxProfit = 0;
@@ -29,7 +29,7 @@ public:
             maxProfit = max(maxProfit, maxPrice - prices[i]);
             right[i] = maxProfit;
         }
-        
+
         int maxTotal = 0;
         for(int i = 0; i < n; i++)
             maxTotal = max(maxTotal, left[i] + right[i]);
@@ -40,11 +40,11 @@ public:
 int main(){
     int priceArray[] = {1, 4, 2};
     vector<int> prices = vector<int>(priceArray, priceArray + sizeof(priceArray) / sizeof(int));
-    
+
     Solution solution;
     int res = solution.maxProfitit(prices);
     cout << res << endl;
-    
+
     return 0;
 }
 

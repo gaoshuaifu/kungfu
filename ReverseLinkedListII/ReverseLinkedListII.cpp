@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -43,24 +43,24 @@ public:
     ListNode* reverseBetween(ListNode* head, int m, int n){
         if(!head || m >= n)
             return head;
-        
+
         ListNode* tmp = new ListNode(INT_MIN);
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         for(int i = 0; i < m - 1; i++){
-            prev = prev->next;  
+            prev = prev->next;
             curr = curr->next;
         }
-        
+
         for(int i = 0; i < n - m; i++){
             ListNode* post = curr->next;
             curr->next = post->next;
             post->next = prev->next;
             prev->next = post;
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;
@@ -72,32 +72,32 @@ public:
     ListNode* reverseBetween(ListNode* head, int m, int n){
         if(!head || m >= n)
             return head;
-        
+
         ListNode* tmp = new ListNode(INT_MIN);
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         ListNode* post = head;
         for(int i = 0; i < n - m; i++)
             post = post->next;
-        
+
         for(int i = 0; i < m - 1; i++){
             prev = prev->next;
             curr = curr->next;
             post = post->next;
         }
-        
+
         while(curr != post){
             prev->next = curr->next;
             curr->next = post->next;
             post->next = curr;
             curr = prev->next;
         }
-        
+
         head = tmp->next;
         delete tmp;
-        
+
         return head;
     }
 };

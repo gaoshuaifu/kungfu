@@ -13,14 +13,14 @@ public:
             res.push_back(sol);
             return;
         }
-        
+
         if(left > 0)
             generateParenthesisHelper(left - 1, right, sol + "(", res);
-        
+
         if(left < right)
             generateParenthesisHelper(left, right - 1, sol + ")", res);
     }
-    
+
     vector<string> generateParenthesis(int n){
         vector<string> res;
         string sol = "";

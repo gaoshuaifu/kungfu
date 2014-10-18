@@ -20,20 +20,20 @@ void initialize(Node*& node1, Node*& node4){
     Node* node2 = new Node(2);
     Node* node3 = new Node(3);
     node4 = new Node(4);
-    
+
     node1->neighbors.push_back(node2);
     node1->neighbors.push_back(node3);
-    
+
     node2->neighbors.push_back(node3);
     node2->neighbors.push_back(node4);
-    
+
     node4->neighbors.push_back(node3);
 }
 
 void traverseHelper(Node* node, map<Node*, bool>& visited, vector<Node*>& res){
     res.push_back(node);
     visited[node] = true;
-    
+
     for(int i = 0; i < node->neighbors.size(); i++){
         if(visited.find(node->neighbors[i]) == visited.end())
             traverseHelper(node->neighbors[i], visited, res);
@@ -55,7 +55,7 @@ public:
         if(src == dest)
             return true;
         visited[src] = true;
-        
+
         for(int i = 0; i < src->neighbors.size(); i++){
             Node* neighbor = src->neighbors[i];
             if(visited.find(neighbor) == visited.end() && existPathHelper(neighbor, dest, visited))
@@ -63,7 +63,7 @@ public:
         }
         return false;
     }
-    
+
     bool existPath(Node* src, Node* dest){
         map<Node*, bool> visited;
         return existPathHelper(src, dest, visited);
@@ -85,7 +85,7 @@ public:
         }
         return false;
     }
-    
+
     bool existPath(Node* src, Node* dest){
         map<Node*, bool> visited;
         if(src == dest)
@@ -96,7 +96,7 @@ public:
 };
 
 class Solution2{
-public: 
+public:
     bool existPath(Node* src, Node* dest){
         map<Node*, bool> visited;
         queue<Node*> q;
@@ -106,10 +106,10 @@ public:
         while(!q.empty()){
             Node* node = q.front();
             q.pop();
-            
+
             if(node == dest)
                 return true;
-            
+
             for(int i = 0; i < node->neighbors.size(); i++){
                 Node* neighbor = node->neighbors[i];
                 if(visited.find(neighbor) == visited.end()){
@@ -123,20 +123,20 @@ public:
 };
 
 class Solution3{
-public: 
+public:
     bool existPath(Node* src, Node* dest){
         map<Node*, bool> visited;
         queue<Node*> q;
-        
+
         if(src == dest)
             return true;
         visited[src] = true;
         q.push(src);
-        
+
         while(!q.empty()){
             Node* curr = q.front();
             q.pop();
-            
+
             for(int i = 0; i < curr->neighbors.size(); i++){
                 Node* neighbor = curr->neighbors[i];
                 if(visited.find(neighbor) == visited.end()){
@@ -155,20 +155,20 @@ int main(){
     Node* node1;
     Node* node4;
     initialize(node1, node4);
-    
+
     Solution1 solution;
-    
+
     cout << "tranverse from node1: ";
     traverse(node1);
     cout << "exist a path from node1 to node4? ";
     cout << solution.existPath(node1, node4);
     cout << "\n";
-    
+
     cout << "tranverse from node4: ";
     traverse(node4);
     cout << "exist a path from node4 to node1? ";
-    cout << solution.existPath(node4, node1);   
+    cout << solution.existPath(node4, node1);
     cout << "\n";
-    
-    return 0;   
+
+    return 0;
 }

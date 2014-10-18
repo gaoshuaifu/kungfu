@@ -11,7 +11,7 @@ public:
     string simplifyPath(string path){
         int n = path.size();
         vector<string> dirs;
-        
+
         int start = 0;
         int end;
         while(start < n){
@@ -19,11 +19,11 @@ public:
                 start++;
                 continue;
             }
-            
+
             end = start;
             while(end < n && path[end] != '/')
                 end++;
-                
+
             string dir = path.substr(start, end - start);
             if(dir == ".."){
                 if(!dirs.empty())
@@ -31,10 +31,10 @@ public:
             }
             else if(dir != ".")
                 dirs.push_back(dir);
-                
+
             start = end;
         }
-        
+
         if(dirs.empty())
             return "/";
 
@@ -43,7 +43,7 @@ public:
             res += "/";
             res += dirs[start];
         }
-        
+
         return res;
     }
 };

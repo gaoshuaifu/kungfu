@@ -38,7 +38,7 @@ public:
 class Solution1{
 public:
     int maxArea(vector<int> &height) {
-        int n = height.size();        
+        int n = height.size();
         int maxArea = 0;
         int i = 0;
         int j = n - 1;
@@ -47,7 +47,7 @@ public:
             maxArea = max(maxArea, area);
             if(height[i] == height[j]){
                 i++;
-                j--;    
+                j--;
             }
             else if(height[i] < height[j])
                 i++;

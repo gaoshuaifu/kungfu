@@ -59,12 +59,12 @@ public:
     void connect(TreeLinkNode* root){
         if(root == NULL)
             return;
-        
+
         queue<TreeLinkNode*> currQ;
         currQ.push(root);
-        
+
         while(!currQ.empty()){
-            queue<TreeLinkNode*> nextQ; 
+            queue<TreeLinkNode*> nextQ;
             while(!currQ.empty()){
                 TreeLinkNode* node = currQ.front();
                 currQ.pop();
@@ -89,6 +89,6 @@ int main(){
     Solution solution;
     solution.connect(root);
     print(root);
-    return 0;   
+    return 0;
 }
 

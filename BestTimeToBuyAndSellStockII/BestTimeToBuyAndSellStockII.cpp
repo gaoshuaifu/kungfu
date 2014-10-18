@@ -14,7 +14,7 @@ public:
         int maxProfit = 0;
         for(int i = 1; i < n; i++)
             maxProfit += max(0, prices[i] - prices[i - 1]);
-    
+
         return maxProfit;
     }
 };
@@ -26,7 +26,7 @@ int main(){
     Solution solution;
     int res = solution.maxProfit(prices);
     cout << res << endl;
-    
+
     return 0;
 }
 

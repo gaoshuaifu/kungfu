@@ -22,7 +22,7 @@ struct TreeNode{
     ___2__          ___6__
    /      \        /      \
    1       3       5       7
-   
+
 */
 TreeNode* initialize(TreeNode*& root, TreeNode*& p, TreeNode*& q){
     TreeNode* node1 = new TreeNode(4);
@@ -38,7 +38,7 @@ TreeNode* initialize(TreeNode*& root, TreeNode*& p, TreeNode*& q){
     node2->right = node5;
     node3->left = node6;
     node3->right = node7;
-    
+
     root = node1;
     p = node4;
     q = node5;
@@ -47,7 +47,7 @@ TreeNode* initialize(TreeNode*& root, TreeNode*& p, TreeNode*& q){
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << endl;
     print(root->right);
@@ -58,10 +58,10 @@ public:
     TreeNode* LCA(TreeNode* root, TreeNode* node1, TreeNode* node2){
         if(!root)
             return NULL;
-        
+
         int low = min(node1->val, node2->val);
         int high = max(node1->val, node2->val);
-        
+
         if(root->val >= low && root->val <= high)
             return root;
         else if(root->val > high)

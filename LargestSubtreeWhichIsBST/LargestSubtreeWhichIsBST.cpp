@@ -24,9 +24,9 @@ struct TreeNode{
       __5_         15_
      /    \           \
      1     8           7
- 
+
  */
- 
+
 TreeNode* initialize(){
     TreeNode* node1 = new TreeNode(10);
     TreeNode* node2 = new TreeNode(5);
@@ -46,7 +46,7 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << endl;
     print(root->right);
@@ -58,19 +58,19 @@ public:
     int largestBSTSubtreeHelper(TreeNode* root, int& min, int& max, int& maxNodeNum, TreeNode*& largestBST){
         if(!root)
             return 0;
-        
+
         bool isBST = true;
-        
+
         int leftNodeNum = largestBSTSubtreeHelper(root->left, min, max, maxNodeNum, largestBST);
         int currMin = (leftNodeNum == 0)? root->val : min;
         if(leftNodeNum == -1 || (leftNodeNum > 0 && root->val <= max))
             isBST = false;
-        
+
         int rightNodeNum = largestBSTSubtreeHelper(root->right, min, max, maxNodeNum, largestBST);
         int currMax = (rightNodeNum == 0)? root->val : max;
         if(rightNodeNum == -1 || (rightNodeNum > 0 && root->val >= min))
             isBST = false;
-        
+
         if(isBST){
             min = currMin;
             max = currMax;
@@ -81,10 +81,10 @@ public:
             }
             return totalNodeNum;
         }
-        else    
+        else
             return -1;
     }
-    
+
     TreeNode* largestBSTSubtree(TreeNode* root){
         int min;
         int max;

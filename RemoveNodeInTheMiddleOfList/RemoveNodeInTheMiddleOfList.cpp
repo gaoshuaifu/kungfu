@@ -17,12 +17,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -39,15 +39,15 @@ void print(ListNode* head){
 
 
 class Solution{
-public:    
+public:
     void remove(ListNode* head, ListNode* nodeToRemove){
         if(!head) return;
-        
+
         if(head == nodeToRemove){
             head = head->next;
             delete nodeToRemove;
         }
-        
+
         ListNode* nextNode = nodeToRemove->next;
         nodeToRemove->val = nextNode->val;
         nodeToRemove->next = nextNode->next;
@@ -56,13 +56,13 @@ public:
 };
 
 int main(){
-    int array[] = {5, 4, 3, 2, 1}; 
+    int array[] = {5, 4, 3, 2, 1};
     ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
     ListNode* nodeToRemove = list->next->next;
-    
+
     Solution solution;
     solution.remove(list, nodeToRemove);
     print(list);
-        
+
     return 0;
 }

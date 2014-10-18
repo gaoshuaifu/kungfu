@@ -16,12 +16,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -41,33 +41,33 @@ int rand1toN(int n){
     int upper = RAND_MAX / n * n;
     int r;
     do{
-        r = rand(); 
+        r = rand();
     } while(r >= upper);
     return r % n + 1;
 }
 
 class Solution{
-public:    
+public:
     vector<int> sample(ListNode* head, int k){
         vector<int> res;
-        
+
         ListNode* curr = head;
-        
+
         int i;
         for(i = 1; i <= k; i++){
             res.push_back(curr->val);
             curr = curr->next;
         }
-        
+
         srand(time(NULL));
         while(curr){
-            int r = rand1toN(i);    
+            int r = rand1toN(i);
             if(r <= k)
                 res[r - 1] = curr->val;
             curr = curr->next;
             i++;
         }
-        
+
         return res;
     }
 };
@@ -76,7 +76,7 @@ int main(){
     int array[100];
     for(int i = 1; i <= 100; i++)
         array[i] = i;
-    
+
     ListNode* head = initializeList(array, sizeof(array) / sizeof(array[0]));
 
     Solution solution;

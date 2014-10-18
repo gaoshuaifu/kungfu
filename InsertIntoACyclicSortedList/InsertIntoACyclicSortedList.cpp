@@ -16,15 +16,15 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     if(n == 0)
         return NULL;
-    
+
     ListNode* head = NULL;
     ListNode* p = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             p = head;
-        }   
+        }
         else{
             p->next = new ListNode(array[i]);
             p = p->next;
@@ -52,8 +52,8 @@ public:
             head->next = head;
         }
         else if(val < head->val){
-            ListNode* curr = head; 
-            while(curr->next != head) 
+            ListNode* curr = head;
+            while(curr->next != head)
                 curr = curr->next;
             ListNode* node = new ListNode(val);
             node->next = curr->next;
@@ -75,7 +75,7 @@ public:
 int main(){
     Solution solution;
     for(int i = 0; i <= 6; i++){
-        int array[] = {1, 2, 3, 4, 5}; 
+        int array[] = {1, 2, 3, 4, 5};
         ListNode* list = initializeList(array, sizeof(array) / sizeof(array[0]));
         print(list);
         ListNode* newList = solution.insert(list, i);

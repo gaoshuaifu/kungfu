@@ -17,7 +17,7 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
@@ -42,17 +42,17 @@ public:
     ListNode* quickSort(ListNode* head){
         if(!head || !head->next)
             return head;
-        
+
         ListNode* mid = head;
         ListNode* leftHead = NULL;
         ListNode* leftTail = NULL;
         ListNode* rightHead = NULL;
         ListNode* rightTail = NULL;
-        
+
         for(ListNode* curr = head->next; curr; curr = curr->next){
             if(curr->val <= mid->val){
                 if(!leftHead)
-                    leftHead = leftTail = curr; 
+                    leftHead = leftTail = curr;
                 else
                     leftTail = leftTail->next = curr;
             }
@@ -63,15 +63,15 @@ public:
                     rightTail = rightTail->next = curr;
             }
         }
-        
+
         if(leftTail)
             leftTail->next = NULL;
         if(rightTail)
             rightTail->next = NULL;
-        
+
         leftHead = quickSort(leftHead);
         rightHead = quickSort(rightHead);
-        
+
         if(leftHead){
             head = leftHead;
             ListNode* curr = leftHead;
@@ -81,9 +81,9 @@ public:
         }
         else
             head = mid;
-        
+
         mid->next = rightHead;
-        
+
         return head;
     }
 };

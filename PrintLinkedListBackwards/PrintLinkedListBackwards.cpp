@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -43,9 +43,9 @@ public:
     void printBackwards(ListNode* head){
         if(!head)
             return;
-        
+
         printBackwards(head->next);
-        cout << head->val << " "; 
+        cout << head->val << " ";
     }
 };
 

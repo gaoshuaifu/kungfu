@@ -12,24 +12,24 @@ public:
         int sign = 1;
         int integer = 0;
         float decimal = 0.0;
-        
+
         const char* p = str;
 
         while(*p == ' ')
             p++;
-        
+
         if(*p == '+' || *p == '-'){
             if(*p == '-')
                 sign = -1;
             p++;
         }
-        
+
         while(*p >= '0' && *p <= '9'){
             integer *= 10;
             integer += *p - '0';
             p++;
         }
-        
+
         if(*p == '.'){
             p++;
             float base = 0.1;
@@ -39,11 +39,11 @@ public:
                 p++;
             }
         }
-        
+
         return sign * (integer + decimal);
     }
 };
- 
+
 int main(){
     Solution solution;
     cout << " +123." << " => " << solution.atof("+123.") << "\n";

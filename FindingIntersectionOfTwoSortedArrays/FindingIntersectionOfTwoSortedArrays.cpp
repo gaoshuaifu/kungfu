@@ -30,17 +30,17 @@ public:
 };
 
 int main(){
-    int a1[] = {0, 1, 2, 3, 3, 6, 7, 9};    
+    int a1[] = {0, 1, 2, 3, 3, 6, 7, 9};
     int a2[] = {1, 3, 4, 5, 7, 8};
     vector<int> v1(a1, a1 + sizeof(a1) / sizeof(a1[0]));
     vector<int> v2(a2, a2 + sizeof(a2) / sizeof(a2[0]));
 
     Solution solution;
     vector<int> res = solution.intersect(v1, v2);
-    
+
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << "\n";
-    
+
     return 0;
 }

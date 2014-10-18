@@ -15,31 +15,31 @@ struct TreeNode{
 class BinarySearchTree{
 private:
     TreeNode* root;
-    
+
     void inorder(TreeNode* curr){
         if(!curr)
             return;
         inorder(curr->left);
         cout << curr->val << " ";
-        inorder(curr->right);       
+        inorder(curr->right);
     }
-    
+
 public:
     BinarySearchTree(){
-        root = NULL;    
+        root = NULL;
     }
-    
+
     bool insert(int value){
         if(!root){
             root = new TreeNode(value);
             return true;
         }
-        
+
         TreeNode* curr = root;
         while(true){
             if(root->val == value)
                 return false;
-            
+
             if(curr->val > value){
                 if(!curr->left){
                     curr->left = new TreeNode(value);
@@ -58,9 +58,9 @@ public:
             }
         }
     }
-    
+
     void print(){
-        inorder(root);  
+        inorder(root);
     }
 };
 
@@ -70,10 +70,10 @@ int main(){
     cout << bst.insert(4) << "\n";
     bst.print();
     cout << "\n";
-    
+
     cout << bst.insert(2) << "\n";
     bst.print();
     cout << "\n";
-    
+
     return 0;
 }

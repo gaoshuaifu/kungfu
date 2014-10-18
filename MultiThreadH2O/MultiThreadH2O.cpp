@@ -9,7 +9,7 @@ private:
     int numH2O;
     pthread_mutex_t mutex;
 public:
-    H2O(){  
+    H2O(){
         numH = 0;
         numO = 0;
         numH2O = 0;
@@ -18,7 +18,7 @@ public:
     ~H2O(){
         pthread_mutex_destroy(&mutex);
     }
-    
+
     void produceH2O(){
         cout << numH << " " << numO << "\n";
         numH--;
@@ -28,7 +28,7 @@ public:
         cout << "PRODUCE " << numH2O << " H2O" << "\n";
         cout << numH << " " << numO << "\n\n";
     }
-    
+
     void H(){
         pthread_mutex_lock(&mutex);
         numH++;
@@ -36,7 +36,7 @@ public:
             produceH2O();
         pthread_mutex_unlock(&mutex);
     }
-    
+
     void O(){
         pthread_mutex_lock(&mutex);
         numO++;
@@ -59,26 +59,26 @@ void* produceO(void* arg){
     while(true){
         h2o->O();
         sleep(2);
-    }   
+    }
 }
 
 int main() {
     // Create shared buffer.
     H2O* h2o = new H2O();
-    
+
     // Create detached thread attribute.
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    
+
     // Create producer and consumer threads.
     pthread_t h, o;
     pthread_create(&h, &attr, produceH, h2o);
     pthread_create(&o, &attr, produceO, h2o);
-    
+
     // Destroy attribute.
     pthread_attr_destroy(&attr);
-    
+
     // Terminate main thread.
     pthread_exit(NULL);
 }

@@ -7,21 +7,21 @@
 using namespace std;
 
 class Solution{
-public: 
+public:
     int uniquePathsWithObstacles(vector<vector<int> >& grid){
         int m = grid.size();
         if(m == 0) return 0;
-        
+
         int n = grid[0].size();
         if(n == 0) return 0;
-        
+
         vector<int> curr(n, 0);
         curr[0] = grid[0][0]? 0 : 1;
         for(int j = 1; j < n; j++)
             curr[j] = grid[0][j]? 0 : curr[j - 1];
-        
+
         for(int i = 1; i < m; i++){
-            vector<int> next(n, 0); 
+            vector<int> next(n, 0);
             next[0] = grid[i][0]? 0 : curr[0];
             for(int j = 1; j < n; j++)
                 next[j] = grid[i][j]? 0 : next[j - 1] + curr[j];

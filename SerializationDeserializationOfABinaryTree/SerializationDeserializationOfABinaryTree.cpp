@@ -35,10 +35,10 @@ TreeNode* initialize(){
 bool isSameTree(TreeNode* root1, TreeNode* root2){
     if(!root1 && !root2)
         return true;
-        
+
     if((root1 && !root2) || (!root1 && root2))
         return false;
-    
+
     return (root1->val == root2->val) && isSameTree(root1->left, root2->left) && isSameTree(root1->right, root2->right);
 }
 
@@ -49,14 +49,14 @@ public:
         oss << val;
         return oss.str();
     }
-    
+
     int str2int(string str){
         istringstream iss(str);
         int val;
         iss >> val;
         return val;
     }
-    
+
     vector<string> serialize(TreeNode* root){
         vector<string> tokens;
 
@@ -64,13 +64,13 @@ public:
             tokens.push_back("#");
             return tokens;
         }
-        
+
         queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()){
             TreeNode* node = q.front();
             q.pop();
-            
+
             if(node){
                 tokens.push_back(int2str(node->val));
                 q.push(node->left);
@@ -79,23 +79,23 @@ public:
             else
                 tokens.push_back("#");
         }
-        
+
         int i = tokens.size() - 1;
         while(tokens[i] == "#"){
             tokens.pop_back();
             i--;
         }
-        
+
         return tokens;
     }
-    
-    
+
+
     TreeNode* deserialize(vector<string> tokens){
         if(tokens.size() == 1 && tokens[0] == "#")
             return NULL;
-        
+
         int n = tokens.size();
-        
+
         queue<TreeNode*> q;
         TreeNode* root = new TreeNode(str2int(tokens[0]));
         q.push(root);
@@ -104,21 +104,21 @@ public:
         while(true){
             TreeNode* node = q.front();
             q.pop();
-            
+
             if(left >= n)
                 break;
             if(tokens[left] != "#"){
                 node->left = new TreeNode(str2int(tokens[left]));
                 q.push(node->left);
             }
-            
+
             if(right >= n)
                 break;
             if(tokens[right] != "#"){
                 node->right = new TreeNode(str2int(tokens[right]));
                 q.push(node->right);
             }
-            
+
             left += 2;
             right += 2;
         }
@@ -134,73 +134,73 @@ public:
         oss << val;
         return oss.str();
     }
-    
+
     int str2int(string str){
         istringstream iss(str);
         int val;
         iss >> val;
         return val;
     }
-    
+
     void serializeHelper(TreeNode* root, vector<string>& tokens){
         if(!root){
             tokens.push_back("#");
             return;
         }
-        
+
         tokens.push_back(int2str(root->val));
         serializeHelper(root->left, tokens);
         serializeHelper(root->right, tokens);
     }
-    
+
     vector<string> serialize(TreeNode* root){
         vector<string> tokens;
         serializeHelper(root, tokens);
         return tokens;
     }
-    
+
     TreeNode* deserializeHelper(vector<string>& tokens, int& index){
         if(tokens[index] == "#")
             return NULL;
-        
+
         TreeNode* root = new TreeNode(str2int(tokens[index]));
         index++;
         root->left = deserializeHelper(tokens, index);
         index++;
         root->right = deserializeHelper(tokens, index);
-        
+
         return root;
     }
-    
+
     TreeNode* deserialize(vector<string> tokens){
         int index = 0;
         TreeNode* root = deserializeHelper(tokens, index);
         return root;
-    }   
+    }
 };
 
 int main(){
     TreeNode* root = initialize();
-    
+
     cout << "## Solution ##" << endl;
     Solution solution;
     vector<string> tokens = solution.serialize(root);
     for(int i = 0; i < tokens.size(); i++)
         cout << tokens[i] << " ";
     cout << endl;
-    
+
     TreeNode* newRoot = solution.deserialize(tokens);
     cout << "isSameTree: " << isSameTree(root, newRoot) << endl;
-    
-    
+
+
     cout << "\n## Solution1 ##" << endl;
     Solution1 solution1;
-    
+
     vector<string> tokens1 = solution1.serialize(root);
     for(int i = 0; i < tokens1.size(); i++)
         cout << tokens1[i] << " ";
     cout << endl;
-    
+
     TreeNode* newRoot1 = solution1.deserialize(tokens1);
     cout << "isSameTree: " << isSameTree(root, newRoot1) << endl;
 

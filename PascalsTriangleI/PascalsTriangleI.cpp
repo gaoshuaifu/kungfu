@@ -11,7 +11,7 @@ public:
         vector<vector<int> > res;
         if(numRows <= 0)
             return res;
-        
+
         res.push_back(vector<int>(1, 1));
         int i = 2;
         while(i <= numRows){
@@ -24,14 +24,14 @@ public:
             res.push_back(currentRow);
             i++;
         }
-        
+
         return res;
     }
 };
 
 int main(){
     int numRows = 5;
-    
+
     Solution solution;
     vector<vector<int> > res = solution.generate(numRows);
     for(int i = 0; i < res.size(); i++){
@@ -40,7 +40,7 @@ int main(){
         cout << " \n";
     }
     cout << endl;
-    
+
     return 0;
 }
 

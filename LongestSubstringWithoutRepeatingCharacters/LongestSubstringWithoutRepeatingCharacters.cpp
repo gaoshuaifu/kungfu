@@ -11,7 +11,7 @@ public:
     int lengthOfLongestSubstring(string s){
         bool hasFound[256] = {false};
         int maxLen = 0;
-        int start = 0; 
+        int start = 0;
         int end = 0;
         while(end < s.size()){
             if(!hasFound[s[end]]){
@@ -26,7 +26,7 @@ public:
                 start++;
             }
             start++;
-            end++;          
+            end++;
         }
         maxLen = max(maxLen, end - start);
         return maxLen;

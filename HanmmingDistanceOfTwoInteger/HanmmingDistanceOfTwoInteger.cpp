@@ -13,7 +13,7 @@ void print(unsigned int x){
 }
 
 class Solution{
-public: 
+public:
     int distance(unsigned int a, unsigned int b){
         unsigned int c = a ^ b;
         int count = 0;
@@ -30,10 +30,10 @@ int main(){
     print(a);
     unsigned int b = 19;
     print(b);
-    
+
     Solution solution;
     int dist = solution.distance(a, b);
     cout << dist << endl;
-    
-    return 0;   
+
+    return 0;
 }

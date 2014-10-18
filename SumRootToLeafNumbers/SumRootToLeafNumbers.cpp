@@ -43,17 +43,17 @@ public:
         if(!root)
             return;
 
-        pathSum = pathSum * 10 + root->val;     
-        
+        pathSum = pathSum * 10 + root->val;
+
         if(!root->left && !root->right)
             sum += pathSum;
-        else{   
+        else{
             sumNumbersHelper(root->left, pathSum, sum);
             sumNumbersHelper(root->right, pathSum, sum);
         }
     }
-    
-    int sumNumbers(TreeNode* root){ 
+
+    int sumNumbers(TreeNode* root){
         int sum = 0;
         sumNumbersHelper(root, 0, sum);
         return sum;
@@ -62,11 +62,11 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     int res = solution.sumNumbers(root);
     cout << res << endl;
-    
+
     return 0;
 }
 

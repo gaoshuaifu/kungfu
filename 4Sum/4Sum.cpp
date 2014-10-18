@@ -15,12 +15,12 @@ public:
         int n = num.size();
         if(n < 4)
             return res;
-            
-        map<int, vector<pair<int, int> > > mapping;         
+
+        map<int, vector<pair<int, int> > > mapping;
         for(int i = 0; i < n; i++)
             for(int j = i + 1; j < n; j++)
                 mapping[num[i] + num[j]].push_back(make_pair(i, j));
-        
+
         for(map<int, vector<pair<int, int> > >::iterator it = mapping.begin(); it != mapping.end(); it++){
             int sum1 = it->first;
             int sum2 = target - sum1;
@@ -53,10 +53,10 @@ int main(){
     int a[] = {1, 0, -1, 0, -2, 2};
     vector<int> num = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
     int target = 0;
-    
+
     Solution solution;
     vector<vector<int> > res = solution.fourSum(num, target);
-    
+
     for(int i = 0; i < res.size(); i++){
         for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << " ";

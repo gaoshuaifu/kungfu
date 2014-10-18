@@ -19,7 +19,7 @@ struct TreeNode{
 void print(TreeNode* root){
     if(root == NULL)
         return;
-    
+
     print(root->left);
     cout << root->val << ' ';
     print(root->right);
@@ -65,9 +65,9 @@ public:
 int main(){
     Solution solution;
     int n = 3;
-    
+
     vector<TreeNode*> res = solution.generateTrees(n);
-    
+
     for(int i = 0; i < res.size(); i++){
         print(res[i]);
         cout << "\n";

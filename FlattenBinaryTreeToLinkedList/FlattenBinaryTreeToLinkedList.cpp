@@ -40,23 +40,23 @@ public:
     void flattenHelper(TreeNode* root, TreeNode*& tail){
         if(!root)
             return;
-        
+
         TreeNode* leftNode = root->left;
         TreeNode* rightNode = root->right;
-        
+
         if(tail)
-            tail->right = root; 
+            tail->right = root;
         tail = root;
         tail->left = NULL;
         tail->right = NULL;
-        
+
         flattenHelper(leftNode, tail);
         flattenHelper(rightNode, tail);
     }
 
     void flatten(TreeNode* root){
         TreeNode* tail = NULL;
-        flattenHelper(root, tail);      
+        flattenHelper(root, tail);
     }
 };
 

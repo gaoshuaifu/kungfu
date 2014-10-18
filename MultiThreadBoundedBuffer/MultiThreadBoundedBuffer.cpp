@@ -37,16 +37,16 @@ public:
         pthread_mutex_lock(&mutex);
         while(count == capacity)
             pthread_cond_wait(&cond, &mutex);
-        
+
         cout << "PUT";
         for(int i = 0; i < count; i++)
             cout << " " << buffer[(out + i) % capacity] << " ";
         cout << "[" << val << "]" << endl;
-        
+
         count++;
         buffer[in] = val;
         in = (in + 1) % capacity;
-        
+
         pthread_cond_broadcast(&cond);
         pthread_mutex_unlock(&mutex);
     }
@@ -54,16 +54,16 @@ public:
         pthread_mutex_lock(&mutex);
         while(count == 0)
             pthread_cond_wait(&cond, &mutex);
-        
+
         count--;
         int val = buffer[out];
         out = (out + 1) % capacity;
-        
+
         cout << "GET [" << val << "] ";
         for (int i = 0; i < count; i++)
             cout << buffer[(i + out) % capacity] << " ";
         cout << endl;
-        
+
         pthread_cond_broadcast(&cond);
         pthread_mutex_unlock(&mutex);
         return val;
@@ -71,7 +71,7 @@ public:
 };
 
 void* producer_run(void* arg){
-    BoundedBuffer* buffer = (BoundedBuffer*) arg;   
+    BoundedBuffer* buffer = (BoundedBuffer*) arg;
     string s = "0123456789";
     int i = 0;
     while(true){
@@ -92,20 +92,20 @@ void* consumer_run(void *arg) {
 int main() {
     // Create shared buffer.
     BoundedBuffer* buffer = new BoundedBuffer(10);
-    
+
     // Create detached thread attribute.
     pthread_attr_t attr;
     pthread_attr_init(&attr);
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    
+
     // Create producer and consumer threads.
     pthread_t p, c;
     pthread_create(&p, &attr, producer_run, buffer);
     pthread_create(&c, &attr, consumer_run, buffer);
-    
+
     // Destroy attribute.
     pthread_attr_destroy(&attr);
-    
+
     // Terminate main thread.
     pthread_exit(NULL);
 }

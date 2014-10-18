@@ -44,18 +44,18 @@ public:
 };
 
 class Solution1{
-public: 
+public:
     int maxDepth(TreeNode* root){
         if(!root)
             return 0;
-        
+
         int depth = 0;
         stack<TreeNode*> stk;
         stk.push(root);
-        
+
         TreeNode* prev = NULL;
         TreeNode* curr = NULL;
-        
+
         while(!stk.empty()){
             curr = stk.top();
             if(!prev || prev->left == curr || prev->right == curr){
@@ -72,10 +72,10 @@ public:
                 stk.pop();
             }
             prev = curr;
-            
+
             if(stk.size() > depth)
                 depth = stk.size();
-        }           
+        }
 
         return depth;
     }
@@ -83,11 +83,11 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution1 solution;
     int res = solution.maxDepth(root);
     cout << res << endl;
-    
+
     return 0;
 }
 

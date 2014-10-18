@@ -18,7 +18,7 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
@@ -45,7 +45,7 @@ public:
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         while(curr && curr->next){
             ListNode* post = curr->next;
             curr->next = post->next;
@@ -54,7 +54,7 @@ public:
             prev = curr;
             curr = curr->next;
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;

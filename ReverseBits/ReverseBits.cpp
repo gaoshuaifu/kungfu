@@ -13,7 +13,7 @@ void print(unsigned int x){
 }
 
 class Solution{
-public: 
+public:
     unsigned int reverse(unsigned int x){
         assert(sizeof(x) == 4);
         x = (x & 0x55555555) << 1  | (x & 0xAAAAAAAA) >> 1;
@@ -26,7 +26,7 @@ public:
 };
 
 class Solution1{
-public: 
+public:
     unsigned int reverse(unsigned int x){
         int n = 8 * sizeof(x);
         int i = n - 1;
@@ -46,11 +46,11 @@ public:
 int main(){
     unsigned int x = 9;
     print(x);
-    
+
     Solution solution;
     unsigned int y = solution.reverse(x);
     print(y);
-    
-    return 0;   
+
+    return 0;
 }
 

@@ -41,9 +41,9 @@ class Solution{
 public:
     void pathSumHelper(TreeNode* root, int target, vector<int>& path, vector<vector<int> >& res){
         if(!root) return;
-        
+
         path.push_back(root->val);
-        
+
         int n = path.size();
         int total = 0;
         vector<int> sol;
@@ -53,13 +53,13 @@ public:
             if(total == target)
                 res.push_back(sol);
         }
-        
+
         pathSumHelper(root->left, target, path, res);
         pathSumHelper(root->right, target, path, res);
-        
+
         path.pop_back();
     }
-    
+
     vector<vector<int> > pathSum(TreeNode* root, int target){
         vector<vector<int> > res;
         vector<int> path;
@@ -72,13 +72,13 @@ int main(){
     Solution solution;
     TreeNode* root = initialize();
     int target = 6;
-    
+
     vector<vector<int> > res = solution.pathSum(root, target);
     for(int i = 0; i < res.size(); i++){
         for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << " ";
         cout << "\n";
     }
-    
+
     return 0;
 }

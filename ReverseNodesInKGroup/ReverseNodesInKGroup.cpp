@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -40,15 +40,15 @@ void print(ListNode* head){
 
 class Solution{
 public:
-    ListNode* reverseKGroup(ListNode* head, int k){ 
+    ListNode* reverseKGroup(ListNode* head, int k){
         if(!head || k <= 1)
             return head;
-        
+
         ListNode* tmp = new ListNode(INT_MIN);
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         while(true){
             ListNode* checker = curr;
             int i;
@@ -59,18 +59,18 @@ public:
                     break;
             }
             if(i < k) break;
-            
+
             for(int i = 0; i < k - 1; i++){
                 ListNode* post = curr->next;
                 curr->next = post->next;
                 post->next = prev->next;
                 prev->next = post;
             }
-            
+
             prev = curr;
             curr = curr->next;
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;
@@ -85,18 +85,18 @@ public:
             len++;
         return len;
     }
-    
+
     ListNode* reverseKGroup(ListNode* head, int k){
         if(!head || k <= 1)
             return head;
-        
+
         int round = getLength(head) / k;
 
         ListNode* tmp = new ListNode(INT_MIN);
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         for(int i = 0; i < round; i++){
             for(int j = 0; j < k - 1; j++){
                 ListNode* post = curr->next;
@@ -107,7 +107,7 @@ public:
             prev = curr;
             curr = curr->next;
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;

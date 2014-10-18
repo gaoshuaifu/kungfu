@@ -4,18 +4,18 @@
 using namespace std;
 
 class Solution{
-public: 
+public:
     int longestCommonSubsequenceLen(string s1, string s2){
         if(s1.size() < s2.size())
             swap(s1, s2);
-        
+
         int m = s1.size();
         int n = s2.size();
-        
+
         vector<int> curr(n + 1, 0);
         for(int j = 0; j <= n; j++)
             curr[j] = 0;
-        
+
         for(int i = 1; i <= m; i++){
             vector<int> next(n + 1, 0);
             next[0] = 0;
@@ -27,28 +27,28 @@ public:
             }
             curr = next;
         }
-        
+
         return curr[n];
     }
-    
+
     enum Direction{UP, LEFT, UPLEFT};
-    
+
     string longestCommonSubsequence(string s1, string s2){
         if(s1.size() < s2.size())
             swap(s1, s2);
-        
+
         int m = s1.size();
         int n = s2.size();
-        
+
         int len[m + 1][n + 1];
         len[0][0] = 0;
         for(int j = 1; j <= n; j++)
             len[0][j] = 0;
         for(int i = 1; i <= m; i++)
             len[i][0] = 0;
-        
+
         Direction dir[m + 1][n + 1];
-        
+
         for(int i = 1; i <= m; i++){
             for(int j = 1; j <= n; j++){
                 if(s1[i - 1] == s2[j - 1]){
@@ -67,7 +67,7 @@ public:
                 }
             }
         }
-        
+
         string res;
         int i = m;
         int j = n;
@@ -83,7 +83,7 @@ public:
                 j--;
         }
         reverse(res.begin(), res.end());
-        
+
         return res;
     }
 };
@@ -95,9 +95,9 @@ int main(){
     Solution solution;
     int len = solution.longestCommonSubsequenceLen(s1, s2);
     string str = solution.longestCommonSubsequence(s1, s2);
-    
+
     cout << len << "\n";
     cout << str << "\n";
-    
+
     return 0;
 }

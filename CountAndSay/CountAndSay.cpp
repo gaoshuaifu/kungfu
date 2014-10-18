@@ -18,7 +18,7 @@ public:
                 curr = str[i];
                 count = 1;
             }
-        }                   
+        }
         res.push_back(count + '0');
         res.push_back(curr);
         return res;

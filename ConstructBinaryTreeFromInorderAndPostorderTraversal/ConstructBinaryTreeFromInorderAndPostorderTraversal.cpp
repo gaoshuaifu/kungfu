@@ -71,20 +71,20 @@ public:
     TreeNode* buildTreeHelper(vector<int>::iterator inorder, vector<int>::iterator postorder, int size){
         if(size == 0)
             return NULL;
-            
+
         int rootVal = *(postorder + size - 1);
         TreeNode* root = new TreeNode(rootVal);
-        
+
         vector<int>::iterator rootPos = find(inorder, inorder + size, rootVal);
         int sizeLeft = rootPos - inorder;
         int sizeRight = size - 1 - sizeLeft;
-        
+
         root->left = buildTreeHelper(inorder, postorder, sizeLeft);
         root->right = buildTreeHelper(inorder + sizeLeft + 1, postorder + sizeLeft, sizeRight);
-        
+
         return root;
     }
-    
+
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder){
         assert(inorder.size() == postorder.size());
         int size = inorder.size();
@@ -95,22 +95,22 @@ public:
 
 int main(){
     TreeNode* rootBefore = initialize();
-    
+
     vector<int> inorderResBefore;
     inorderTraverse(rootBefore, inorderResBefore);
     print(inorderResBefore);
-    
+
     vector<int> postorderResBefore;
     postorderTraverse(rootBefore, postorderResBefore);
     print(postorderResBefore);
 
     Solution solution;
     TreeNode* rootAfter = solution.buildTree(inorderResBefore, postorderResBefore);
-    
+
     vector<int> inorderResAfter;
     inorderTraverse(rootAfter, inorderResAfter);
     print(inorderResAfter);
-    
+
     vector<int> postorderResAfter;
     postorderTraverse(rootAfter, postorderResAfter);
     print(postorderResAfter);

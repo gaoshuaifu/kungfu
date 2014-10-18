@@ -13,23 +13,23 @@ public:
         }
         return false;
     }
-    
+
     void totalNQueensHelper(int n, vector<int>& sol, int& res){
         if(reject(sol))
             return;
-        
+
         if(sol.size() == n){
             res++;
             return;
         }
-        
+
         for(int i = 0; i < n; i++){
             sol.push_back(i);
             totalNQueensHelper(n, sol, res);
             sol.pop_back();
         }
     }
-    
+
     int totalNQueens(int n){
         int res = 0;
         vector<int> sol;
@@ -40,11 +40,11 @@ public:
 
 int main(){
     int n = 4;
-    
+
     Solution solution;
     int res = solution.totalNQueens(4);
     cout << res << endl;
-    
+
     return 0;
 }
 

@@ -16,25 +16,25 @@ public:
         }
         return *q == '\0';
     }
-    
+
     void replace(char* str, char* pattern){
         int m = strlen(str);
         int n = strlen(pattern);
         if(m < n) return;
-        
+
         set<int> matchIndex;
-        int i = 0; 
+        int i = 0;
         while(i < m){
-            if(isMatch(str + i, pattern)){  
+            if(isMatch(str + i, pattern)){
                 matchIndex.insert(i);
                 i +=  n;
             }
             else
                 i++;
         }
-        
+
         if(matchIndex.size() == 0) return;
-        
+
         i = 0;
         int j = 0;
         while(i < m){
@@ -56,6 +56,6 @@ int main(){
     char pattern[] = "abba";
     solution.replace(str, pattern);
     cout << str << endl;
-    return 0;   
+    return 0;
 }
 

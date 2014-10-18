@@ -17,7 +17,7 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
@@ -48,12 +48,12 @@ public:
         }
         return slow;
     }
-    
+
     ListNode* merge(ListNode* leftHead, ListNode* rightHead){
         ListNode* tmp = new ListNode(INT_MIN);
         ListNode* head = tmp;
         ListNode* tail = tmp;
-        
+
         while(leftHead && rightHead){
             if(leftHead->val < rightHead->val){
                 tail = tail->next = leftHead;
@@ -64,26 +64,26 @@ public:
                 rightHead = rightHead->next;
             }
         }
-        
+
         tail->next = leftHead? leftHead : rightHead;
-        
+
         head = tmp->next;
         delete tmp;
         return head;
     }
-    
+
     ListNode* mergeSort(ListNode* head){
         if(!head || !head->next)
             return head;
-        
+
         ListNode* mid = getMiddle(head);
         ListNode* leftHead = head;
         ListNode* rightHead = mid->next;
         mid->next = NULL;
-        
+
         leftHead = mergeSort(leftHead);
         rightHead = mergeSort(rightHead);
-        
+
         head = merge(leftHead, rightHead);
         return head;
     }

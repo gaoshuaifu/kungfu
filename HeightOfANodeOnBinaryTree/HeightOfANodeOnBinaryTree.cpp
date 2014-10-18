@@ -23,10 +23,10 @@ struct TreeNode{
    1      _4       7       9
          /  \
          3   5
-         
+
 */
 TreeNode* initialize(){
-    
+
     TreeNode* node1 = new TreeNode(1);
     TreeNode* node2 = new TreeNode(2);
     TreeNode* node3 = new TreeNode(3);
@@ -38,27 +38,27 @@ TreeNode* initialize(){
     TreeNode* node9 = new TreeNode(9);
     node6->left = node2;
     node6->right = node8;
-    
+
     node2->parent = node6;
     node2->left = node1;
     node2->right = node4;
-    
+
     node8->parent = node6;
     node8->left = node7;
     node8->right = node9;
-    
+
     node1->parent = node2;
-    
+
     node4->parent = node2;
     node4->left = node3;
     node4->right = node5;
-    
+
     node7->parent = node8;
     node9->parent = node8;
-    
+
     node3->parent = node4;
     node5->parent = node4;
-    
+
     TreeNode* root = node6;
     return root;
 }
@@ -68,13 +68,13 @@ public:
     int getHeight(TreeNode* root, TreeNode* query){
         if(!root)
             return -1;
-        
+
         if(root == query)
             return 1;
-        
+
         int leftHeight = getHeight(root->left, query);
         int rightHeight = getHeight(root->right, query);
-        
+
         if(leftHeight < 0 && rightHeight < 0)
             return -1;
         else
@@ -84,11 +84,11 @@ public:
 
 int main(){
     Solution solution;
-    
+
     TreeNode* root = initialize();
     stack<TreeNode*> stk;
     TreeNode* curr = root;
-    
+
     while(!stk.empty() || curr){
         if(curr){
             stk.push(curr);
@@ -97,13 +97,13 @@ int main(){
         else{
             curr = stk.top();
             stk.pop();
-            
+
             int height = solution.getHeight(root, curr);
-            cout << curr->val << ":" << height << "\n"; 
-            
+            cout << curr->val << ":" << height << "\n";
+
             curr = curr->right;
         }
     }
-    
+
     return 0;
 }

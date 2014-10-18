@@ -39,14 +39,14 @@ TreeNode* initialize(){
 
 class Solution{
 public:
-    vector<vector<int> > levelOrder(TreeNode* root){ 
+    vector<vector<int> > levelOrder(TreeNode* root){
         vector<vector<int> > res;
         if(root == NULL)
             return res;
-            
+
         queue<TreeNode*> currQ;
         currQ.push(root);
-        
+
         while(!currQ.empty()){
             vector<int> levelNodes;
             queue<TreeNode*> nextQ;
@@ -61,7 +61,7 @@ public:
             }
             res.push_back(levelNodes);
             currQ = nextQ;
-        }   
+        }
         return res;
     }
 };
@@ -71,10 +71,10 @@ public:
     int getHeight(TreeNode* root){
         if(!root)
             return 0;
-        
+
         return max(getHeight(root->left), getHeight(root->right)) + 1;
     }
-    
+
     void levelOrderHelper(TreeNode* root, int level, vector<int>& levelNodes){
         if(!root)
             return;
@@ -83,26 +83,26 @@ public:
             return;
         }
         levelOrderHelper(root->left, level - 1, levelNodes);
-        levelOrderHelper(root->right, level - 1, levelNodes);           
+        levelOrderHelper(root->right, level - 1, levelNodes);
     }
-    
+
     vector<vector<int> > levelOrder(TreeNode* root){
         vector<vector<int> > res;
         int height = getHeight(root);
-        
+
         for(int level = 1; level <= height; level++){
             vector<int> levelNodes;
             levelOrderHelper(root, level, levelNodes);
             res.push_back(levelNodes);
         }
-        
+
         return res;
     }
 };
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<vector<int> > res = solution.levelOrder(root);
     for(int i = 0; i < res.size(); i++){
@@ -111,7 +111,7 @@ int main(){
         cout << "\n";
     }
     cout << endl;
-    
+
     return 0;
 }
 

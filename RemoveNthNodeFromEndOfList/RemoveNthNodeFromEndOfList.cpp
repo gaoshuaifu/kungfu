@@ -17,12 +17,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -41,29 +41,29 @@ class Solution{
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n){
         ListNode* tmp = new ListNode(INT_MIN);
-        tmp->next = head;   
+        tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
         ListNode* post = head;
-        
+
         int i;
         for(i = 0; i < n; i++){
             if(!post)
                 return head;
             post = post->next;
         }
-        
+
         if(i < n) return head;
-        
+
         while(post){
             prev = prev->next;
             curr = curr->next;
             post = post->next;
         }
-        
+
         prev->next = curr->next;
         delete curr;
-        
+
         head = tmp->next;
         delete tmp;
         return head;
@@ -81,4 +81,4 @@ int main(){
 }
 
 
-    
+

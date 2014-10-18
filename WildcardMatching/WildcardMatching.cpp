@@ -9,7 +9,7 @@ public:
 
         if(*p != '*')
             return ((*s == *p) || (*s != '\0' && *p == '?')) && isMatch(s + 1, p + 1);
-        
+
         while(*s != '\0'){
             if(isMatch(s, p + 1))
                 return true;

@@ -18,7 +18,7 @@ public:
             sort(key.begin(), key.end());
             mapping[key].push_back(strs[i]);
         }
-        
+
         for(map<string, vector<string> >::iterator it = mapping.begin(); it != mapping.end(); it++){
             vector<string> v = it->second;
             if(v.size() > 1)
@@ -36,10 +36,10 @@ int main(){
     strs.push_back("xyz");
     strs.push_back("xzy");
     strs.push_back("rst");
-    
+
     Solution solution;
     vector<string> res = solution.anagrams(strs);
-    
+
     for(int i = 0; i < res.size(); i++)
         cout << res[i] << " ";
     cout << endl;

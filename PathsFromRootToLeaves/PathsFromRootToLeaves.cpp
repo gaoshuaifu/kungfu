@@ -44,18 +44,18 @@ public:
             return;
 
         path.push_back(root->val);
-        
+
         if(!root->left && !root->right)
             res.push_back(path);
         else{
             sumNumbersHelper(root->left, path, res);
             sumNumbersHelper(root->right, path, res);
         }
-        
+
         path.pop_back();
     }
-    
-    vector<vector<int> > allPaths(TreeNode* root){ 
+
+    vector<vector<int> > allPaths(TreeNode* root){
         vector<vector<int> > res;
         vector<int> path;
         sumNumbersHelper(root, path, res);
@@ -65,14 +65,14 @@ public:
 
 int main(){
     TreeNode* root = initialize();
-    
+
     Solution solution;
     vector<vector<int> > res = solution.allPaths(root);
     for(int i = 0; i < res.size(); i++){
-        for(int j = 0; j < res[i].size(); j++)  
+        for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << " ";
         cout << "\n";
     }
-    
+
     return 0;
 }

@@ -13,7 +13,7 @@ public:
         }
         return true;
     }
-    
+
     vector<string> transform(vector<int>& sol){
         int n = sol.size();
         vector<string> res;
@@ -29,23 +29,23 @@ public:
         }
         return res;
     }
-    
+
     void solveNQueensHelper(int n, vector<int>& sol, vector<vector<string> >& res){
         if(!isValid(sol))
             return;
-        
+
         if(sol.size() == n){
             res.push_back(transform(sol));
             return;
         }
-        
+
         for(int i = 0; i < n; i++){
             sol.push_back(i);
             solveNQueensHelper(n, sol, res);
             sol.pop_back();
         }
     }
-    
+
     vector<vector<string> > solveNQueens(int n){
         vector<vector<string> > res;
         vector<int> sol;
@@ -56,16 +56,16 @@ public:
 
 int main(){
     int n = 4;
-    
+
     Solution solution;
     vector<vector<string> > res = solution.solveNQueens(4);
-    
+
     for(int i = 0; i < res.size(); i++){
         for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << "\n";
         cout << endl;
     }
-    
+
     return 0;
 }
 

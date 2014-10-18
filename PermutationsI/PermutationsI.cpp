@@ -30,7 +30,7 @@ public:
 int main(){
     int a[] = {5, 1, 2, 3, 4};
     vector<int> num = vector<int>(a, a + sizeof(a) / sizeof(a[0]));
-    
+
     Solution solution;
     vector<vector<int> > res = solution.permute(num);
     for(int i = 0; i < res.size(); i++){

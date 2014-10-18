@@ -18,12 +18,12 @@ struct ListNode{
 ListNode* initializeList(int array[], int n){
     ListNode* head = NULL;
     ListNode* tail = NULL;
-    
+
     for(int i = 0; i < n; i++){
         if(head == NULL){
             head = new ListNode(array[i]);
             tail = head;
-        }   
+        }
         else{
             tail->next = new ListNode(array[i]);
             tail = tail->next;
@@ -45,14 +45,14 @@ public:
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
-        
+
         while(curr->next){
             ListNode* post = curr->next;
             curr->next = post->next;
             post->next = prev->next;
             prev->next = post;
         }
-        
+
         head = tmp->next;
         delete tmp;
         return head;
@@ -61,10 +61,10 @@ public:
 
 class Solution1{
 public:
-    ListNode* reverse(ListNode* head){  
+    ListNode* reverse(ListNode* head){
         if(!head || !head->next)
             return head;
-        
+
         ListNode* rest = head->next;
         rest = reverse(rest);
         head->next->next = head;

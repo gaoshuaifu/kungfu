@@ -38,17 +38,17 @@ TreeNode* initialize(){
 void print(TreeNode* root){
     if(!root)
         return;
-    
+
     print(root->left);
     cout << root->val << " ";
     print(root->right);
 }
 
 class Solution{
-public: 
+public:
     bool isValidBST(TreeNode* root){
         TreeNode* prev = NULL;
-        
+
         stack<TreeNode*> stk;
         TreeNode* curr = root;
         while(curr || !stk.empty()){
@@ -59,11 +59,11 @@ public:
             else{
                 curr = stk.top();
                 stk.pop();
-                
+
                 if(prev && prev->val >= curr->val)
                     return false;
                 prev = curr;
-        
+
                 curr = curr->right;
             }
         }
@@ -76,17 +76,17 @@ public:
     bool isValidBSTHelper(TreeNode* curr, TreeNode*& prev){
         if(!curr)
             return true;
-        
+
         if(!isValidBSTHelper(curr->left, prev))
             return false;
-        
+
         if(prev && prev->val >= curr->val)
             return false;
         prev = curr;
-        
+
         if(!isValidBSTHelper(curr->right, prev))
             return false;
-        
+
         return true;
     }
 
@@ -101,7 +101,7 @@ public:
     bool isValidBSTHelper(TreeNode* root, int low, int high){
         if(!root)
             return true;
-        
+
         if(root->val <= low || root->val >= high)
             return false;
 

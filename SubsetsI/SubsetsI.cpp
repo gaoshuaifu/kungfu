@@ -16,7 +16,7 @@ public:
             sol.pop_back();
         }
     }
-    
+
     vector<vector<int> > subsets(vector<int>& S){
         sort(S.begin(), S.end());
         vector<vector<int> > res;
@@ -29,17 +29,17 @@ public:
 int main(){
     int A[] = {1, 2, 3};
     vector<int> S(A, A + sizeof(A) / sizeof(A[0]));
-    
+
     Solution solution;
     vector<vector<int> > res = solution.subsets(S);
-    
+
     for(int i = 0; i < res.size(); i++){
         for(int j = 0; j < res[i].size(); j++)
             cout << res[i][j] << " ";
         cout << "\n";
     }
     cout << endl;
-    
+
     return 0;
 }
 
