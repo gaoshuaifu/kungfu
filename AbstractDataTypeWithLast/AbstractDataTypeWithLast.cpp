@@ -83,5 +83,8 @@ int main() {
   data.remove("b");
   cout << data.last() << endl;
 
+  data.put("c", 3);
+  cout << data.last() << endl;
+
   return 0;
 }
