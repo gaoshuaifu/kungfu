@@ -124,11 +124,8 @@ public:
 class Solution1{
 public:
   TreeNode* LCA(TreeNode* root, TreeNode* node1, TreeNode* node2){
-    if(!root)
+    if(!root || !node1 || !node2)
       return NULL;
-
-    if(!node1 || !node2)
-      return node1? node1 : node2;
 
     map<TreeNode*, bool> visited;
     while(node1 || node2){
@@ -159,4 +156,3 @@ int main(){
   cout << lca->val << endl;
   return 0;
 }
-
