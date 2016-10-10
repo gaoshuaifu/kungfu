@@ -1,6 +1,5 @@
 /*
  * time: O(m + n), space: O(1)
- * time: O(mlogn), space: O(1)
  */
 #include <iostream>
 #include <vector>
