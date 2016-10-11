@@ -16,8 +16,6 @@ public:
       else
         A[k--] = B[j--];
     }
-    while (i >= 0)
-      A[k--] = A[i--];
     while (j >= 0)
       A[k--] = B[j--];
   }
