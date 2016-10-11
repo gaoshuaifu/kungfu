@@ -42,63 +42,27 @@ public:
     ListNode* tmp = new ListNode(INT_MIN);
     ListNode* head = tmp;
     ListNode* tail = tmp;
-    ListNode* p1 = l1;
-    ListNode* p2 = l2;
 
-    while(p1 && p2){
-      if(p1->val < p2->val){
-        tail = tail->next = p1;
-        p1 = p1->next;
+    while(l1 && l2){
+      if(l1->val < l2->val){
+        tail->next = l1;
+        tail = tail->next;
+        l1 = l1->next;
       }
       else{
-        tail = tail->next = p2;
-        p2 = p2->next;
+        tail->next = l2;
+        tail = tail->next;
+        l2 = l2->next;
       }
     }
 
-    if(p1) tail->next = p1;
-    if(p2) tail->next = p2;
+    if(l1)
+      tail->next = l1;
+    if(l2)
+      tail->next = l2;
 
     head = tmp->next;
     delete tmp;
-    return head;
-  }
-};
-
-class Solution1{
-public:
-  ListNode* mergeTwoLists(ListNode* l1, ListNode* l2){
-    if(!l1)
-      return l2;
-    if(!l2)
-      return l1;
-    ListNode* head = NULL;
-    ListNode* tail;
-    ListNode* p1 = l1;
-    ListNode* p2 = l2;
-
-    while(p1 && p2){
-      if(p1->val < p2->val){
-        if(!head)
-          head = tail = p1;
-        else
-          tail = tail->next = p1;
-        p1 = p1->next;
-      }
-      else{
-        if(!head)
-          head = tail = p2;
-        else
-          tail = tail->next = p2;
-        p2 = p2->next;
-      }
-    }
-
-    if(p1)
-      tail->next = p1;
-    if(p2)
-      tail->next = p2;
-
     return head;
   }
 };
@@ -114,4 +78,3 @@ int main(){
 
   return 0;
 }
-
