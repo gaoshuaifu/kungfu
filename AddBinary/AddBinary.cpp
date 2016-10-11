@@ -8,7 +8,7 @@ using namespace std;
 class Solution{
 public:
   string addBinary(string a, string b){
-    string res = "";
+    string res;
     int digit;
     int carry = 0;
     int i = a.size() - 1;
@@ -16,19 +16,17 @@ public:
     while(i >= 0 || j >= 0){
       int sum = 0;
       if(i >= 0){
-        sum += a[i] - '0';
-        i--;
+        sum += a[i--] - '0';
       }
       if(j >= 0){
-        sum += b[j] - '0';
-        j--;
+        sum += b[j--] - '0';
       }
       sum += carry;
       digit = sum % 2;
       carry = sum / 2;
       res.insert(res.begin(), digit + '0');
     }
-    if(carry == 1)
+    if(carry)
       res.insert(res.begin(), '1');
     return res;
   }
@@ -44,4 +42,3 @@ int main(){
   cout << res << endl;
   return 0;
 }
-
