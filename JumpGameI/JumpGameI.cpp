@@ -25,6 +25,17 @@ public:
   }
 };
 
+class Solution1{
+public:
+  bool canJump(int A[], int n){
+    int far = 0;
+    for(int i = 0; i <= far && i < n; i++){
+      far = max(far, i + A[i]);
+    }
+    return far >= n - 1;
+  }
+};
+
 int main(){
   int A[] = {3,2,1,0,4};
   int n = sizeof(A) / sizeof(A[0]);
@@ -37,4 +48,3 @@ int main(){
   cout << solution.canJump(B, m) << endl;
   return 0;
 }
-
