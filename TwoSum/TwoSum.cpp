@@ -16,8 +16,8 @@ public:
 
     for(int i = 0; i < n; i++){
       if(mapping.find(target - numbers[i]) != mapping.end()){
-        res[0] = mapping[target - numbers[i]] + 1;
-        res[1] = i + 1;
+        res[0] = mapping[target - numbers[i]];
+        res[1] = i;
         return res;
       }
       else
