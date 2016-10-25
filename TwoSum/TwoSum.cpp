@@ -10,20 +10,14 @@ using namespace std;
 class Solution {
 public:
   vector<int> twoSum(vector<int> &numbers, int target) {
-    vector<int> res(2, -1);
-    int n = numbers.size();
-    map<int, int> mapping;
-
-    for(int i = 0; i < n; i++){
-      if(mapping.find(target - numbers[i]) != mapping.end()){
-        res[0] = mapping[target - numbers[i]];
-        res[1] = i;
-        return res;
+    map<int, int> value2Index;
+    for(int i = 0; i < numbers.size(); i++){
+      if(value2Index.count(target - numbers[i])){
+        return {value2Index[target - numbers[i]], i};
       }
-      else
-        mapping[numbers[i]] = i;
+      value2Index[numbers[i]] = i;
     }
-    return res;
+    return {};
   }
 };
 
@@ -38,4 +32,3 @@ int main(){
 
   return 0;
 }
-
