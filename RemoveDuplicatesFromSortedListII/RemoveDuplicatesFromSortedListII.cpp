@@ -49,9 +49,10 @@ public:
     while(curr){
       if(curr->next && curr->val == curr->next->val){
         int val = curr->val;
-        while(curr && curr->val = val){
+        while(curr && curr->val == val){
           prev->next = curr->next;
           delete curr;
+          curr = prev->next;
         }
       }
       else{
