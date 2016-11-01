@@ -12,7 +12,21 @@ void print(unsigned int x){
   cout << endl;
 }
 
-class Solution{
+class Solution {
+public:
+  uint32_t reverse(uint32_t x) {
+    uint32_t res = 0;
+    int count = 32;
+    while(count--) {
+      res = res << 1;
+      res = res | (x & 1);
+      x = x >> 1;
+    }
+    return res;
+  }
+};
+
+class Solution1 {
 public:
   unsigned int reverse(unsigned int x){
     assert(sizeof(x) == 4);
@@ -25,7 +39,7 @@ public:
   }
 };
 
-class Solution1{
+class Solution2 {
 public:
   unsigned int reverse(unsigned int x){
     int n = 8 * sizeof(x);
