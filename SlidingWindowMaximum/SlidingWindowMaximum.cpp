@@ -5,15 +5,15 @@
 #include <cassert>
 using namespace std;
 
-class Solution{
+class Solution {
 public:
   vector<int> maxSlidingWindow(vector<int> num, int w){
+    vector<int> res;
     int n = num.size();
-    assert(n >= w);
 
+    if(n == 0) return res;
     if(w == 1) return num;
 
-    vector<int> res;
     deque<int> q;
     for(int i = 0; i < w; i++){
       while(!q.empty() && num[q.back()] <= num[i])
@@ -31,45 +31,19 @@ public:
       res.push_back(num[q.front()]);
     }
 
-    return res;
-  }
-
-  vector<int> minSlidingWindow(vector<int> num, int w){
-    int n = num.size();
-    assert(n >= w);
-
-    if(w == 1) return num;
-
-    vector<int> res;
-    deque<int> q;
-    for(int i = 0; i < w; i++){
-      while(!q.empty() && num[q.back()] >= num[i])
-        q.pop_back();
-      q.push_back(i);
-    }
-    res.push_back(num[q.front()]);
-
-    for(int i = w; i < n; i++){
-      if(!q.empty() && q.front() == i - w)
-        q.pop_front();
-      while(!q.empty() && num[q.back()] >= num[i])
-        q.pop_back();
-      q.push_back(i);
-      res.push_back(num[q.front()]);
-    }
     return res;
   }
 };
 
-class Solution1{
+class Solution1 {
 public:
   vector<int> maxSlidingWindow(vector<int> num, int w){
+    vector<int> res;
     int n = num.size();
-    assert(n >= w);
 
+    if(n == 0) return res;
     if(w == 1) return num;
 
-    vector<int> res;
     priority_queue<pair<int, int>, vector<pair<int, int> > > maxHeap;
     for(int i = 0; i < w; i++)
       maxHeap.push(make_pair(num[i], i));
@@ -80,27 +54,6 @@ public:
         maxHeap.pop();
       maxHeap.push(make_pair(num[i], i));
       res.push_back(maxHeap.top().first);
-    }
-    return res;
-  }
-
-  vector<int> minSlidingWindow(vector<int> num, int w){
-    int n = num.size();
-    assert(n >= w);
-
-    if(w == 1) return num;
-
-    vector<int> res;
-    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > minHeap;
-    for(int i = 0; i < w; i++)
-      minHeap.push(make_pair(num[i], i));
-    res.push_back(minHeap.top().first);
-
-    for(int i = w; i < n; i++){
-      while(minHeap.top().second <= i - w)
-        minHeap.pop();
-      minHeap.push(make_pair(num[i], i));
-      res.push_back(minHeap.top().first);
     }
     return res;
   }
@@ -137,4 +90,3 @@ int main(){
 
   return 0;
 }
-
