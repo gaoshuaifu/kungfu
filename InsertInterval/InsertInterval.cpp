@@ -24,31 +24,24 @@ public:
   vector<Interval> insert(vector<Interval>& intervals, Interval newInterval){
     vector<Interval> res;
     int n = intervals.size();
-    bool hasInserted = false;
+    int i = 0;
 
-    for(int i = 0; i < n; i++){
-      Interval interval = intervals[i];
-
-      if(interval.end < newInterval.start){
-        res.push_back(interval);
-        continue;
-      }
-
-      if(newInterval.end < interval.start){
-        if(!hasInserted){
-          res.push_back(newInterval);
-          hasInserted = true;
-        }
-        res.push_back(interval);
-        continue;
-      }
-
-      newInterval.start = min(newInterval.start, interval.start);
-      newInterval.end = max(newInterval.end, interval.end);
+    while(i < n && intervals[i].end < newInterval.start) {
+        res.push_back(intervals[i]);
+        i++;
     }
 
-    if(hasInserted == false)
-      res.push_back(newInterval);
+    while(i < n && intervals[i].start <= newInterval.end) {
+        newInterval.start = min(intervals[i].start, newInterval.start);
+        newInterval.end = max(intervals[i].end, newInterval.end);
+        i++;
+    }
+    res.push_back(newInterval);
+
+    while(i < n) {
+        res.push_back(intervals[i]);
+        i++;
+    }
 
     return res;
   }
@@ -69,4 +62,3 @@ int main(){
 
   return 0;
 }
-
