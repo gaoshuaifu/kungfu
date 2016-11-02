@@ -20,32 +20,31 @@ struct Interval{
   }
 };
 
-class Solution{
+class Solution {
 public:
-  struct LessThan{
-    bool operator()(const Interval a, const Interval b){
-      return a.start < b.start;
-    }
-  };
-
   vector<Interval> merge(vector<Interval>& intervals){
     vector<Interval> res;
     int n = intervals.size();
     if(n == 0) return res;
 
-    sort(intervals.begin(), intervals.end(), LessThan());
+    sort(
+      intervals.begin(),
+      intervals.end(),
+      [](const Interval& a, const Interval& b) {
+         return a.start < b.start;
+      }
+    );
 
-    Interval prev = intervals[0];
+    Interval interval = intervals[0];
     for(int i = 1; i < n; i++){
-      Interval curr = intervals[i];
-      if(prev.end < curr.start){
-        res.push_back(prev);
-        prev = curr;
+      if(interval.end < intervals[i].start){
+        res.push_back(interval);
+        interval = intervals[i];
       }
       else
-        prev.end = max(prev.end, curr.end);
+        interval.end = max(interval.end, intervals[i].end);
     }
-    res.push_back(prev);
+    res.push_back(interval);
 
     return res;
   }
@@ -66,4 +65,3 @@ int main(){
 
   return 0;
 }
-
