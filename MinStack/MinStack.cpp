@@ -2,7 +2,7 @@
 #include <stack>
 using namespace std;
 
-class StackGetMin{
+class MinStack{
 private:
   stack<int> stk;
   stack<int> minStk;
@@ -35,7 +35,7 @@ public:
 };
 
 int main(){
-  StackGetMin stk;
+  MinStack stk;
   stk.push(10);
   cout << "top: " << stk.top() << ", min: " << stk.min() << "\n";
 
