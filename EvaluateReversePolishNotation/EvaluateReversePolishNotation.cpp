@@ -7,13 +7,6 @@ using namespace std;
 
 class Solution{
 public:
-  int str2int(string s){
-    int res;
-    istringstream iss(s);
-    iss >> res;
-    return res;
-  }
-
   bool isOperator(string s){
     return s == "+" || s == "-" || s == "*" || s == "/";
   }
@@ -22,7 +15,7 @@ public:
     if(op == "+") return left + right;
     if(op == "-") return left - right;
     if(op == "*") return left * right;
-    if(op == "/") return left / right;
+    return left / right;
   }
 
   int solve(vector<string> strs){
@@ -42,7 +35,7 @@ public:
         stk.push(result);
       }
       else
-        stk.push(str2int(s));
+        stk.push(atoi(s));
     }
     assert(stk.size() == 1);
     return stk.top();
