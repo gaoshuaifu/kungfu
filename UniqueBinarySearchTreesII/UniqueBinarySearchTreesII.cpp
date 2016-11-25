@@ -58,6 +58,10 @@ public:
   }
 
   vector<TreeNode*> generateTrees(int n){
+    vector<TreeNode*> res;
+    if(n <= 0) {
+      return res;
+    }
     return generateTreesHelper(1, n);
   }
 };
