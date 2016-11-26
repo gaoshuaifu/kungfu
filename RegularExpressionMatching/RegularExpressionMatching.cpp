@@ -13,13 +13,8 @@ public:
 
     if(*(p + 1) != '*')
       return matchChar(s, p) && isMatch(s + 1, p + 1);
-
-    while(matchChar(s, p)){
-      if(isMatch(s, p + 2))
-        return true;
-      s++;
-    }
-    return isMatch(s, p + 2);
+    else
+      return isMatch(s, p + 2) || (matchChar(s, p) && isMatch(s + 1, p));
   }
 };
 
