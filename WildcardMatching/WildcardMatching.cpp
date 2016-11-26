@@ -24,4 +24,3 @@ int main(){
   cout << solution.isMatch("aa", "*") << endl;
   return 0;
 }
-

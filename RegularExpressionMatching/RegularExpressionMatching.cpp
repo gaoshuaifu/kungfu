@@ -19,6 +19,28 @@ public:
 };
 
 
+class Solution1{
+public:
+  bool matchChar(const char* s, const char* p) {
+    return (*s == *p) || (*s && *p == '.');
+  }
+
+  bool isMatch(const char* s, const char* p){
+    if(*p == '\0')
+      return (*s == '\0');
+
+    if(*(p + 1) != '*')
+      return matchChar(s, p) && isMatch(s + 1, p + 1);
+
+    while(matchChar(s, p)){
+      if(isMatch(s, p + 2))
+        return true;
+      s++;
+    }
+    return isMatch(s, p + 2);
+  }
+};
+
 int main(){
   Solution solution;
   cout << solution.isMatch("aa", "a") << endl;
