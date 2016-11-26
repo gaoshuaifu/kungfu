@@ -5,23 +5,20 @@ using namespace std;
 
 class Solution{
 public:
-  void combinationSumHelper(vector<int>& candidates, int target, int index, vector<int>& sol, vector<vector<int> >& res){
+  void combinationSumHelper(vector<int>& candidates, int target, int start, vector<int>& sol, vector<vector<int> >& res){
     if(target == 0){
       res.push_back(sol);
       return;
     }
 
-    if(index == candidates.size())
+    if(target < 0){
       return;
+    }
 
-    for(int i = 0; candidates[index] * i <= target; i++){
-      for(int j = 0; j < i; j++)
-        sol.push_back(candidates[index]);
-
-      combinationSumHelper(candidates, target - candidates[index] * i, index + 1, sol, res);
-
-      for(int j = 0; j < i; j++)
-        sol.pop_back();
+    for(int i = start; i < candidates.size(); i++){
+      sol.push_back(candidates[i]);
+      combinationSumHelper(candidates, target - candidates[i], i, sol, res);
+      sol.pop_back();
     }
   }
 
@@ -43,7 +40,6 @@ int main(){
   candidates.push_back(6);
   candidates.push_back(5);
 
-
   int target = 10;
 
   Solution solution;
@@ -58,4 +54,3 @@ int main(){
 
   return 0;
 }
-
