@@ -3,14 +3,18 @@ using namespace std;
 
 class Solution{
 public:
+  bool matchChar(const char* s, const char* p) {
+    return *s == *p || (*s && *p == '.');
+  }
+
   bool isMatch(const char* s, const char* p){
     if(*p == '\0')
       return (*s == '\0');
 
     if(*(p + 1) != '*')
-      return (*s == *p || (*s != '\0' && *p == '.')) && isMatch(s + 1, p + 1);
+      return matchChar(s, p) && isMatch(s + 1, p + 1);
 
-    while(*s == *p || (*s != '\0' && *p == '.')){
+    while(matchChar(s, p)){
       if(isMatch(s, p + 2))
         return true;
       s++;
@@ -31,4 +35,3 @@ int main(){
   cout << solution.isMatch("aab", "c*a*b") << endl;
   return 0;
 }
-

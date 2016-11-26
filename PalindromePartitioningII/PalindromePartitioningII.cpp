@@ -11,7 +11,7 @@ palin[i][j] is true if s[i..j] is a palindrom
 
 dp[i] is the min cuts of s[i..(n - 1)]
 
-  dp[i] = min(dp[j + 1] + 1), if s[i..j] is a palindrom, where i <= j <= n - 1
+  dp[i] = min(dp[i], dp[j + 1] + 1), if s[i..j] is a palindrom, where i <= j <= n - 1
 
 ---------------------
   |a |b |b |a |c |a |
@@ -65,4 +65,3 @@ int main(){
   cout << res << endl;
   return 0;
 }
-
