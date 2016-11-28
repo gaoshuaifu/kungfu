@@ -9,17 +9,20 @@ public:
   int divide(int dividend, int divisor){
     assert(divisor != 0);
     bool neg = (dividend > 0) ^ (divisor > 0);
-    long long num = abs((long long)dividend);
-    long long div = abs((long long)divisor);
+    long long num = llabs((long long)dividend);
+    long long div = llabs((long long)divisor);
     long long res = 0;
-    while(num >= div){
-      int i = 0;
-      while((div << (i + 1)) <= num)
-        i++;
-      num -= (div << i);
-      res += (1 << i);
+
+    int shift = 31;
+    while(shift >= 0){
+      if(div << shift <= num) {
+        num -= div << shift;
+        res += 1LL << shift;
+      }
+      shift--;
     }
-    return neg? -res : res;
+    res = neg? -res : res;
+    return min(result, static_cast<long long>(numeric_limits<int>::max()));
   }
 };
 
