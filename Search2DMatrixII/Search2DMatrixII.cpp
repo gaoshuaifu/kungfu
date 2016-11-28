@@ -14,6 +14,28 @@ public:
     int n = matrix[0].size();
     assert(n > 0);
 
+    int low = 0;
+    int high = m * n - 1;
+
+    while(low <= high){
+      int mid = (low + high) / 2;
+      matrix[]
+
+    }
+
+    return false;
+  }
+};
+
+class Solution1{
+public:
+  bool searchMatrix(vector<vector<int> >& matrix, int target){
+    int m = matrix.size();
+    assert(m > 0);
+
+    int n = matrix[0].size();
+    assert(n > 0);
+
     int i = 0;
     int j = n - 1;
 
@@ -45,7 +67,3 @@ int main(){
   cout << res << endl;
   return 0;
 }
-
-
-
-
