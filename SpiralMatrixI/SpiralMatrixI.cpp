@@ -12,13 +12,13 @@ public:
       return;
 
     if(m == 1){
-      for(int j = k; j <= k + n - 1)
+      for(int j = k; j <= k + n - 1; j++)
         res.push_back(matrix[k][j]);
       return;
     }
 
     if(n == 1){
-      for(int i = k; i <= k + m - 1)
+      for(int i = k; i <= k + m - 1; i++)
         res.push_back(matrix[i][k]);
       return;
     }
@@ -69,6 +69,3 @@ int main(){
 
   return 0;
 }
-
-
-
