@@ -68,16 +68,12 @@ public:
       while(!currQ.empty()){
         TreeLinkNode* node = currQ.front();
         currQ.pop();
-        if(node->left){
-          if(!nextQ.empty())
-            nextQ.back()->next = node->left;
+        if(!currQ.empty())
+          node->next = currQ.front();
+        if(node->left)
           nextQ.push(node->left);
-        }
-        if(node->right){
-          if(!nextQ.empty())
-            nextQ.back()->next = node->right;
+        if(node->right)
           nextQ.push(node->right);
-        }
       }
       currQ = nextQ;
     }
@@ -91,4 +87,3 @@ int main(){
   print(root);
   return 0;
 }
-
