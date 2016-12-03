@@ -1,21 +1,3 @@
-/*
-Write an implementation of the following interface:
-  interface AbstractDataTypeWithLast <K, V> {
-    void put(K k, V v);
-    V    get(K k);
-    void delete(K k);
-    K    last();
-  }
-
-Where last returns the last-accessed, non-deleted key. I.e.,
-  put("a", 1)
-  put("b", 2)
-  get("a")    => 1
-  last()      => "a"
-  delete("a")
-  last()      => "b"
-*/
-
 #include <iostream>
 #include <map>
 using namespace std;

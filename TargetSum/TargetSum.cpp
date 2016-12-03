@@ -1,24 +1,3 @@
-/*
-Question:
-  123456789 = 100 (also known as targetSum). Using standard integer arithmetic
-  operators +, -, how many different solutions can you find by inserting the
-  operators between some digits?
-
-All combinations that sums up to 100:
-  -1+2-3+4+5+6+78+9
-  1+2+3-4+5+6+78+9
-  1+2+34-5+67-8+9
-  1+23-4+5+6+78-9
-  1+23-4+56+7+8+9
-  12+3+4+5-6-7+89
-  12+3-4+5+67+8+9
-  12-3-4+5-6+7+89
-  123+4-5+67-89
-  123+45-67+8-9
-  123-4-5-6-7+8-9
-  123-45-67+89
-*/
-
 #include <iostream>
 #include <vector>
 using namespace std;
