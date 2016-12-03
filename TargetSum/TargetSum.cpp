@@ -5,8 +5,9 @@ using namespace std;
 class Solution {
 public:
   void partitionHelper(string& str, int target, int start, vector<int>& sol, vector<vector<int> >& res) {
-    if (start == str.size() && target == 0) {
-      res.push_back(sol);
+    if (start == str.size()) {
+      if(target == 0)
+        res.push_back(sol);
       return;
     }
 
