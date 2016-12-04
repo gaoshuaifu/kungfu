@@ -36,10 +36,10 @@ class BinaryTreePostOrderIterator{
 private:
   stack<TreeNode*> stk;
 
-  void reachLeaf(TreeNode* curr){
-    while(curr) {
-      stk.push(curr);
-      curr = curr->left? curr->left : curr->right;
+  void reachLeaf(TreeNode* node){
+    while(node) {
+      stk.push(node);
+      node = node->left? node->left : node->right;
     }
   }
 
@@ -56,13 +56,11 @@ public:
     if(!hasNext())
       return NULL;
 
-    TreeNode* curr = stk.top();
+    TreeNode* node = stk.top();
     stk.pop();
-
-    if(!stk.empty() && curr == stk.top()->left && stk.top()->right)
+    if(!stk.empty() && node == stk.top()->left && stk.top()->right)
       reachLeaf(stk.top()->right);
-
-    return curr;
+    return node;
   }
 };
 
