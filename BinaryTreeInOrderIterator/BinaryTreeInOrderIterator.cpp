@@ -39,10 +39,10 @@ class BinaryTreeInOrderIterator{
 private:
   stack<TreeNode*> stk;
 
-  void reachLeftMost(TreeNode* curr){
-    while(curr){
-      stk.push(curr);
-      curr = curr->left;
+  void reachLeftMost(TreeNode* node){
+    while(node){
+      stk.push(node);
+      node = node->left;
     }
   }
 
@@ -59,10 +59,10 @@ public:
     if(!hasNext())
       return NULL;
 
-    TreeNode* curr = stk.top();
+    TreeNode* node = stk.top();
     stk.pop();
-    reachLeftMost(curr->right);
-    return curr;
+    reachLeftMost(node->right);
+    return node;
   }
 };
 
