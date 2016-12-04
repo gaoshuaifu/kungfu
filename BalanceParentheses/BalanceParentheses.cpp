@@ -5,6 +5,47 @@ using namespace std;
 class Solution {
 public:
   string balance(string str) {
+    int currentOpen = 0;
+    int validOpen = 0;
+    int excessClose = 0;
+
+    for(int i = 0; i < str.size(); i++) {
+      if(str[i] == '(')
+        currentOpen++;
+      else if(str[i] == ')'){
+        if(currentOpen > 0) {
+          currentOpen--;
+          validOpen++;
+        }
+        else
+          excessClose++;
+      }
+    }
+
+    int j = 0;
+    for(int i = 0; i < str.size(); i++) {
+      if(str[i] == '(') {
+        if(validOpen > 0)
+          validOpen--;
+        else
+          continue;
+      }
+      if(str[i] == ')') {
+        if(excessClose > 0) {
+          excessClose--;
+          continue;
+        }
+      }
+      str[j++] = str[i];
+    }
+    str.erase(str.begin() + j, str.end());
+    return str;
+  }
+};
+
+class Solution1 {
+public:
+  string balance(string str) {
     vector<int> stk;
 
     for(int i = 0; i < str.size(); i++) {
