@@ -1,3 +1,6 @@
+// jiuzhang.com/qa/31/
+// mitbbs.com/article_t1/JobHunting/32978937_0_1.html
+
 #include <iostream>
 #include <vector>
 using namespace std;
