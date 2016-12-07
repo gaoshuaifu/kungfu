@@ -44,16 +44,17 @@ public:
     if(n == 0) return 0;
 
     int i, j;
+    bool foundStart = false;
     for(i = 0; i < m; i++) {
       for(j = 0; j < n; j++) {
         if(grid[i][j] == 1) {
+          foundStart = true;
           break;
         }
       }
-      if(i < m)
+      if(foundStart)
         break;
     }
-
     int res = 0;
     map<int, map<int, int> > visited;
     dfs(grid, i, j, visited, res);
@@ -62,16 +63,14 @@ public:
 };
 
 int main() {
-  int a[4][4] = {
-    {0, 1, 0, 0},
-    {1, 1, 1, 0},
-    {0, 1, 0, 0},
-    {1, 1, 0, 0},
+  int a[2][1] = {
+    {0},
+    {1},
   };
 
   vector<vector<int> > grid;
-  for(int i = 0; i < 4; i++){
-    vector<int> row = vector<int>(a[i], a[i] + 4);
+  for(int i = 0; i < 2; i++){
+    vector<int> row = vector<int>(a[i], a[i] + 1);
     grid.push_back(row);
   }
 
