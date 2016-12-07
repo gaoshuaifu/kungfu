@@ -1,3 +1,5 @@
+// http://www.geeksforgeeks.org/the-celebrity-problem
+
 #include <iostream>
 using namespace std;
 
