@@ -62,15 +62,18 @@ public:
   }
 };
 
+
 int main() {
-  int a[2][1] = {
-    {0},
-    {1},
+  int a[4][4] = {
+    {0, 1, 0, 0},
+    {1, 1, 1, 0},
+    {0, 1, 0, 0},
+    {1, 1, 0, 0},
   };
 
   vector<vector<int> > grid;
-  for(int i = 0; i < 2; i++){
-    vector<int> row = vector<int>(a[i], a[i] + 1);
+  for(int i = 0; i < 4; i++){
+    vector<int> row = vector<int>(a[i], a[i] + 4);
     grid.push_back(row);
   }
 
