@@ -20,7 +20,7 @@ vector<string> listPattern(const string& pattern) {
   vector<string> children = listPath(prefix);
   for (for int i = 0; i < children.size(); i++) {
     string child = children[i];
-    auto r = listPattern(child + suffix);
+    vector<string> r = listPattern(child + suffix);
     res.insert(res.size(), r.begin(), r.end());
   }
   return res;
