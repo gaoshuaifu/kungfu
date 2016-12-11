@@ -1,6 +1,6 @@
 #include <iostream>
 #include <pthread.h>
-#include<unistd.h>
+#include <unistd.h>
 using namespace std;
 
 const int NUM_READER = 4;
