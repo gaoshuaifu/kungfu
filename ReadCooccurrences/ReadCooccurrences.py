@@ -1,3 +1,8 @@
+"""
+It is an efficient way of computing the matrix multiplication MTxM,
+where M[i,j] is the user i's view count on page j.
+In the result, scores[i,j] = Σ(M[k,i]*M[k,j]), 0 <= k < number of users.
+"""
 import sys
 from collections import defaultdict
 
