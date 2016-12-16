@@ -15,7 +15,6 @@ public:
   }
 
   vector<int> products(vector<int>& nums) {
-    sort(nums.begin(), nums.end());
     vector<int> res;
     int product = 1;
     productsHelper(nums, 0, product, res);
