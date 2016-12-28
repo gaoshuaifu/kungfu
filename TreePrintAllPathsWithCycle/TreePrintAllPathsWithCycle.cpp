@@ -34,12 +34,12 @@ TreeNode* initialize(){
 
 class Solution {
 public:
-  void getAllPathsHelper(TreeNode* root, set<int>& visited, vector<int>& path, vector<vector<int> >& res) {
-    if(visited.count(root->val) > 0)
+  void getAllPathsHelper(TreeNode* root, set<TreeNode*>& visited, vector<TreeNode*>& path, vector<vector<TreeNode*> >& res) {
+    if(visited.count(root) > 0)
       return;
 
-    path.push_back(root->val);
-    visited.insert(root->val);
+    path.push_back(root);
+    visited.insert(root);
 
     if(!root->left && !root->right)
       res.push_back(path);
@@ -51,16 +51,16 @@ public:
       getAllPathsHelper(root->right, visited, path, res);
 
     path.pop_back();
-    visited.erase(root->val);
+    visited.erase(root);
   }
 
-  vector<vector<int> > getAllPaths(TreeNode* root) {
-    vector<vector<int> > res;
+  vector<vector<TreeNode*> > getAllPaths(TreeNode* root) {
+    vector<vector<TreeNode*> > res;
     if(!root)
       return res;
 
-    set<int> visited;
-    vector<int> path;
+    set<TreeNode*> visited;
+    vector<TreeNode*> path;
     getAllPathsHelper(root, visited, path, res);
     return res;
   }
@@ -70,10 +70,10 @@ int main(){
   TreeNode* root = initialize();
 
   Solution solution;
-  vector<vector<int> > res = solution.getAllPaths(root);
+  vector<vector<TreeNode*> > res = solution.getAllPaths(root);
   for(int i = 0; i < res.size(); i++){
     for(int j = 0; j < res[i].size(); j++)
-      cout << res[i][j] << " ";
+      cout << res[i][j]->val << " ";
     cout << "\n";
   }
   cout << endl;
