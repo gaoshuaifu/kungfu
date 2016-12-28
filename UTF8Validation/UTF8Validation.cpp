@@ -35,11 +35,11 @@ public:
 };
 
 int main() {
-  // 11000101 10000010 00000001
+  // 11000101 10000010 00000001, return true
   int d1[] = {197, 130, 1};
   vector<int> data1 = vector<int>(d1, d1 + sizeof(d1) / sizeof(d1[0]));
 
-  // 11101011 10001100 00000100
+  // 11101011 10001100 00000100, return false
   int d2[] = {235, 140, 4};
   vector<int> data2 = vector<int>(d2, d2 + sizeof(d2) / sizeof(d2[0]));
 
