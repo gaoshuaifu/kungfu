@@ -22,8 +22,8 @@ public:
       // If not, break the substring and check
       for(int j = 0 ; j < i; j++) {
         if(dp[j]) {
-          string leftWord = s.substr(j + 1, i - j);
-          if(wordDict.count(leftWord) > 0) {
+          string right = s.substr(j + 1, i - j);
+          if(wordDict.count(right) > 0) {
             dp[i] = true;
             break;
           }
@@ -31,24 +31,5 @@ public:
       }
     }
     return dp[n - 1];
-  }
-};
-
-class Solution1 {
-public:
-  bool wordBreakHelper(string& s, unordered_set<string>& wordDictint, int start) {
-    if(start == s.size())
-      return true;
-
-    for(int end = start; end < s.size(); end++) {
-      string word = s.substr(start, end - start + 1);
-      if(wordDictint.count(word) > 0 && wordBreakHelper(s, wordDictint, end + 1))
-        return true;
-    }
-    return false;
-  }
-
-  bool wordBreak(string s, unordered_set<string>& wordDict) {
-    return wordBreakHelper(s, wordDict, 0);
   }
 };
