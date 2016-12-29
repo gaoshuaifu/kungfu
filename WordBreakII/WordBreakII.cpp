@@ -35,6 +35,29 @@ public:
   }
 };
 
+class Solution1 {
+public:
+  vector<string> wordBreak(string s, unordered_set<string>& wordDict) {
+    vector<vector<string> > dp(s.size());
+    for(int i = s.size() - 1; i >= 0; i--){
+      dp[i] = vector<string>();
+      for(int j = i; j < s.size(); j++) {
+        string word = s.substr(i, j - i + 1);
+        if(wordDict.count(word) > 0) {
+          if(j == s.size() - 1)
+            dp[i].push_back(word);
+          else {
+            for(int k = 0; k < dp[j + 1].size(); k++){
+              dp[i].push_back(word + " " + dp[j + 1][k]);
+            }
+          }
+        }
+      }
+    }
+    return dp[0];
+  }
+};
+
 int main() {
   string s = "catsanddog";
   unordered_set<string> wordDict;
