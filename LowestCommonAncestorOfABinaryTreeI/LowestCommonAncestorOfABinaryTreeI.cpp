@@ -63,18 +63,16 @@ void print(TreeNode* root){
 class Solution{
 public:
   TreeNode* LCA(TreeNode* root, TreeNode* node1, TreeNode* node2){
-    if(!root)
-      return NULL;
-
-    if(root == node1 || root == node2)
+    if(!root || root == node1 || root == node2)
       return root;
 
     TreeNode* l = LCA(root->left, node1, node2);
     TreeNode* r = LCA(root->right, node1, node2);
 
-    if(l && r) return root;
-
-    return l ? l : r;
+    if(l && r)
+      return root;
+    else
+      return l ? l : r;
   }
 };
 
