@@ -16,6 +16,9 @@ public:
   int findCelebrity(int n) {
     int i = 0;
     int j = n - 1;
+    
+    // Keep moving until two pointers meet.
+    // The index of meeting could be the famous person.
     while(i < j) {
       if(knows(i, j))
         i++;
@@ -23,6 +26,8 @@ public:
         j--;
     }
 
+
+    // Check if i is actually a famous person.
     for(int k = 0; k < n; k++) {
       if(k == i)
         continue;
