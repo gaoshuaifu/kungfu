@@ -26,7 +26,6 @@ public:
         j--;
     }
 
-
     // Check if i is actually a famous person.
     for(int k = 0; k < n; k++) {
       if(k == i)
