@@ -35,7 +35,7 @@ class Solution(object):
                         visited.add(next_cell)
             currQ = nextQ
             jumps += 1
-        return jumps
+        return -1 
 
 def main():
     solution = Solution()
