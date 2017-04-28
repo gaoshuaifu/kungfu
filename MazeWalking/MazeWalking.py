@@ -32,7 +32,6 @@ def dfs(board, i, j, visited, path):
     return False
 
 def solve(board):
-    print 'here'
     visited = set()
     path = list()
     dfs(board, 0, 0, visited, path)
