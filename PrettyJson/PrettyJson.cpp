@@ -45,7 +45,7 @@ public:
             res += "\n";
             res += indent(++indentLevel);
             break;
-            case '}':
+          case '}':
           case ']':
             res += "\n";
             res += indent(--indentLevel);
