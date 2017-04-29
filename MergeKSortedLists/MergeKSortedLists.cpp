@@ -56,7 +56,7 @@ public:
       }
     }
 
-    ListNode* tmp = new ListNode(INT16_MIN);
+    ListNode* tmp = new ListNode(INT_MIN);
     ListNode* tail = tmp;
     while(!minHeap.empty()){
       ListNode* node = minHeap.top();
