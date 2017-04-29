@@ -51,27 +51,26 @@ public:
 
     priority_queue<ListNode*, vector<ListNode*>, Greater> minHeap;
     for(int i = 0; i < n; i++){
-      if(lists[i])
+      if(lists[i]) {
         minHeap.push(lists[i]);
+      }
     }
 
-    ListNode* head = NULL;
-    ListNode* tail;
+    ListNode* tmp = new ListNode(INT16_MIN);
+    ListNode* tail = tmp;
     while(!minHeap.empty()){
       ListNode* node = minHeap.top();
       minHeap.pop();
-      if(!head){
-        head = node;
-        tail = node;
-      }
-      else{
-        tail->next = node;
-        tail = tail->next;
-      }
+
+      tail->next = node;
+      tail = tail->next;
+
       if(node->next)
         minHeap.push(node->next);
     }
 
+    ListNode* head = tmp->next;
+    delete tmp;
     return head;
   }
 };
@@ -94,4 +93,3 @@ int main(){
 
   return 0;
 }
-
