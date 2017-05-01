@@ -34,6 +34,36 @@ TreeNode* initialize(){
 class Solution {
 public:
   void getAllPathsHelper(TreeNode* root, vector<TreeNode*>& path, vector<vector<TreeNode*> >& res) {
+    path.push_back(root);
+    if(!root->left && !root->right) {
+      res.push_back(path);
+    }
+
+    if(root->left) {
+      getAllPathsHelper(root->left, path, res);
+    }
+
+    if(root->right) {
+      getAllPathsHelper(root->right, path, res);
+    }
+
+    path.pop_back();
+  }
+
+  vector<vector<TreeNode*> > getAllPaths(TreeNode* root) {
+    vector<vector<TreeNode*> > res;
+    if(!root)
+      return res;
+
+    vector<TreeNode*> path;
+    getAllPathsHelper(root, path, res);
+    return res;
+  }
+};
+
+class Solution1 {
+public:
+  void getAllPathsHelper(TreeNode* root, vector<TreeNode*>& path, vector<vector<TreeNode*> >& res) {
     if(!root->left && !root->right) {
       res.push_back(path);
       return;
@@ -58,36 +88,6 @@ public:
 
     vector<TreeNode*> path;
     path.push_back(root);
-    getAllPathsHelper(root, path, res);
-    return res;
-  }
-};
-
-class Solution1 {
-public:
-  void getAllPathsHelper(TreeNode* root, vector<TreeNode*>& path, vector<vector<TreeNode*> >& res) {
-    path.push_back(root);
-    if(!root->left && !root->right) {
-      res.push_back(path);
-    }
-
-    if(root->left) {
-      getAllPathsHelper(root->left, path, res);
-    }
-
-    if(root->right) {
-      getAllPathsHelper(root->right, path, res);
-    }
-
-    path.pop_back();
-  }
-
-  vector<vector<TreeNode*> > getAllPaths(TreeNode* root) {
-    vector<vector<TreeNode*> > res;
-    if(!root)
-      return res;
-
-    vector<TreeNode*> path;
     getAllPathsHelper(root, path, res);
     return res;
   }
