@@ -41,14 +41,17 @@ public:
     path.push_back(root);
     visited.insert(root);
 
-    if(!root->left && !root->right)
+    if(!root->left && !root->right) {
       res.push_back(path);
+    }
 
-    if(root->left)
+    if(root->left) {
       getAllPathsHelper(root->left, visited, path, res);
+    }
 
-    if(root->right)
+    if(root->right) {
       getAllPathsHelper(root->right, visited, path, res);
+    }
 
     path.pop_back();
     visited.erase(root);

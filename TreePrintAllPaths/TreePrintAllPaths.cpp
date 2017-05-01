@@ -71,11 +71,13 @@ public:
       res.push_back(path);
     }
 
-    if(root->left)
+    if(root->left) {
       getAllPathsHelper(root->left, path, res);
+    }
 
-    if(root->right)
+    if(root->right) {
       getAllPathsHelper(root->right, path, res);
+    }
 
     path.pop_back();
   }
