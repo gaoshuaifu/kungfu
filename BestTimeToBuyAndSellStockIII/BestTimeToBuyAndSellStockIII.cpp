@@ -16,18 +16,18 @@ public:
     int minPrice = prices[0];
     int maxProfit = 0;
     for(int i = 1; i < n; i++){
-      minPrice = min(minPrice, prices[i]);
       maxProfit = max(maxProfit, prices[i] - minPrice);
       left[i] = maxProfit;
+      minPrice = min(minPrice, prices[i]);
     }
 
     vector<int> right = vector<int>(n, 0);
     int maxPrice = prices[n - 1];
     maxProfit = 0;
     for(int i = n - 2; i >= 0; i--){
-      maxPrice = max(maxPrice, prices[i]);
       maxProfit = max(maxProfit, maxPrice - prices[i]);
       right[i] = maxProfit;
+      maxPrice = max(maxPrice, prices[i]);
     }
 
     int maxTotal = 0;
@@ -47,4 +47,3 @@ int main(){
 
   return 0;
 }
-
