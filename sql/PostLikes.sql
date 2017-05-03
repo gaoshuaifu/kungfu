@@ -145,22 +145,25 @@ Example Output:
     +-------------+-------------+
 */
 
-
--- solution 0
 SELECT ds, IF(COUNT(1) = COUNT(DISTINCT post_id), 1, 0) AS test_result
 FROM post_likes
+GROUP BY ds
 
--- solution 1
-SELECT a.ds, IF(b.ds IS NULL, 1, 0) AS test_result
+/*
+Question 3 Followup:
+Modify the query to rollup across all dates.
+E.g. Return 1 if all tests pass on all dates; 0 if any test fails on any of the dates.</b>
+
+Example Output:
+    +---------------------+
+    | overall_test_result |
+    +---------------------+
+    |          1          |
+    +---------------------+
+*/
+SELECT IF(SUM(1) = SUM(test_result), 1, 0) as overall_test_result
 FROM (
-  SELECT DISTINCT ds
+  SELECT ds, IF(COUNT(1) = COUNT(DISTINCT post_id), 1, 0) AS test_result
   FROM post_likes
-) a LEFT OUTER JOIN (
-  SELECT DISTINCE ds
-  FROM (
-    SELECT ds, post_id,
-    FROM post_likes
-    GROUP BY ds, post_id
-    HAVING COUNT(1) > 1
-  ) x
-) b ON a.ds == b.ds
+  GROUP BY ds
+) a
