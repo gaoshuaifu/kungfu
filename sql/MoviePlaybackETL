@@ -36,11 +36,8 @@ III. ETL Pipeline
 
 Step 1: Collect a list of segments
 SELECT user_id, movie_id, FB_COLLECT(ARRAY(pb_start_pos, pb_end_pos)) as intervals
-FROM (
-  SELECT user_id, movie_id, pb_start_pos, pb_end_pos
-  FROM playback_segements
-  WHERE DATE(pb_start_timestamp) = '<DATEID>'
-)
+FROM playback_segements
+WHERE DATE(pb_start_timestamp) = '<DATEID>'
 GROUP BY user_id, movie_id
 
 Step 2: UDF or Hive Transformer to merge interval and compute total_viewed_secs
@@ -56,7 +53,6 @@ def total_viewed_secs(intervals):
       interval[1] = max(interval[1], interval[i][1])
   total_viewed_secs += interval[1] - interval[0]
   return total_viewed_secs
-
 
 2. user_movie_views
    (user_id, movie_id, total_viewed_secs)
