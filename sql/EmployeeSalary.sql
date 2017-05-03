@@ -16,7 +16,6 @@ employees
 Question 0:
 For each department, find the highest paid person and their salary.
 */
-
 SELECT
   a.name,
   a.dept,
@@ -48,3 +47,15 @@ WHERE (N-1) = ( /* Subquery starts here */
   SELECT COUNT(DISTINCT(e2.salary))
   FROM employees e2
   WHERE e2.salary > e1.salary)
+
+/*
+Question 3:
+Find the highest employee salary without using the MAX, or TOP or ORDER function
+*/
+SELECT DISTINCT salary
+FROM employees
+WHERE salary NOT IN (
+  SELECT e1.salary
+  FROM employees e1, employees e2
+  WHERE e1.salary < e2.salary
+)
