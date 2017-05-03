@@ -18,8 +18,8 @@ on the target date.
 
 2. Discuss movie categories.
 movies(movie_id, movie_name, movie_length_secs)
-categories(category_id, category_name)
 movie_category(movie_id, category_id)  -> many-to-many relationship
+categories(category_id, category_name)
 
 3. Discuss how are movie views attributed to a date. What if a playback_segment spans two dates?
 Solution1: Aggregate the playback_segment to the first date DATE(pb_start_timestamp).
@@ -61,3 +61,24 @@ def total_viewed_secs(intervals):
 
    category_movie_rank
    (category_name, movie_name, rank_number)
+
+movie_viewers:
+SELECT
+  movie_id, movie_name, COUNT(DISTINCT user_id) number_viewers
+FROM
+  user_movie_views v
+  INNER JOIN
+  movies m ON v.movie_id = m.movie_id AND v.total_viewed_secs > 0.5 * m.movie_length_secs
+GROUP BY movie_id, movie_name
+
+category_movie_rank:
+SELECT
+  c.category_name,
+  mv.movie_name,
+  ROW_NUMBER() OVER(PARTITION BY c.category_id ORDER BY mv.number_viewers DESC) AS rank_number
+FROM
+  movie_viewers mv
+  INNER JOIN
+  movie_category mc ON m.movie_id = mc.movie_id
+  INNER JOIN
+  categories c ON mc.category_id = c.category_id
