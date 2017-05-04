@@ -6,7 +6,22 @@
 #include <algorithm>
 using namespace std;
 
-class Solution{
+class Solution {
+public:
+  vector<vector<int> > subsets(vector<int> &nums) {
+    vector<vector<int>> result(1);
+    for (size_t i = 0; i < nums.size(); ++i) {
+      const size_t size = result.size();
+      for (size_t j = 0; j < size; ++j) {
+        result.push_back(result[j]);
+        result.back().push_back(nums[i]);
+      }
+    }
+    return result;
+  }
+};
+
+class Solution1 {
 public:
   void subsetsHelper(vector<int>& S, int start, vector<int> sol, vector<vector<int> >& res){
     res.push_back(sol);
@@ -18,7 +33,6 @@ public:
   }
 
   vector<vector<int> > subsets(vector<int>& S){
-    sort(S.begin(), S.end());
     vector<vector<int> > res;
     vector<int> sol;
     subsetsHelper(S, 0, sol, res);
@@ -42,4 +56,3 @@ int main(){
 
   return 0;
 }
-
