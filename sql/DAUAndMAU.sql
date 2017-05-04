@@ -70,4 +70,4 @@ SELECT
 FROM user_date_list
 WHERE ds = '<DATEID>'
 
--- With users' date list, easily calculate retention rate and churn rate.
+-- With users' date list, easily calculate retention rate and churn rate by UDF or Hive transformer
