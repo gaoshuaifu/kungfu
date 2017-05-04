@@ -46,13 +46,14 @@ As a result, this query may take many hours to complete.
 How could you restructure the algorithm/query to avoid such an expensive lookup?
 */
 
--- Keep track of each user's last active date at the end of each day
-INSERT OVERWRITE TABLE user_last_active
+-- Keep track of users' date list and last active date at the end of each day
+INSERT OVERWRITE TABLE user_date_list
 PARTITION(ds='<DATEID>')
 SELECT
   COALESCE(u.uid, a.uid) AS uid,
-  IF(a.uid IS NULL, a.last_active, '<DATEID>') AS last_active
-FROM user_last_active u
+  IF(a.uid IS NULL, u.last_active, '<DATEID>') AS last_active,
+  IF(a.uid IS NULL, u.date_list, CONCAT(a.date_list, '<DATE_ID>')) AS date_list
+FROM user_date_list u
      FULL OUTER JOIN
      (
        SELECT DISTINCT uid
@@ -64,7 +65,9 @@ WHERE u.ds = '<DATEID-1>'
 -- Now we can query for DAU and MAU as follows:
 SELECT
   '<DATEID>' AS ds
-  SUM(IF(last_active = '<DATEID>', 1, 0)) AS DAU,
-  SUM(IF(last_active BETWEEN '<DATEID-29>' AND '<DATEID>', 1, 0)) AS MAU
-FROM user_last_active
+  SUM(IF(last_active = '<DATEID>', 1, 0)) AS dau,
+  SUM(IF(last_active BETWEEN '<DATEID-29>' AND '<DATEID>', 1, 0)) AS mau
+FROM user_date_list
 WHERE ds = '<DATEID>'
+
+-- With users' date list, easily calculate retention rate and churn rate.
