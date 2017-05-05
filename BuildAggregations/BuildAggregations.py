@@ -7,7 +7,7 @@ def get_subsets(all_cols):
     return res
 
 def get_sql(all_cols, subsets):
-    BASE_SQL = "SELECT {cols}, COUNT(DISTINCT userid) FROM the_table {group_by}"
+    BASE_SQL = "SELECT {cols}, COUNT(DISTINCT userid) AS num_of_users FROM the_table {group_by}"
     queries = []
     for subset in subsets:
         cols = []
