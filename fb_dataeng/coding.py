@@ -141,9 +141,9 @@ def sample2(nums, n):
     import random
     res = nums[:n]
     for i in range(n, len(nums)):
-        index = random.randint(0, i)
-        if index < n:
-            res[index] =  nums[i]
+        rand_idx = random.randint(0, i)
+        if rand_idx < n:
+            res[rand_idx] =  nums[i]
     return res
 
 print 'List Random Sample:'
