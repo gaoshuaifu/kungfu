@@ -154,12 +154,20 @@ print
 ################################################################################
 """ Find all possible pairs of from input list """
 
-def find_pairs(input):
+def find_pairs1(input):
     import itertools
     return list(itertools.combinations(input, 2))
 
 print 'Find All Pairs:'
-print find_pairs([1, 2, 3, 4])
+print find_pairs1([1, 2, 3, 4])
+print
+
+def find_pairs2(input):
+    import itertools
+    return list(itertools.permutations(input, 2))
+
+print 'Find All Pairs:'
+print find_pairs2([1, 2, 3, 4])
 print
 
 ################################################################################
