@@ -233,7 +233,29 @@ print
 ################################################################################
 """ Given a list of numbers, return the first non-recurring number """
 
-def first_nonrecurring(nums):
+def first_nonrecurring1(nums):
+    d = {}
+    for i in range(len(nums)):
+        num = nums[i]
+        if num in d:
+            d[num][0] += 1
+        else:
+            d[num] = [1, i]
+
+
+    min_index = len(nums)
+    for k, v in d.items():
+        if v[0] == 1:
+            min_index = min(min_index, v[1])
+
+    return nums[min_index] if min_index < len(nums) else None
+
+print "First Non-recurring:"
+print first_nonrecurring1([1, 2, 3, 4, 5, 1, 2, 3, 4])
+print first_nonrecurring1([1, 2, 3, 4, 5, 1, 2, 3, 4, 5])
+print
+
+def first_nonrecurring2(nums):
     d = {}
     for num in nums:
         if num in d:
@@ -248,8 +270,8 @@ def first_nonrecurring(nums):
     return None
 
 print "First Non-recurring:"
-print first_nonrecurring([1, 2, 3, 4, 5, 1, 2, 3, 4])
-print first_nonrecurring([1, 2, 3, 4, 5, 1, 2, 3, 4, 5])
+print first_nonrecurring2([1, 2, 3, 4, 5, 1, 2, 3, 4])
+print first_nonrecurring2([1, 2, 3, 4, 5, 1, 2, 3, 4, 5])
 print
 
 ################################################################################
