@@ -80,16 +80,29 @@ print
 ################################################################################
 """ Given a list of integers, return top N largest """
 
-def top_n(nums, n):
+def top_n1(nums, n):
     return sorted(nums, reverse=True)[:n]
 
 print 'Top N:'
-print top_n([], 0)
-print top_n([], 1)
-print top_n([1, 2], 0)
-print top_n([1, 2], 1)
-print top_n([1, 2], 2)
-print top_n([1, 2], 3)
+print top_n1([], 0)
+print top_n1([], 1)
+print top_n1([1, 2], 0)
+print top_n1([1, 2], 1)
+print top_n1([1, 2], 2)
+print top_n1([1, 2], 3)
+print
+
+def top_n2(nums, n):
+    import heapq
+    return heapq.nlargest(n, nums)
+
+print 'Top N:'
+print top_n2([], 0)
+print top_n2([], 1)
+print top_n2([1, 2], 0)
+print top_n2([1, 2], 1)
+print top_n2([1, 2], 2)
+print top_n2([1, 2], 3)
 print
 
 ################################################################################
