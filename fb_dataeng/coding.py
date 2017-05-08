@@ -298,7 +298,7 @@ print
 ################################################################################
 """ Given a list of numbers, find the least common multiple """
 def lcm(a, b):
-    value = a if a > b else b
+    value = max(a, b)
     step = value
     while True:
         if value % a == 0 and value % b == 0:
@@ -306,9 +306,15 @@ def lcm(a, b):
         value += step
 
 def list_lcm(nums):
+    if not nums:
+        return None
+    if len(nums) == 1:
+        return nums[0]
     return reduce(lambda x, y: lcm(x, y), nums)
 
 print 'Least Common Multiple:'
+print list_lcm([])
+print list_lcm([3])
 print list_lcm([3, 7, 11])
 print list_lcm([4, 6, 8])
 print
