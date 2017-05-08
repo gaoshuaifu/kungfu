@@ -49,7 +49,7 @@ GROUP BY s.state
 
 -- percentage of all registered customers that have purchased at least 1 product
 SELECT
-  SUM(CASE WHEN customer_id IS NOT NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(1) AS perc
+  SUM(CASE WHEN b.customer_id IS NOT NULL THEN 1 ELSE 0 END) * 100.0 / COUNT(1) AS perc
 FROM
   customers a
   LEFT OUTER JOIN
