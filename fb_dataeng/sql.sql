@@ -35,17 +35,16 @@ FROM (
 ) a
 
 -- Same as 5a above, but now segment this by state.
-SELECT
-  s.state, COUNT(1) AS num_products
+SELECT state, COUNT(1) AS num_products
 FROM (
-    SELECT store_id, product_id, COUNT(1) AS num_sold
-    FROM transactions
-    GROUP BY store_id, product_id
-    HAVING COUNT(1) > 5
-  ) a
-  INNER JOIN
-  stores s ON a.store_id = s.id
-GROUP BY s.state
+  SELECT s.state, t.product_id, COUNT(1) AS num_sold
+  FROM
+    transactions t
+    INNER JOIN
+    stores s ON t.store_id = s.id
+  GROUP BY s.state, t.product_id
+  HAVING COUNT(1) > 5
+) a
 
 -- percentage of all registered customers that have purchased at least 1 product
 SELECT
