@@ -8,6 +8,7 @@ actions
 |  2015-01-01  |  2  |  'share' |
 |  2015-01-02  |  1  |  'share' |
 |  2015-01-02  |  3  |  'like'  |
++--------------+-----+----------+
 */
 
 /*
@@ -21,12 +22,13 @@ Example Output:
    | date | dau  | mau  |
    +------+------+------|
    |  1/1 |   2  |  23  |
+   +------+------+------+
 */
 
 SELECT
   '<DATEID>' AS ds
-  COUNT(DISTINCT IF(ds = '<DATEID>', uid, NULL)) AS DAU,
-  COUNT(DISTINCT IF(ds BETWEEN '<DATEID-29>' AND '<DATEID>', uid, NULL)) AS MAU
+  COUNT(DISTINCT IF(ds = '<DATEID>', uid, NULL)) AS dau,
+  COUNT(DISTINCT IF(ds BETWEEN '<DATEID-29>' AND '<DATEID>', uid, NULL)) AS mau
 FROM actions
 WHERE ds BETWEEN '<DATEID-29>' AND '<DATEID>'
 
@@ -46,28 +48,29 @@ As a result, this query may take many hours to complete.
 How could you restructure the algorithm/query to avoid such an expensive lookup?
 */
 
--- Keep track of users' date list and last active date at the end of each day
-INSERT OVERWRITE TABLE user_date_list
+-- Keep track of users', first action date, last action date and date list at the end of each day
+INSERT OVERWRITE TABLE user_action_date_list
 PARTITION(ds='<DATEID>')
 SELECT
-  COALESCE(u.uid, a.uid) AS uid,
-  IF(a.uid IS NULL, u.last_active, '<DATEID>') AS last_active,
-  IF(a.uid IS NULL, u.date_list, CONCAT(a.date_list, '<DATE_ID>')) AS date_list
-FROM user_date_list u
+  COALESCE(a.uid, b.uid) AS uid,
+  IF(a.uid IS NOT NULL, a.first_action_date, '<DATEID>') AS first_action_date,
+  IF(b.uid IS NOT NULL, '<DATEID>', a.last_action_date) AS last_action_date,
+  IF(b.uid IS NOT NULL, CONCAT(a.action_date_list, '<DATE_ID>'), u.action_date_list) AS action_date_list
+FROM user_action_date_list a
      FULL OUTER JOIN
      (
        SELECT DISTINCT uid
        FROM actions
        WHERE ds = '<DATEID>'
-     ) a ON u.uid = a.uid
-WHERE u.ds = '<DATEID-1>'
+     ) b ON a.uid = b.uid
+WHERE a.ds = '<DATEID-1>'
 
 -- Now we can query for DAU and MAU as follows:
 SELECT
   '<DATEID>' AS ds
-  SUM(IF(last_active = '<DATEID>', 1, 0)) AS dau,
-  SUM(IF(last_active BETWEEN '<DATEID-29>' AND '<DATEID>', 1, 0)) AS mau
-FROM user_date_list
+  SUM(IF(last_action_date = '<DATEID>', 1, 0)) AS dau,
+  SUM(IF(last_action_date BETWEEN '<DATEID-29>' AND '<DATEID>', 1, 0)) AS mau
+FROM user_action_date_list
 WHERE ds = '<DATEID>'
 
 -- With users' date list, easily calculate retention rate and churn rate by UDF or Hive transformer
