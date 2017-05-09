@@ -9,7 +9,6 @@ def count_words(input):
 print 'Count Unique Words:'
 print count_words('')
 print count_words('  ')
-print count_words('hello')
 print count_words('hello world')
 print
 
@@ -27,54 +26,37 @@ def histogram(input):
 
 print 'Histogram:'
 print histogram([])
-print histogram(['a'])
-print histogram(['a', 'a'])
-print histogram(['a', 'b'])
 print histogram(['a', 'a', 'b'])
-print histogram(['a', 'a', 'b', 'b'])
 print
 
 ################################################################################
-""" Given a list of integers, returns a list with duplicates removed """
+""" Given a list of integers, returns a list with duplicates removed and keep the original order"""
 
 def dedup(nums):
-    return list(set(nums))
+    res = []
+    for num in nums:
+        if num not in res:
+            res.append(num)
+    return res
 
 print 'List Dedup:'
-print dedup([])
-print dedup([1])
-print dedup([1, 1])
-print dedup([1, 2])
-print dedup([1, 1, 2])
-print dedup([1, 1, 2, 2])
+print dedup([4, 3, 2, 1, 4, 3, 2, 1])
 print
 
 ################################################################################
-""" Given a list of lists, return a list after removing all the nested lists """
+""" Given a list with recursive structure, return a list after removing all the nested lists """
 
-def flatten1(list_of_list):
+def flatten(list_of_list):
     res = []
-    for l in list_of_list:
-        res += l
+    for x in list_of_list:
+        if type(x) == list:
+            res.extend(flatten(x))
+        else:
+            res.append(x)
     return res
 
 print 'List Flatten:'
-print flatten1([])
-print flatten1([[]])
-print flatten1([[], [1]])
-print flatten1([[1], [2]])
-print flatten1([[1, 2], [3, 4]])
-print
-
-def flatten2(list_of_list):
-    return reduce(lambda x, y: x + y, list_of_list, [])
-
-print 'List Flatten:'
-print flatten2([])
-print flatten2([[]])
-print flatten2([[], [1]])
-print flatten2([[1], [2]])
-print flatten2([[1, 2], [3, 4]])
+print flatten([1, 2, [[3, 4], 5], [6, 7]])
 print
 
 ################################################################################
@@ -194,6 +176,20 @@ print percentile([1, 2, 3, 4, 5], 0.5)
 print percentile([1, 2, 3, 4, 5, 6], 0.5)
 print percentile([1, 2, 3, 4, 5], 0.75)
 print percentile([1, 2, 3, 4, 5, 6], 0.75)
+print
+
+def percentile2(nums, percent):
+    import math
+    index = int(math.ceil(len(nums) * percent))
+    return nums[index]
+
+print 'Percentile:'
+print percentile2([1, 2, 3, 4, 5], 0.25)
+print percentile2([1, 2, 3, 4, 5, 6], 0.25)
+print percentile2([1, 2, 3, 4, 5], 0.5)
+print percentile2([1, 2, 3, 4, 5, 6], 0.5)
+print percentile2([1, 2, 3, 4, 5], 0.75)
+print percentile2([1, 2, 3, 4, 5, 6], 0.75)
 print
 
 ################################################################################
@@ -323,19 +319,7 @@ print
 """ Check whether the string consists of only numeric characters """
 
 def isnumeric(s):
-    try:
-        float(s)
-        return True
-    except:
-        return False
+    return all([ord('0') <= ord(x) <= ord('9') for x in s])
 
-print isnumeric('1')
-print isnumeric('-1')
-print isnumeric('.1')
-print isnumeric('-.1')
-print isnumeric('1.')
-print isnumeric('-1.')
-print isnumeric('1.1')
-print isnumeric('-1.1')
-print isnumeric('1.1e2')
-print isnumeric('-1.1e2')
+print isnumeric('123456')
+print isnumeric('123abc')
