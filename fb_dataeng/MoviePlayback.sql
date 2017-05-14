@@ -40,13 +40,13 @@ Solution2: Chop the playback_segment at the midnight.
    (user_id, movie_id, viewe_length)
 */
 
-/* Step 1: Put segments into an array per user and movie */
+/* Step 1: Per user_id, movie_id, put segments into an array */
 INSERT INTO TABLE user_movie_segments
 SELECT user_id, movie_id, FB_COLLECT(ARRAY(start_pos, end_pos)) as segments
 FROM playback_segements
 GROUP BY user_id, movie_id
 
-/* Step 2: UDF or Hive Transformer to merge intervals and compute view_length */
+/* Step 2: Use UDF or Hive Transformer to merge segments and compute view_length */
 INSERT INTO TABLE user_movie_view_length
 SELECT user_id, movie_id, COMPUTER_VIEW_LENGTH(segments) as view_length
 FROM user_movie_segments
@@ -74,7 +74,7 @@ def COMPUTER_VIEW_LENGTH(segments):
    (category_name, movie_name, rank_number)
 */
 
--- Step 1:
+/* Step 1: Per movie, compute number of viewers */
 INSERT INTO TABLE move_viewers
 SELECT
   movie_id, COUNT(DISTINCT user_id) number_viewers
@@ -84,7 +84,7 @@ FROM
   movies b ON a.movie_id = b.movie_id AND a.view_length > 0.5 * b.movie_length
 GROUP BY movie_id
 
-Step 2:
+/* Step 2: Rank movie based on number of viewers in different categories */
 INSERT INTO TABLE category_movie_rank
 SELECT
   c.category_id,
