@@ -55,7 +55,7 @@ SELECT
   COALESCE(a.uid, b.uid) AS uid,
   IF(a.uid IS NOT NULL, a.first_action_date, '<DATEID>') AS first_action_date,
   IF(b.uid IS NOT NULL, '<DATEID>', a.last_action_date) AS last_action_date,
-  IF(b.uid IS NOT NULL, CONCAT(a.action_date_list, '<DATE_ID>'), u.action_date_list) AS action_date_list
+  IF(b.uid IS NOT NULL, CONCAT(a.action_date_list, '<DATE_ID>'), a.action_date_list) AS action_date_list
 FROM user_action_date_list a
      FULL OUTER JOIN
      (
