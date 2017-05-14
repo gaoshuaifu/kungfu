@@ -1,3 +1,9 @@
+BASE_SQL = """
+SELECT {cols}, SUM(time_on_site) / COUNT(DISTINCT userid) AS time_out_site_per_dau
+FROM user_level_time_on_site
+{group_by}
+"""
+
 def get_subsets(all_cols):
     res = [[]]
     for col in all_cols:
@@ -8,7 +14,7 @@ def get_subsets(all_cols):
 
 def get_sql(all_cols):
     subsets = get_subsets(all_cols)
-    BASE_SQL = "SELECT {cols}, COUNT(DISTINCT userid) AS num_of_users FROM the_table {group_by}"
+    # Table user_level_time_out_site(user_id, time_on_site)
     queries = []
     for subset in subsets:
         cols = []
