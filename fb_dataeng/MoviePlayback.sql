@@ -74,7 +74,7 @@ def COMPUTER_VIEW_LENGTH(segments):
    (category_name, movie_name, rank_number)
 */
 
-/* Step 1: Per movie, compute number of viewers */
+/* Step 3: Per movie, compute number of viewers */
 INSERT INTO TABLE move_viewers
 SELECT
   movie_id, COUNT(DISTINCT user_id) number_viewers
@@ -84,7 +84,7 @@ FROM
   movies b ON a.movie_id = b.movie_id AND a.view_length > 0.5 * b.movie_length
 GROUP BY movie_id
 
-/* Step 2: Rank movie based on number of viewers in different categories */
+/* Step 4: Rank movie based on number of viewers in different categories */
 INSERT INTO TABLE category_movie_rank
 SELECT
   c.category_id,
