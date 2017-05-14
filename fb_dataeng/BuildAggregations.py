@@ -1,5 +1,7 @@
 BASE_SQL = """
-SELECT {cols}, SUM(time_on_site) / COUNT(DISTINCT userid) AS time_out_site_per_dau
+SELECT
+    {cols},
+    SUM(time_on_site) / COUNT(DISTINCT userid) AS time_out_site_per_dau
 FROM user_level_time_on_site
 {group_by}
 """
