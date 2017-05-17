@@ -1,9 +1,9 @@
 from friend_lib import get_friends
 
 def get_common_friends(id1, id2):
-  id_list1 = get_friends(id1)
-  id_list2 = get_friends(id2)
-  return set(id_list1).intersection(id_list2)
+    id_list1 = get_friends(id1)
+    id_list2 = get_friends(id2)
+    return set(id_list1).intersection(id_list2)
 
 def pymk(id):
     f_ids = get_friends(id)
