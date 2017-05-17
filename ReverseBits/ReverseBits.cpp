@@ -6,65 +6,65 @@
 using namespace std;
 
 void print(unsigned int x){
-  int n = 8 * sizeof(x);
-  for(int i = n - 1; i >= 0; i--)
-    cout << (x >> i & 1);
-  cout << endl;
+    int n = 8 * sizeof(x);
+    for(int i = n - 1; i >= 0; i--)
+        cout << (x >> i & 1);
+    cout << endl;
 }
 
 class Solution {
 public:
-  uint32_t reverse(uint32_t x) {
-    uint32_t res = 0;
-    int count = 32;
-    while(count--) {
-      res = res << 1;
-      res = res | (x & 1);
-      x = x >> 1;
+    uint32_t reverse(uint32_t x) {
+        uint32_t res = 0;
+        int count = 32;
+        while(count--) {
+            res = res << 1;
+            res = res | (x & 1);
+            x = x >> 1;
+        }
+        return res;
     }
-    return res;
-  }
 };
 
 class Solution1 {
 public:
-  unsigned int reverse(unsigned int x){
-    assert(sizeof(x) == 4);
-    x = (x & 0x55555555) << 1  | (x & 0xAAAAAAAA) >> 1;
-    x = (x & 0x33333333) << 2  | (x & 0xCCCCCCCC) >> 2;
-    x = (x & 0x0F0F0F0F) << 4  | (x & 0xF0F0F0F0) >> 4;
-    x = (x & 0x00FF00FF) << 8  | (x & 0xFF00FF00) >> 8;
-    x = (x & 0x0000FFFF) << 16 | (x & 0xFFFF0000) >> 16;
-    return x;
-  }
+    unsigned int reverse(unsigned int x){
+        assert(sizeof(x) == 4);
+        x = (x & 0x55555555) << 1    | (x & 0xAAAAAAAA) >> 1;
+        x = (x & 0x33333333) << 2    | (x & 0xCCCCCCCC) >> 2;
+        x = (x & 0x0F0F0F0F) << 4    | (x & 0xF0F0F0F0) >> 4;
+        x = (x & 0x00FF00FF) << 8    | (x & 0xFF00FF00) >> 8;
+        x = (x & 0x0000FFFF) << 16 | (x & 0xFFFF0000) >> 16;
+        return x;
+    }
 };
 
 class Solution2 {
 public:
-  unsigned int reverse(unsigned int x){
-    int n = 8 * sizeof(x);
-    int i = n - 1;
-    int j = 0;
-    while(i > j){
-      if((x >> i & 1) ^ (x >> j & 1)){
-        x ^= 1 << i;
-        x ^= 1 << j;
-      }
-      i--;
-      j++;
+    unsigned int reverse(unsigned int x){
+        int n = 8 * sizeof(x);
+        int i = n - 1;
+        int j = 0;
+        while(i > j){
+            if((x >> i & 1) ^ (x >> j & 1)){
+                x ^= 1 << i;
+                x ^= 1 << j;
+            }
+            i--;
+            j++;
+        }
+        return x;
     }
-    return x;
-  }
 };
 
 int main(){
-  unsigned int x = 9;
-  print(x);
+    unsigned int x = 9;
+    print(x);
 
-  Solution solution;
-  unsigned int y = solution.reverse(x);
-  print(y);
+    Solution solution;
+    unsigned int y = solution.reverse(x);
+    print(y);
 
-  return 0;
+    return 0;
 }
 

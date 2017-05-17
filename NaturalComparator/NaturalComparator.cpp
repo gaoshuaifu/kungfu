@@ -6,14 +6,14 @@ and NOT the default lexicographical order ["photo1", "photo10", "photo11", "phot
 */
 
  int natcmp(const char* a, const char* b) {
-   while (*a && *b) {
-     if (isdigit(*a) && isdigit(*b)) {
-       if(int d = strtol(a, &a, 10) - strtol(b, &b, 10)) {
-         return d;
-       }
-     } else if (int d = *a++ - *b++)) {
-       return d;
+     while (*a && *b) {
+         if (isdigit(*a) && isdigit(*b)) {
+             if(int d = strtol(a, &a, 10) - strtol(b, &b, 10)) {
+                 return d;
+             }
+         } else if (int d = *a++ - *b++)) {
+             return d;
+         }
      }
-   }
-   return *a - *b;
+     return *a - *b;
  }
