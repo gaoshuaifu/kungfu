@@ -7,14 +7,13 @@ class Solution{
 public:
     void rotate(vector<int>& numbers, int k){
         int n = numbers.size();
-        if(n == 0) return;
-
         k = k % n;
-        reverse(numbers.begin(), numbers.begin() + k);
-        reverse(numbers.begin() + k, numbers.end());
+        reverse(numbers.begin(), numbers.begin() + (n - k));
+        reverse(numbers.begin() + (n - k), numbers.end());
         reverse(numbers.begin(), numbers.end());
     }
 };
+
 
 int main(){
     int array[] = {1, 2, 3, 4, 5, 6, 7, 8};
