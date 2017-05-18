@@ -1,88 +1,120 @@
-/* The random set can contain duplicated elements */
+/* The random collection can contain duplicated elements */
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
-class RandomSet{
+class RandomizedCollection{
 private:
-    vector<int> array;
-    map<int, vector<int> > mapping;
+    vector<int> a;
+    unordered_map<int, vector<int> > m;
 
 public:
-    void insert(int val){
-        array.push_back(val);
-        mapping[val].push_back(array.size() - 1);
+    /** Initialize your data structure here. */
+    RandomizedCollection() {
+
     }
 
-    void remove(int val){
-        if(mapping.find(val) == mapping.end())
-            return;
+    /** Returns true if the collection did not already contain the specified element. */
+    bool insert(int val){
+        bool res = true;
+        if(m.find(val) != m.end())
+            res = false;
+        a.push_back(val);
+        m[val].push_back(a.size() - 1);
+        return res;
+    }
 
-        int target = mapping[val].back();
-        mapping[val].pop_back();
-        if(mapping[val].empty())
-            mapping.erase(val);
+    /**  Returns true if the collection contained the specified element. */
+    bool remove(int val){
+        if(m.find(val) == m.end())
+            return false;
 
-        array[target] = array.back();
-        array.pop_back();
-
+        int index = m[val].back();
+        a[index] = a.back();
+        m[a.back()].back() = index;
+        a.pop_back();
+        m[val].pop_back();
+        if(m[val].empty())
+            m.erase(val);
+        return true;
     }
 
     int count(int val){
-        if(mapping.find(val) == mapping.end())
+        if(m.find(val) == m.end())
             return 0;
         else
-            return mapping[val].size();
+            return m[val].size();
     }
 
     int size(){
-        return array.size();
+        return a.size();
     }
 
+    /** Get a random element from the collection. */
     int getRandom(){
-        return array[rand() % array.size()];
+        return a[rand() % a.size()];
     }
 
     void print(){
-        int n = array.size();
+        int n = a.size();
         cout << "[";
         for(int i = 0; i < n; i++){
-            cout << array[i];
+            cout << a[i];
             if(i != n - 1)
                 cout << " ";
         }
-        cout << "]";
+        cout << "] ";
+
+        cout << "{";
+        for(unordered_map<int, vector<int> >::iterator it = m.begin(); it != m.end(); it++) {
+            cout << it->first << ":";
+            for(int i = 0; i < it->second.size(); i++) {
+                cout << it->second[i] << ",";
+            }
+            cout << " ";
+        }
+        cout << "}";
         cout << endl;
     }
 };
 
 int main(){
-    RandomSet rs;
+    RandomizedCollection rs;
     rs.print();
 
+    rs.insert(1);
+    rs.print();
     rs.insert(1);
     rs.print();
 
     rs.insert(2);
     rs.print();
-
     rs.insert(2);
     rs.print();
 
-    rs.insert(2);
+    rs.insert(3);
+    rs.print();
+    rs.insert(3);
     rs.print();
 
-    rs.remove(2);
+    rs.remove(1);
+    rs.print();
+    rs.remove(1);
     rs.print();
 
-    map<int, int> counter;
+    rs.remove(3);
+    rs.print();
+    rs.remove(3);
+    rs.print();
+
+    unordered_map<int, int> counter;
     for(int i = 0; i < 10000; i++){
         int val = rs.getRandom();
         counter[val]++;
     }
 
-    for(map<int, int>::iterator it = counter.begin(); it != counter.end(); it++)
+    for(unordered_map<int, int>::iterator it = counter.begin(); it != counter.end(); it++)
         cout << it->first << ":" << it->second << endl;
 
 
