@@ -7,7 +7,6 @@ class RandomizedSet(object):
     def insert(self, val):
         if val in self.d:
             return False
-
         self.a.append(val)
         self.d[val] = len(self.a) - 1
         return True
@@ -20,7 +19,7 @@ class RandomizedSet(object):
         self.a[idx] = last
         self.d[last] = idx
         self.a.pop()
-        self.d.pop(val)
+        del self.d[val]
         return True
 
     def getRandom(self):

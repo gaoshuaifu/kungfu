@@ -19,7 +19,7 @@ class RandomizedCollection(object):
         self.d[last].discard(len(self.a) - 1)
         self.a.pop()
         if len(self.d[val]) == 0:
-            self.d.pop(val)
+            del self.d[val]
         return True
 
     def getRandom(self):
