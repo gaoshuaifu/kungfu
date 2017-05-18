@@ -4,54 +4,59 @@
 #include <map>
 using namespace std;
 
-class RandomSet{
-private:
-    vector<int> array;
-    map<int, int> mapping;
-
+class RandomizedSet {
 public:
-    void insert(int val){
-        if(mapping.find(val) != mapping.end())
-            return;
-        array.push_back(val);
-        mapping[val] = array.size() - 1;
-    }
-
-    void remove(int val){
-        if(mapping.find(val) == mapping.end())
-            return;
-
-        int target = mapping[val];
-        mapping.erase(val);
-
-        array[target] = array.back();
-        array.pop_back();
+    /** Initialize your data structure here. */
+    RandomizedSet() {
 
     }
 
-    int size(){
-        return array.size();
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    bool insert(int val) {
+        if(m.find(val) != m.end())
+            return false;
+        a.push_back(val);
+        m[val] = a.size() - 1;
+        return true;
     }
 
-    int getRandom(){
-        return array[rand() % array.size()];
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    bool remove(int val) {
+        if(m.find(val) == m.end())
+            return false;
+
+        int index = m[val];
+        a[index] = a.back();
+        m[a.back()] = index;
+        a.pop_back();
+        m.erase(val);
+        return true;
+    }
+
+    /** Get a random element from the set. */
+    int getRandom() {
+        return a[rand() % a.size()];
     }
 
     void print(){
-        int n = array.size();
+        int n = a.size();
         cout << "[";
         for(int i = 0; i < n; i++){
-            cout << array[i];
+            cout << a[i];
             if(i != n - 1)
                 cout << " ";
         }
         cout << "]";
         cout << endl;
     }
+
+private:
+    vector<int> a;
+    map<int, int> m;
 };
 
 int main(){
-    RandomSet rs;
+    RandomizedSet rs;
     rs.print();
 
     rs.insert(1);
