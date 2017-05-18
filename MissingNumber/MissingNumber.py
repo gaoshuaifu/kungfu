@@ -4,7 +4,7 @@ class Solution(object):
         return n * (n + 1) / 2 - sum(nums)
 
 # If nums is sorted, should use binary search
-class Solution(object):
+class Solution1(object):
     def missingNumber(self, nums):
         nums = sorted(nums)
         low, high = 0, len(nums)
