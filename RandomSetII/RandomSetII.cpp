@@ -1,7 +1,7 @@
 /* The random set contains unique elements */
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 class RandomizedSet {
@@ -52,7 +52,7 @@ public:
 
 private:
     vector<int> a;
-    map<int, int> m;
+    unordered_map<int, int> m;
 };
 
 int main(){
@@ -74,13 +74,13 @@ int main(){
     rs.remove(1);
     rs.print();
 
-    map<int, int> counter;
+    unordered_map<int, int> counter;
     for(int i = 0; i < 10000; i++){
         int val = rs.getRandom();
         counter[val]++;
     }
 
-    for(map<int, int>::iterator it = counter.begin(); it != counter.end(); it++)
+    for(unordered_map<int, int>::iterator it = counter.begin(); it != counter.end(); it++)
         cout << it->first << ":" << it->second << endl;
 
     return 0;
