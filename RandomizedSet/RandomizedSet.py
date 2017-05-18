@@ -1,3 +1,4 @@
+# Duplicates are NOT allowed
 class RandomizedSet(object):
 
     def __init__(self):

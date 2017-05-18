@@ -1,3 +1,4 @@
+# Duplicates are allowed
 class RandomizedCollection(object):
 
     def __init__(self):
