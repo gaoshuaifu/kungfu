@@ -3,8 +3,18 @@ class Solution(object):
         n = len(nums)
         return n * (n + 1) / 2 - sum(nums)
 
-# If nums is sorted, should use binary search
+# a^b^b = a
 class Solution1(object):
+    def missingNumber(self, nums):
+        res = 0
+        n = len(nums)
+        for i in range(n):
+            res ^= i ^ nums[i]
+        res ^= n
+        return res
+
+# If nums is sorted, should use binary search
+class Solution2(object):
     def missingNumber(self, nums):
         nums = sorted(nums)
         low, high = 0, len(nums)
