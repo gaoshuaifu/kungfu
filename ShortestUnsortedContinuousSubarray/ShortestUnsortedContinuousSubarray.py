@@ -1,5 +1,21 @@
 class Solution(object):
     def findUnsortedSubarray(self, nums):
+        n = len(nums)
+        start, end = None, None
+        max_val, min_val = nums[0], nums[n - 1]
+        for i in range(1, n):
+            max_val = max(max_val, nums[i])
+            if nums[i] < max_val:
+                end = i
+
+            min_val = min(min_val, nums[n - 1 - i])
+            if nums[n - 1 - i] > min_val:
+                start = n - 1 - i
+
+        return 0 if start is None else end - start + 1
+
+class Solution1(object):
+    def findUnsortedSubarray(self, nums):
         import sys
         n = len(nums)
 
@@ -25,7 +41,4 @@ class Solution(object):
                 end = i
                 break
 
-        if start is None:
-            return 0
-
-        return end - start + 1
+        return 0 if start is None else end - start + 1
