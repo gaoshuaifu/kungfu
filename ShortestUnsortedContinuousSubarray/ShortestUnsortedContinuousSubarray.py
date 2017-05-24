@@ -8,10 +8,10 @@ class Solution(object):
             if nums[i - 1] > nums[i] and min_val > nums[i]:
                 min_val = nums[i]
 
-        left_idx = None
+        start = None
         for i in range(n):
             if nums[i] > min_val:
-                left_idx = i
+                start = i
                 break
 
         max_val = -sys.maxint
@@ -19,13 +19,13 @@ class Solution(object):
             if nums[i] > nums[i + 1] and max_val < nums[i]:
                 max_val = nums[i]
 
-        right_idx = None
+        end = None
         for i in range(n - 1, -1, -1):
             if nums[i] < max_val:
-                right_idx = i
+                end = i
                 break
 
-        if left_idx is None:
+        if start is None:
             return 0
 
-        return right_idx - left_idx + 1
+        return end - start + 1
