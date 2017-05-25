@@ -1,22 +1,24 @@
 class Solution(object):
     def fractionToDecimal(self, numerator, denominator):
-        positive = (numerator >= 0 and denominator >= 0) or (numerator <= 0 and denominator <= 0)
-        res = "" if positive else "-"
+        res = "-" if (numerator * denominator < 0) else ""
         numerator, denominator = abs(numerator), abs(denominator)
-        res += str(numerator / denominator)
-        remaining = numerator % denominator
-        if not remaining:
+        div, remainder = divmod(numerator, denominator)
+        res += str(div)
+        if not remainder:
             return res
-        has_seen = dict()
-        digits = list()
-        while remaining not in has_seen:
-            digit = (10 * remaining) / denominator
-            digits.append(str(digit))
-            has_seen[remaining] = len(digits) - 1
-            remaining = (10 * remaining) % denominator
 
-        index = has_seen[remaining]
+        has_seen = {}
+        digits = []
+        while remainder not in has_seen:
+            has_seen[remainder] = len(digits)
+            digit, remainder = divmod(10 * remainder, denominator)
+            digits.append(str(digit))
+
+        if digits[-1] == "0":
+            digits.pop()
+
+        index = has_seen[remainder]
         res += "." + "".join(digits[:index])
-        if not (index == len(digits) - 1 and digits[index] == '0'):
+        if index != len(digits):
             res += "(" + "".join(digits[index:]) + ")"
         return res
