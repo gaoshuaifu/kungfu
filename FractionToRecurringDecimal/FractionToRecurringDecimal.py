@@ -8,6 +8,7 @@ class Solution(object):
         if not remainder:
             return res
 
+        # The dict keeps track of where (which index) a remainder has seen.
         has_seen = {}
         digits = []
         while remainder not in has_seen:
