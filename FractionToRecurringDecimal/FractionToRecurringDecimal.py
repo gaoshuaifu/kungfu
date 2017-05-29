@@ -2,6 +2,7 @@ class Solution(object):
     def fractionToDecimal(self, numerator, denominator):
         res = "-" if (numerator * denominator < 0) else ""
         numerator, denominator = abs(numerator), abs(denominator)
+
         div, remainder = divmod(numerator, denominator)
         res += str(div)
         if not remainder:
