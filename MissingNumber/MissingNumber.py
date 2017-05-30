@@ -13,7 +13,18 @@ class Solution1(object):
         res ^= n
         return res
 
-# If nums is sorted, should use binary search
+"""
+When nums is sorted, the missing number splits the array to two parts.
+On left i == nums[i], and on right i < nums[i].
+
+During the binary search, low and high move tarwards boundary and eventually meet.
+
+In the second last step, low is at the right most of the left part and high is at the
+left most of the right part. In this case, high - low = 1 and mid = low.
+
+In the last step, low moves right low = mid + 1, so low == high,
+and low and high are both the missing number.
+"""
 class Solution2(object):
     def missingNumber(self, nums):
         nums = sorted(nums)
@@ -22,6 +33,6 @@ class Solution2(object):
             mid = (low + high) / 2
             if nums[mid] == mid:
                 low = mid + 1
-            else:  # if nums[mid] > mid
+            else:  # nums[mid] > mid
                 high = mid
         return low
