@@ -1,4 +1,3 @@
-
 # It is a variant of MergeIntervals
 class Solution(object):
     def findPoisonedDuration(self, timeSeries, duration):
