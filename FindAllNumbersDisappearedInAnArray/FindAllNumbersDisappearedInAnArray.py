@@ -9,7 +9,7 @@ class Solution(object):
             else:
                 i += 1
 
-        # Scan the array, if the value at index i is not i + 1, then i + 1 is a number disappeared
+        # Scan the array, if the number at index i is not i + 1, then i + 1 is a number disappeared
         res = []
         for i in range(len(nums)):
             if nums[i] != i + 1:
