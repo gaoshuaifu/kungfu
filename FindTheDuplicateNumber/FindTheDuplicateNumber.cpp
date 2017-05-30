@@ -1,3 +1,4 @@
+// Essentially detech a loop in linkedlist.
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
