@@ -27,6 +27,23 @@ public:
         for(int i = 0; i < words.size(); i++) {
             mp[words[i]] = i;
         }
+
+        // If empty string exists, find all palindromes to become pairs ("", word)
+        if(mp.count("") > 0) {
+            for(int i = 0; i < words.size(); i++) {
+                string word = words[i];
+                if(word == "") {
+                    continue;
+                }
+                if(isPalindrom(word)) {
+                    vector<int> sol;
+                    sol.push_back(mp[""]);
+                    sol.push_back(mp[word]);
+                    res.push_back(sol);
+                }
+            }
+        }
+
         for(int i = 0; i < words.size(); i++) {
             string word = words[i];
             for(int j = 0; j < word.size(); j++) {
@@ -37,25 +54,18 @@ public:
                 reverse(rleft.begin(), rleft.end());
                 reverse(rright.begin(), rright.end());
 
-                if(isWord(mp, rleft) && isPalindrom(right)) {
-                    int left_index = mp[word];
-                    int right_index = mp[rleft];
-                    if(left_index != right_index) {
-                        vector<int> sol;
-                        sol.push_back(left_index);
-                        sol.push_back(right_index);
-                        res.push_back(sol);
-                    }
+                // When j = 0, left = "", right = word, so here covers the case (word, "")
+                if(isWord(mp, rleft) && isPalindrom(right) && mp[word] != mp[rleft]) {
+                      vector<int> sol;
+                      sol.push_back(mp[word]);
+                      sol.push_back(mp[rleft]);
+                      res.push_back(sol);
                 }
-                if(isWord(mp, rright) && isPalindrom(left)) {
-                    int left_index = mp[rright];
-                    int right_index = mp[word];
-                    if(left_index != right_index) {
-                        vector<int> sol;
-                        sol.push_back(left_index);
-                        sol.push_back(right_index);
-                        res.push_back(sol);
-                    }
+                if(isWord(mp, rright) && isPalindrom(left) && mp[rright]!= mp[word]) {
+                      vector<int> sol;
+                      sol.push_back(mp[rright]);
+                      sol.push_back(mp[word]);
+                      res.push_back(sol);
                 }
             }
         }
