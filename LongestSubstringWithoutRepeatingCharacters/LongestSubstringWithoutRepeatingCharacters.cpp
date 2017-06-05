@@ -39,4 +39,3 @@ int main(){
     cout << s << " " << solution.lengthOfLongestSubstring(s) << endl;
     return 0;
 }
-
