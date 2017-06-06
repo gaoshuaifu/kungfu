@@ -16,19 +16,19 @@ class Solution(object):
         min_str = ""
 
         while end < len(s):
-            c = s[end]
-            if c in d:
-                d[c] -= 1
-                if d[c] == 0:
+            c1 = s[end]
+            if c1 in d:
+                d[c1] -= 1
+                if d[c1] == 0:
                     count -=1
             end += 1
 
             # nothing to find because we've found everything needed
             while count == 0:
-                tmpc = s[start]
-                if tmpc in d:
-                    d[tmpc] += 1
-                    if d[tmpc] > 0:
+                c2 = s[start]
+                if c2 in d:
+                    d[c2] += 1
+                    if d[c2] > 0:
                         count += 1
                 if end - start < min_len:
                     min_len = end - start
