@@ -15,6 +15,7 @@ class Solution(object):
         min_str = ""
 
         while end < len(s):
+            # move the right finger to find what is needed
             c1 = s[end]
             if c1 in d:
                 d[c1] -= 1
@@ -22,16 +23,19 @@ class Solution(object):
                     count -=1
             end += 1
 
-            # nothing to find because we've found everything needed
+            # nothing need to find because we've found everything needed
             while count == 0:
+                # compare the length
+                if end - start < min_len:
+                    min_len = end - start
+                    min_str = s[start:end]
+
+                # move the left finger to throw out what is not needed
                 c2 = s[start]
                 if c2 in d:
                     d[c2] += 1
                     if d[c2] > 0:
                         count += 1
-                if end - start < min_len:
-                    min_len = end - start
-                    min_str = s[start:end]
                 start +=1
 
         return min_str
