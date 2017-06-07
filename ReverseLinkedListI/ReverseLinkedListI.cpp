@@ -40,17 +40,19 @@ void print(ListNode* head){
 
 class Solution{
 public:
-    ListNode* reverse(ListNode* head){
+    ListNode* reverseList(ListNode* head){
+        if(!head)
+            return NULL;
         ListNode* tmp = new ListNode(INT_MIN);
         tmp->next = head;
         ListNode* prev = tmp;
         ListNode* curr = head;
 
         while(curr->next){
-            ListNode* post = curr->next;
-            curr->next = post->next;
-            post->next = prev->next;
-            prev->next = post;
+          ListNode* post = curr->next;
+          curr->next = post->next;
+          post->next = prev->next;
+          prev->next = post;
         }
 
         head = tmp->next;
@@ -61,12 +63,12 @@ public:
 
 class Solution1{
 public:
-    ListNode* reverse(ListNode* head){
+    ListNode* reverseList(ListNode* head){
         if(!head || !head->next)
             return head;
 
         ListNode* rest = head->next;
-        rest = reverse(rest);
+        rest = reverseList(rest);
         head->next->next = head;
         head->next = NULL;
         return rest;
