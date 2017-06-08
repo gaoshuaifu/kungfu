@@ -40,24 +40,16 @@ void print(ListNode* head){
 
 class Solution{
 public:
-    ListNode* reverseList(ListNode* head){
-        if(!head)
-            return NULL;
-        ListNode* tmp = new ListNode(INT_MIN);
-        tmp->next = head;
-        ListNode* prev = tmp;
-        ListNode* curr = head;
-
-        while(curr->next){
-          ListNode* post = curr->next;
-          curr->next = post->next;
-          post->next = prev->next;
-          prev->next = post;
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* post = NULL;
+        while(head) {
+            post = head->next;
+            head->next = prev;
+            prev = head;
+            head = post;
         }
-
-        head = tmp->next;
-        delete tmp;
-        return head;
+        return prev;
     }
 };
 
