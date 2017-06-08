@@ -72,7 +72,7 @@ public:
         return head;
     }
 
-    ListNode* mergeSort(ListNode* head){
+    ListNode* sortList(ListNode* head){
         if(!head || !head->next)
             return head;
 
@@ -81,8 +81,8 @@ public:
         ListNode* rightHead = mid->next;
         mid->next = NULL;
 
-        leftHead = mergeSort(leftHead);
-        rightHead = mergeSort(rightHead);
+        leftHead = sortList(leftHead);
+        rightHead = sortList(rightHead);
 
         head = merge(leftHead, rightHead);
         return head;
