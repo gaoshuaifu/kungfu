@@ -1,15 +1,15 @@
-
-// Reverse the 2nd half of the list.
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) {
+    void reorderList(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
-        while(fast && fast->next){
+        ListNode* mid = NULL;
+        while(fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
         if(fast) {
+            mid = slow;
             slow = slow->next;
         }
 
@@ -19,14 +19,27 @@ public:
         // At this point, the original list is split into two.
         // fast: the 1st half in original order.
         // slow: the 2nd half in reverse order.
+        ListNode* tmp = new ListNode(0);
+        ListNode* tail = tmp;
+
         while(slow) {
-            if(fast->val != slow->val)
-                return false;
+            tail->next = fast;
+            tail = fast;
             fast = fast->next;
+
+            tail->next = slow;
+            tail = slow;
             slow = slow->next;
         }
-        return true;
+
+        if(mid) {
+            tail->next = mid;
+            mid->next = NULL;
+        }
+
+        delete tmp;
     }
+
     ListNode* reverseList(ListNode* head) {
         ListNode* prev = NULL;
         ListNode* post = NULL;
@@ -37,30 +50,5 @@ public:
             head = post;
         }
         return prev;
-    }
-};
-
-// Put the 1st half of the list into a stk.
-class Solution1 {
-public:
-    bool isPalindrome(ListNode* head){
-        ListNode* slow = head;
-        ListNode* fast = head;
-        stack<ListNode*> stk;
-        while(fast && fast->next){
-            stk.push(slow);
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-        if(fast)
-            slow = slow->next;
-
-        while(slow){
-            if(slow->val != stk.top()->val)
-                return false;
-            slow = slow->next;
-            stk.pop();
-        }
-        return true;
     }
 };
