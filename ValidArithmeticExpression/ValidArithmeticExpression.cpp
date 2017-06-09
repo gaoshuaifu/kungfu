@@ -21,13 +21,13 @@ using namespace std;
 class Solution{
 public:
     int compute(int left, int right, char op){
-        if(op == '+') return left + right;
-        if(op == '-') return left - right;
-        if(op == '*') return left * right;
-        if(op == '/') return left / right;
+        if(op == '+')
+            return left + right;
+        else
+            return left - right;
     }
 
-    bool validExpression(string s){
+    bool validate(string s){
         int n = s.size();
         stack<int> numStk;
         stack<char> opStk;
@@ -42,27 +42,30 @@ public:
                 opStk.push(c);
 
             else if(c == ')'){
-                if(opStk.size() < 2)
+                if(opStk.empty())
                     return false;
 
-                if(opStk.top() != '+' && opStk.top() != '-')
-                    return false;
-                char op = opStk.top();
-                opStk.pop();
+                if(opStk.top() == '(') {
+                    opStk.pop();
+                }
+                else if(opStk.top() == '+' || opStk.top() == '-') {
+                    char op = opStk.top();
+                    opStk.pop();
 
-                if(opStk.top() != '(')
-                    return false;
-                opStk.pop();
+                    if(opStk.top() != '(')
+                        return false;
+                    opStk.pop();
 
-                if(numStk.size() < 2)
-                    return false;
+                    if(numStk.size() < 2)
+                        return false;
 
-                int right = numStk.top();
-                numStk.pop();
-                int left = numStk.top();
-                numStk.pop();
+                    int right = numStk.top();
+                    numStk.pop();
+                    int left = numStk.top();
+                    numStk.pop();
 
-                numStk.push(compute(left, right, op));
+                    numStk.push(compute(left, right, op));
+                }
             }
             else
                 return false;
@@ -70,7 +73,7 @@ public:
         return numStk.size() - opStk.size() == 1;
     }
 
-    int calculateExpression(string s){
+    int calculate(string s){
         int n = s.size();
         stack<int> numStk;
         stack<char> opStk;
@@ -85,16 +88,21 @@ public:
                 opStk.push(c);
 
             else if(c == ')'){
-                char op = opStk.top();
-                opStk.pop();
-                opStk.pop();
+                if(opStk.top() == '(') {
+                    opStk.pop();
+                }
+                else if(opStk.top() == '+' || opStk.top() == '-') {
+                    char op = opStk.top();
+                    opStk.pop();
+                    opStk.pop();
 
-                int right = numStk.top();
-                numStk.pop();
-                int left = numStk.top();
-                numStk.pop();
+                    int right = numStk.top();
+                    numStk.pop();
+                    int left = numStk.top();
+                    numStk.pop();
 
-                numStk.push(compute(left, right, op));
+                    numStk.push(compute(left, right, op));
+                }
             }
         }
 
@@ -121,11 +129,12 @@ int main(){
     vector<string> strs;
     strs.push_back("1+2-3");
     strs.push_back("1+(2-(3+4))");
+    strs.push_back("(1)");
     strs.push_back("-2");
 
     for(int i = 0; i < strs.size(); i++){
-        if(solution.validExpression(strs[i]))
-            cout << solution.calculateExpression(strs[i]) << "\n";
+        if(solution.validate(strs[i]))
+            cout << solution.calculate(strs[i]) << "\n";
         else
             cout << "invalid" << "\n";
     }
