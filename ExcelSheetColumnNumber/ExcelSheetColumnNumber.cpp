@@ -3,11 +3,10 @@ public:
     int titleToNumber(string s) {
         reverse(s.begin(), s.end());
         int res = 0;
-        int weight = 1;
-        int BASE = 26;
+        int base = 1;
         for(auto c : s) {
-           res += (c - 'A' + 1) * weight;
-           weight *= BASE;
+           res += (c - 'A' + 1) * base;
+           base *= 26;
         }
         return res;
     }
