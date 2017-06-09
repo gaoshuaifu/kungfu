@@ -14,8 +14,11 @@ class Solution(object):
                 stack.append(sign)
                 sign, res = 1, 0
             elif c == ")":
+                # the result inside the ()
                 res += sign * num
+                # the result inside the () with sign before the ()
                 res *= stack.pop()
+                # add it to the result outside the ()
                 res += stack.pop()
                 num = 0
         return res + num * sign
