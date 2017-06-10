@@ -64,7 +64,7 @@ public:
             res.append(tripletToEnglish(num));
         }
 
-        return res;
+        return res.substr(0, res.find_last_not_of(' ') + 1);;
     }
 };
 
