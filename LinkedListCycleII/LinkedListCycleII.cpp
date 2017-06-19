@@ -1,6 +1,6 @@
 class Solution{
 public:
-    ListNode* loopBeginning(ListNode* head){
+    ListNode* detectCycle(ListNode* head){
         ListNode* slow = head;
         ListNode* fast = head;
         ListNode* meet = NULL;
