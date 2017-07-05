@@ -14,6 +14,7 @@ class Solution(object):
 
 
     def pathSum(self, root, target):
+        # key: prefix sum => value: the number of ways get to the prefix sum
         from collections import defaultdict
         pre_sum = defaultdict(int)
         pre_sum[0] = 1
