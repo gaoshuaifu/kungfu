@@ -12,10 +12,10 @@ class Codec:
     def serialize(self, root):
         vals = []
         self._serializeHelper(root, vals)
-        return ",".join(vals)
+        return " ".join(vals)
 
     def _deserializeHelper(self, vals):
-        val = next(vals)
+        val = vals.pop(0)
         if val == "#":
             return None
         node = TreeNode(int(val))
@@ -25,13 +25,12 @@ class Codec:
 
     # string => tree
     def deserialize(self, data):
-        vals = iter(data.split(","))
+        vals = data.split()
         root = self._deserializeHelper(vals)
         return root
 
 # BFS-based
 class Codec:
-
     def serialize(self, root):
         vals = []
         if not root:
@@ -48,11 +47,11 @@ class Codec:
                 q.append(node.right)
             else:
                 vals.append("#")
-        return ",".join(vals)
+        return " ".join(vals)
 
     def deserialize(self, data):
-        vals = iter(data.split(","))
-        val = next(vals)
+        vals = data.split()
+        val = vals.pop(0)
         if val == "#":
             return None
 
@@ -61,11 +60,11 @@ class Codec:
         q.append(root)
         while q:
             node = q.pop(0)
-            val = next(vals)
+            val = vals.pop(0)
             if val != "#":
                 node.left = TreeNode(int(val))
                 q.append(node.left)
-            val = next(vals)
+            val = vals.pop(0)
             if val != "#":
                 node.right = TreeNode(int(val))
                 q.append(node.right)
