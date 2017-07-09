@@ -60,6 +60,7 @@ public:
 
         while(!maxHeap.empty()) {
             queue<TaskCount> tmpQ;
+            int count = 0;
             for(int i = 0 ; i < cooldown + 1; i++) {
                 if(!maxHeap.empty()) {
                     TaskCount taskCount = maxHeap.top();
@@ -68,12 +69,11 @@ public:
                     taskCount.count--;
                     if(taskCount.count > 0)
                         tmpQ.push(taskCount);
+                    count++;
                 }
-                else {
-                    if(tmpQ.empty())
-                        break;
-                    res.push_back(0);
-                }
+            }
+            if(!tmpQ.empty()) {
+                res.insert(res.end(), cooldown + 1 - count, 0);
             }
             while(!tmpQ.empty()) {
                 maxHeap.push(tmpQ.front());
