@@ -8,4 +8,4 @@ class Solution(object):
                 tank = 0
                 start = i + 1
         total += tank
-        return start if total > 0 else -1
+        return start if total >= 0 else -1
