@@ -1,3 +1,28 @@
+/*
+ Write a function that takes as input a list of tasks to run,
+ and the recovery interval, and returns an optimal ordering to run the tasks.
+
+ Example 1
+  Tasks: 1, 1, 1
+  Recovery interval: 2
+  The optimal output in this case is "1__1__1".
+
+ Example 2
+  Tasks: 1, 1, 1, 2, 2, 2, 3, 3, 3
+  Recovery interval: 2
+  An optimal ordering is "1 2 3 1 2 3 1 2 3".
+
+ Example 3
+  Tasks: 1, 2, 3, 4, 4, 4, 4
+  Recovery interval: 1
+  An optimal ordering is "4 1 4 2 4 3 4"
+
+ Example 4
+  Tasks: 3, 3, 3, 3, 3, 2, 2, 2, 2, 1, 1, 1
+  Recovery interval: 1
+  An optimal ordering is "3 2 3 2 3 1 3 2 1 3 2 1"
+ */
+
 #include <iostream>
 #include <vector>
 #include <map>

@@ -1,3 +1,30 @@
+/*
+ We have a list of various types of tasks to perform.
+ Task types are identified with an integral identifier:  task of type 1,
+ task of type 2, task of type 3, etc. Each task takes 1 time slot to execute,
+ and once we have executed a task we need cooldown (parameter) time slots to
+ recover before we can execute another task of the same type.
+
+ However, we can execute tasks of other types in the meantime.
+ The recovery interval is the same for all task types. We do not reorder
+ the tasks: always execute in order in which we received them on input.
+
+ Example 1
+  Tasks: 1, 1, 2, 1
+  Recovery interval (cooldown): 2
+  Output: 7  (order is 1 _ _ 1 2 _ 1)
+
+ Example 2
+  Tasks: 1, 2, 3, 1, 2, 3
+  Recovery interval (cooldown): 3
+  Output: 7  (order is 1 2 3 _ 1 2 3)
+
+ Example 3
+  Tasks: 1, 2, 3 ,4, 5, 6, 2, 4, 6, 1, 2, 4
+  Recovery interval (cooldown): 6
+  Output: 18  (1 2 3 4 5 6 _ _ 2 _ 4 _ 6 1 _ 2 _ 4)
+ */
+
 #include <iostream>
 #include <vector>
 #include <map>
