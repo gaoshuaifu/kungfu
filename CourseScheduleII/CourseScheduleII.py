@@ -2,7 +2,7 @@
 class Solution(object):
     WHITE, GRAY, BLACK = 0, 1, 2
 
-    def dfs(self, node, graph, color, stk):
+    def dfs(self, node, graph, color, path):
         if color[node] == Solution.GRAY:
             return False
         if color[node] == Solution.BLACK:
@@ -11,11 +11,11 @@ class Solution(object):
         color[node] = Solution.GRAY
 
         for neighbor in graph[node]:
-            if not self.dfs(neighbor, graph, color, stk):
+            if not self.dfs(neighbor, graph, color, path):
                 return False
 
         color[node] = Solution.BLACK
-        stk.append(node)
+        path.append(node)
 
         return True
 
@@ -24,9 +24,9 @@ class Solution(object):
         for p in prerequisites:
             graph[p[1]].append(p[0])
 
-        color, stk = {node:Solution.WHITE for node in range(numCourses)}, []
+        color, path = {node:Solution.WHITE for node in range(numCourses)}, []
         for node in range(numCourses):
             if color[node] == Solution.WHITE:
-                if not self.dfs(node, graph, color, stk):
+                if not self.dfs(node, graph, color, path):
                     return []
-        return stk[::-1]
+        return path[::-1]
