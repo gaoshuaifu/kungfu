@@ -1,4 +1,4 @@
-# BFS: Level order traverse
+# breadth first tree traversal
 class Solution(object):
     def isValid(self, s):
         count = 0
