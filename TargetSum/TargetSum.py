@@ -1,4 +1,4 @@
-# brute force solution
+# Solution of brute force
 class Solution1(object):
     def helper(self, nums, S, index):
         if index == len(nums):
@@ -9,14 +9,13 @@ class Solution1(object):
         self.helper(nums, S + nums[index], index + 1)
         self.helper(nums, S - nums[index], index + 1)
 
-
     def findTargetSumWays(self, nums, S):
         self.count = 0
         self.helper(nums, S, 0)
         return self.count
 
 
-# solution with memorization
+# Solution with memorization
 class Solution(object):
     def helper(self, nums, S, index, cache):
         if (S, index) in cache:
