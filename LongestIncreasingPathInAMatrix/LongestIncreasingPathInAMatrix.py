@@ -1,3 +1,4 @@
+# DFS and cache/dp work together.
 class Solution(object):
     def longestIncreasingPath(self, matrix):
         def dfs(i, j):
