@@ -5,7 +5,8 @@ class Solution(object):
                 return cache[word]
 
             for i in range(1, len(word)):
-                if word[:i] in word_set and (word[i:] in word_set or is_cancat_word(word[i:])):
+                left, right = word[:i], word[i:]
+                if left in word_set and (right in word_set or is_cancat_word(right)):
                     cache[word] = True
                     return True
             cache[word] = False
