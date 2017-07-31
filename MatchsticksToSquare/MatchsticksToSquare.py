@@ -17,11 +17,10 @@ class Solution(object):
 
         nums_sum = sum(nums)
         if nums_sum % 4 != 0:
-            eturn False
+            return False
 
-        target = nums_sum / 4
         nums.sort(reverse=True)
-
+        target = nums_sum / 4
         targets = [target] * 4
 
         return self.dfs(nums, targets, 0)
