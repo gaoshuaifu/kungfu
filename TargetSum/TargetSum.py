@@ -32,3 +32,16 @@ class Solution(object):
     def findTargetSumWays(self, nums, S):
         cache = {}
         return self.helper(nums, S, 0, cache)
+
+
+# Solution of DP
+class Solution(object):
+    def findTargetSumWays(self, nums, S):
+        currD = {0:1}
+        for nm in nums:
+            nextD = {}
+            for sm in currD:
+                nextD[sm + nm] = nextD.get(sm + nm, 0) + currD[sm]
+                nextD[sm - nm] = nextD.get(sm - nm, 0) + currD[sm]
+            currD = nextD
+        return currD.get(S, 0)
