@@ -71,7 +71,7 @@
 \newcommand{\makeheading}[2][]%
         {\hspace*{-\marginparsep minus \marginparwidth}%
          \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
-             {\large \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+             {\large \bfseries \hfil #2 \hfill #1}\\[-0.15\baselineskip]%
                  \rule{\columnwidth}{1pt}%
          \end{minipage}}
 
@@ -194,7 +194,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-\makeheading{\large YANG WANG}
+\makeheading{\LARGE YANG WANG}
 
 \section{Contact Information}
 
@@ -206,8 +206,8 @@
 
 % Address box
 \parbox{\textwidth-\rcollength-\spacewidth}{%
-1281 Lawrence Station Rd, Apt 544\\
-Sunnyvale, CA 94089}
+222 Escuela Ave, \#129 \\
+Mountain View, CA 94040}
 
 % Cheesy perforated vertical bar between boxes
 % Shorten by removing \spacechar's
@@ -216,35 +216,20 @@ Sunnyvale, CA 94089}
 % Non-snail-mail contact information
 \parbox{\rcollength}{%
 Mobile:  (443) 538-4624 \\
-G-Voice: (617) 863-0658 \\
 Email: wangyangtc@gmail.com}
 
 \end{tabular}
 
-\section{Education}
-\textbf{Master of Science}, Computer Science, August 2009 \\
-Tufts University, Medford, MA \\
-Overall GPA 3.82, Major GPA 3.82 \\
-
-\textbf{Bachelor of Science}, Physics, July 2006 \\
-University of Science and Technology of China (USTC), Hefei, China \\
-Overall GPA 3.65, Major GPA 3.78
-
-\section{Skills}
-\textbf{Theory}: Algorithm, Data Structure, Data Mining, Mathematics, Physics \\
-\textbf{Languages:} C++, Python, Java, PHP, Shell scripting, SQL \\
-\textbf{Databases:} MySQL, SQL Server, Teradata, Vertica, Netezza, MongoDB, Hadoop \\
-\textbf{Open Source:} Apache, Hadoop, Solr, ActiveMQ
 
 \section{Experience}
-\textbf{Data Engineer}, Facebook, Menlo Park, CA \hfill 08/2013 to Present \\
+\textbf{Facebook}, Senior Data Engineer \hfill 08/2013 to present \\
 Designs and develops software frameworks and systems, data-driven web applications and services, and data processing pipelines to leverage Facebook's big consumer and enterprise data for big business and engineering impact.
 \begin{itemize} \itemsep -2pt  % reduce space between items
 \item Built a data processing and exchange platform distributing Facebook conversation data to external analytics partners at scale.
 \item Developed a marketing analytical tool offering insight about the conversations people are having on Facebook.
 \end{itemize}
 
-\textbf{Software Engineer}, CBS Interactive, Somerville, MA \hfill 09/2010 to 08/2013 \\
+\textbf{CBS Interactive}, Software Engineer \hfill 09/2010 to 08/2013 \\
 Designed and developed online optimization and recommendation services for all business units to improve website traffic and revenue using cutting-edge open source and big data technologies.
 \begin{itemize} \itemsep -2pt  % reduce space between items
 \item Implemented an adaptive real-time content optimization platform to automatically promote content in a way that maximizes response rate using Beta-Binomial model.
@@ -254,7 +239,7 @@ Designed and developed online optimization and recommendation services for all b
 \item Built a data processing pipeline to extract tags and topics from raw documents of major websites and post tagged and indexed documents into Solr.
 \end{itemize}
 
-\textbf{Software Engineer}, OmniClaim, Woburn, MA \hfill  06/2009 to 08/2010  \\
+\textbf{OmniClaim Inc}, Software Engineer \hfill  06/2009 to 08/2010  \\
 Implemented and customized analytics to identify target medical claims for the nation’s largest insurance companies using Microsoft data solutions and business intelligence tools.
 \begin{itemize} \itemsep -2pt %reduce space between items
 \item Developed new stored procedures to detect potential overpaid claims.
@@ -262,14 +247,17 @@ Implemented and customized analytics to identify target medical claims for the n
 \item Implemented ETL process to integrate data from various sources using SQL Server Integration Service.
 \end{itemize}
 
-\textbf{Master Student}, Tufts University, Medford, MA \hfill  09/2007 to 08/2009  \\
-Gained valuable training in algorithm analysis and design, computer programming with multiple programming languages, and basic software engineering methodology.
-\begin{itemize} \itemsep -2pt %reduce space between items
-\item Built an interactive debugging tool to visualize Merlin traces of Java programs.
-\item Developed a high-performance image processing program and a virtual machine Universal Machine.
-\item Implemented an interpreter and a compiler for Decaf language, a subset of Java.
-\item Developed a classic artillery game using Java swing toolkit and Java3D APIs.
-\item Implemented a video game “Capture the Flag” based on the concurrency concepts monitor, semaphore and condition synchronization.
-\end{itemize}
+\section{Skills}
+\textbf{Theory}: Algorithm, Data Structure, Data Mining, Mathematics, Physics \\
+\textbf{Languages:} C++, Python, Java, PHP, Shell scripting, SQL \\
+\textbf{Databases:} MySQL, SQL Server, Teradata, Vertica, Netezza, MongoDB, Hadoop \\
+\textbf{Open Source:} Apache, Hadoop, Solr, ActiveMQ
+
+\section{Education}
+\textbf{Master of Science}, Computer Science, August 2009 \\
+Tufts University, Medford, MA \\
+
+\textbf{Bachelor of Science}, Physics, July 2006 \\
+University of Science and Technology of China (USTC), Hefei, China \\
 
 \end{document}
