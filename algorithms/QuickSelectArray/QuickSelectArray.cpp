@@ -41,6 +41,16 @@ public:
         int n = num.size();
         return selectHelper(num, 0, n - 1, k);
     }
+
+    int findKthLargest(vector<int>& num, int k){
+      int n = num.size();
+      return selectHelper(num, 0, n - 1, n + 1 - k);
+    }
+
+    int findKthSmallest(vector<int>& num, int k){
+      int n = num.size();
+      return selectHelper(num, 0, n - 1, k);
+    }
 };
 
 int main(){
