@@ -235,6 +235,10 @@ from customers a left outer join (
     from sales
   ) b on a.customer_id = b.customer_id
 
+-- Another solution
+select count(distinct b.customer_id) / count(distinct a.customer_id) as pct_customers_ever_purchased_anything
+from customers a left outer join sales b on a.customer_id = b.customer_id
+
 /*
 7) List all of the customers in Oregon ordered by the number of unique products they bought.
 
