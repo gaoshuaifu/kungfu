@@ -190,7 +190,7 @@ group by gender
 +-------------------+
 */
 
-select count(distinct product_id) as count_products
+select count(1) as count_products
 from (
   select product_id, sum(units_sold) as total_units
   from sales
