@@ -1,35 +1,24 @@
-def one_edit_distance(s1, s2):
-    s, l = s1, s2
-    if len(s) > len(l):
-        s, l = l, s
+class Solution(object):
+    def isOneEditDistance(self, s, t):
+        m, n = len(s), len(t)
+        if abs(m - n) >= 2:
+            return False
 
-    if len(l) - len(s) > 1:
-        return False
+        i, j = 0, 0
+        while i < m and j < n and s[i] == t[j]:
+            i += 1
+            j += 1
 
-    i, j = 0, 0
-    while i < len(s) and j < len(l):
-        if s[i] != l[j]:
-            break
-        i += 1
-        j += 1
+        if m > n:
+            i += 1
+        elif m == n:
+            i += 1
+            j += 1
+        else:
+            j += 1
 
-    j += 1
-    if len(s) == len(l):
-        i += 1
+        while i < m and j < n and s[i] == t[j]:
+            i += 1
+            j += 1
 
-    while i < len(s) and j < len(l):
-        if s[i] != l[j]:
-            break
-        i += 1
-        j += 1
-
-    return i == len(s) and j == len(l)
-
-def main():
-    print one_edit_distance("1230", "1240")
-    print one_edit_distance("1230", "130")
-    print one_edit_distance("1230", "12340")
-    print one_edit_distance("1230", "12450")
-    print one_edit_distance("1230", "3120")
-
-main()
+        return i == m and j == n
