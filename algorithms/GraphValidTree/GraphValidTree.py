@@ -18,11 +18,25 @@ class Solution(object):
 
         from collections import defaultdict
         graph = defaultdict(list)
-        for n1, n2 in edges:
-            graph[n1].append(n2)
-            graph[n2].append(n1)
+        for s, d in edges:
+            graph[s].append(d)
+            graph[d].append(s)
 
         visited = set()
         if not self.dfs(graph, visited, 0, -1):
             return False
         return len(visited) == n
+
+
+class Solution(object):
+    def validTree(self, n, edges):
+        parent = range(n)
+        for s, d in edges:
+            while s != parent[s]:
+                s = parent[s]
+            while d != parent[d]:
+                d = parent[d]
+            if s == d:
+                return False
+            parent[s] = d
+        return len(edges) == n - 1
