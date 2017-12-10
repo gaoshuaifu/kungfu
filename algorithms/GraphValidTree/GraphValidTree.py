@@ -40,3 +40,17 @@ class Solution(object):
                 return False
             parent[s] = d
         return len(edges) == n - 1
+
+
+class Solution(object):
+    def validTree(self, n, edges):
+        if len(edges) != n - 1:
+            return False
+        parent = range(n)
+        def find(x):
+            return x if parent[x] == x else find(parent[x])
+        def union(xy):
+            x, y = map(find, xy)
+            parent[x] = y
+            return x != y
+        return all(map(union, edges))
