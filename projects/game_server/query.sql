@@ -42,3 +42,18 @@ CREATE TABLE user_to_appsflyer (
 
 LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/out' INTO TABLE user_to_appsflyer
 FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+
+
+-- Create and load payments table
+CREATE TABLE payments (
+  appsflyer_device_id VARCHAR(64) NOT NULL,
+  platform VARCHAR(32) NOT NULL,
+  payment_time TIMESTAMP NOT NULL,
+  amount FLOAT NOT NULL,
+  country_code VARCHAR(8),
+  media_source VARCHAR(32) NOT NULL,
+  KEY(appsflyer_device_id)
+);
+
+LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/pay_events' INTO TABLE payments
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 46 LINES;
