@@ -76,3 +76,14 @@ CREATE TABLE appsflyer_user_profiles (
 
 LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/processed_user_profiles' INTO TABLE appsflyer_user_profiles
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+
+
+-- Create and load servers table.
+CREATE TABLE servers (
+  server_id INT NOT NULL,
+  open_time BIGINT NOT NULL,
+  PRIMARY KEY(server_Id)
+);
+
+LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/server_open_time' INTO TABLE servers
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 1 LINES;
