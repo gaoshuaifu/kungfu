@@ -44,8 +44,8 @@ LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/out' INTO TABLE user_to_ap
 FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 
 
--- Create and load payments table
-CREATE TABLE payments (
+-- Create and load payments table.
+CREATE TABLE appsflyer_payments (
   appsflyer_device_id VARCHAR(64) NOT NULL,
   platform VARCHAR(32) NOT NULL,
   payment_time TIMESTAMP NOT NULL,
@@ -55,5 +55,24 @@ CREATE TABLE payments (
   KEY(appsflyer_device_id)
 );
 
-LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/pay_events' INTO TABLE payments
-FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 46 LINES;
+LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/pay_events' INTO TABLE appsflyer_payments
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' IGNORE 31 LINES;
+
+
+-- Create and load appsflyer_user_profiles table.
+CREATE TABLE appsflyer_user_profiles (
+  appsflyer_device_id VARCHAR(64) NOT NULL,
+  platform VARCHAR(32) NOT NULL,
+  advertising_id VARCHAR(64),
+  idfa VARCHAR(64),
+  install_time TIMESTAMP NOT NULL,
+  first_event_time TIMESTAMP NOT NULL,
+  last_event_time TIMESTAMP NOT NULL,
+  is_one_day_retention SMALLINT NOT NULL,
+  country_code VARCHAR(8) NOT NULL,
+  media_source VARCHAR(32) NOT NULL,
+  PRIMARY KEY (appsflyer_device_id)
+);
+
+LOAD DATA LOCAL INFILE '/Users/yangw/game_server_data/processed_user_profiles' INTO TABLE appsflyer_user_profiles
+FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
