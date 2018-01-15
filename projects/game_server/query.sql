@@ -5,9 +5,7 @@ Result: 21,910,791
 SELECT COUNT(DISTINCT user_id) AS num_of_users
 FROM users
 
-/*
-The number of users of each server.
-*/
+/* The number of users of each server. */
 SELECT server_id, COUNT(1) as num_of_users
 FROM users
 GROUP BY server_id
@@ -85,9 +83,7 @@ SELECT
 FROM user_to_appsflyer u2a INNER JOIN appsflyer_payments p on u2a.appsflyer_device_id = p.appsflyer_device_id
 WHERE u2a.user_id != -1;
 
-/*
-Join four tables to get a denormalized table.
-*/
+/* Join four tables to get a denormalized table. */
 CREATE TABLE game_server_denorm
 SELECT
   u.user_id,
@@ -109,3 +105,21 @@ FROM
   appsflyer_payments p ON u2a.appsflyer_device_id = p.appsflyer_device_id
   LEFT OUTER JOIN
   appsflyer_user_profiles up ON u2a.appsflyer_device_id = up.appsflyer_device_id;
+
+/* Server level stats. */
+SELECT
+  server_id,
+  num_users,
+  num_paid_users,
+  amount AS total_amount,
+  amount / num_paid_users AS amount_per_paid_user,
+  num_paid_users * 100.0 / num_users AS paid_user_percent
+FROM (
+  SELECT
+    server_id,
+    COUNT(DISTINCT user_id) AS num_users,
+    COUNT(DISTINCT CASE WHEN amount IS NOT NULL THEN user_id ELSE NULL END) AS num_paid_users,
+    SUM(amount) as amount
+  FROM game_server_denorm
+  GROUP BY server_id
+) a
