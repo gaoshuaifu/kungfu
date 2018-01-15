@@ -103,9 +103,9 @@ SELECT
   up.is_one_day_retention
 FROM
   users u
-  INNER JOIN
+  LEFT OUTER JOIN
   user_to_appsflyer u2a ON u.user_id = u2a.user_id AND u2a.user_id != -1
-  INNER JOIN
+  LEFT OUTER JOIN
   appsflyer_payments p ON u2a.appsflyer_device_id = p.appsflyer_device_id
   LEFT OUTER JOIN
-  appsflyer_user_profiles up ON p.appsflyer_device_id = up.appsflyer_device_id;
+  appsflyer_user_profiles up ON u2a.appsflyer_device_id = up.appsflyer_device_id;
