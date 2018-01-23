@@ -33,10 +33,8 @@ def get_prediction(neighbors):
 
 
 def get_accuracy(test_data, predictions):
-    n, correct = len(test_data), 0
-    for i in range(len(test_data)):
-        if test_data[i][-1] == predictions[i]:
-            correct += 1
+    n = len(test_data)
+    correct = sum([1 for i in range(n) if test_data[i][-1] == predictions[i]])
     return float(correct) / n * 100.0
 
 
