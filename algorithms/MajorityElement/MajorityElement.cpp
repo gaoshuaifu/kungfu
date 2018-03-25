@@ -4,13 +4,18 @@ public:
         int major = nums[0];
         int count = 1;
         for(int i = 1; i < nums.size(); i++) {
-          if(count == 0) {
-            major = nums[i];
-            count = 1;
-          }
-          else {
-            count += (nums[i] == major)? 1 : -1;
-          }
+            if(count > 0) {
+                if(nums[i] == major) {
+                    count++;
+                }
+                else {
+                    count--;
+                }
+            }
+            else {
+                major = nums[i];
+                count = 1;
+            }
         }
         return major;
     }
