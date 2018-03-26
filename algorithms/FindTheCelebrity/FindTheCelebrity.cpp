@@ -16,7 +16,7 @@ public:
     int findCelebrity(int n) {
         int i = 0;
         int j = n - 1;
-        
+
         // Keep moving until two pointers meet.
         // The index of meeting could be the famous person.
         while(i < j) {
@@ -37,6 +37,7 @@ public:
     }
 
 private:
+    // Return true if i knows j.
     bool knows(int i, int j) {
         return MATRIX[i][j];
     }
