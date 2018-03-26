@@ -48,14 +48,13 @@ public:
         int n = strlen(pat);
 
         for(int i = 0; i < m - n + 1; i++){
-            bool isMatch = true;
-            for(int j = 0; j < n; j++){
+            int j;
+            for(j = 0; j < n; j++){
                 if(str[i + j] != pat[j]){
-                    isMatch = false;
                     break;
                 }
             }
-            if(isMatch)
+            if(j == n)
                 return str + i;
         }
         return NULL;
@@ -70,4 +69,3 @@ int main(){
     cout << res << endl;
     return 0;
 }
-
