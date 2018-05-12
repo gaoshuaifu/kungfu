@@ -6,7 +6,7 @@ class Solution(object):
 
             for i in range(1, len(word)):
                 left, right = word[:i], word[i:]
-                if left in word_set and (right in word_set or is_cancat_word(right)):
+                if (left in word_set or is_cancat_word(left)) and (right in word_set or is_cancat_word(right)):
                     cache[word] = True
                     return True
             cache[word] = False
