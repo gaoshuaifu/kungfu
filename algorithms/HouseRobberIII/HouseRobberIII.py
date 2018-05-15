@@ -12,5 +12,5 @@ class Solution(object):
         )
 
     def rob(self, root):
-        root_robbed, rootNotRobbed = self.robHelper(root)
-        return max(root_robbed, rootNotRobbed)
+        rootRobbed, rootNotRobbed = self.robHelper(root)
+        return max(rootRobbed, rootNotRobbed)
