@@ -8,11 +8,11 @@ public:
                 return nums[low];
             }
             int mid = (low + high) / 2;
-            if(nums[mid] < nums[high]) {
-                high = mid;
+            if(nums[low] <= nums[mid]) {
+                low = mid + 1;
             }
             else {
-                low = mid + 1;
+                high = mid;
             }
         }
         return nums[low];
