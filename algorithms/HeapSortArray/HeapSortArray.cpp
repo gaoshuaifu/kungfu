@@ -6,24 +6,24 @@ using namespace std;
 class Solution{
 public:
     void heapify(vector<int>& num, int n, int i) {
-      int largest = i;
-      int l = 2 * i + 1;
-      int r = 2 * i + 2;
+        int largest = i;
+        int l = 2 * i + 1;
+        int r = 2 * i + 2;
 
-      // Find largest among root, left child and right child
-      if(l < n && num[l] > num[largest]) {
-        largest = l;
-      }
+        // Find largest among root, left child and right child
+        if(l < n && num[l] > num[largest]) {
+            largest = l;
+        }
 
-      if(r < n && num[r] > num[largest]) {
-        largest = r;
-      }
+        if(r < n && num[r] > num[largest]) {
+            largest = r;
+        }
 
-      // Swap and continue heapifying if root is not largest
-      if(largest != i) {
-          swap(num[i], num[largest]);
-          heapify(num, n, largest);
-      }
+        // Swap and continue heapifying if root is not largest
+        if(largest != i) {
+            swap(num[i], num[largest]);
+            heapify(num, n, largest);
+        }
     }
 
     void heapSort(vector<int>& num){
