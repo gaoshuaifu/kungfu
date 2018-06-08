@@ -8,5 +8,7 @@ class Solution(object):
         
         if left and right:
             return root
+        elif not left and not right:
+            return None 
         else:
             return left if left else right

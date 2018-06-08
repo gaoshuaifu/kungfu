@@ -71,6 +71,8 @@ public:
 
         if(l && r)
             return root;
+        else if (!l && !r)
+            return NULL;
         else
             return l ? l : r;
     }
