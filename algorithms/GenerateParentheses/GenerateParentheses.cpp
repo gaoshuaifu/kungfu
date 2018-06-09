@@ -14,9 +14,11 @@ public:
             return;
         }
 
+        // Can always put a "(" if any remaining.
         if(left > 0)
             generateParenthesisHelper(left - 1, right, sol + "(", res);
 
+        // Can only put a ")" if more ")" remaining than "(".
         if(left < right)
             generateParenthesisHelper(left, right - 1, sol + ")", res);
     }
