@@ -23,9 +23,6 @@ public:
     }
 
     int selectHelper(vector<int>& num, int low, int high, int k){
-        if(low == high)
-            return num[low];
-
         int mid = partition(num, low, high);
         int rank = mid - low + 1;
 
