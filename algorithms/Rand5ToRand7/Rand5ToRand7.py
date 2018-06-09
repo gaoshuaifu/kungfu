@@ -6,7 +6,7 @@ def rand7():
       b = rand5();
 
       # num 1 ~ 25
-      num = (a - 1) * 5 + b
+      num = (a - 1) * 5 + (b - 1) + 1
   
       # num 1 ~ 21    
       if num < 22:
