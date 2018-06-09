@@ -8,6 +8,54 @@ using namespace std;
 class Solution {
 public:
     int searchLow(vector<int>& nums, int target){
+        int res = -1;
+        int low = 0;
+        int high = nums.size() - 1;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(target <= nums[mid]) {
+                high = mid - 1;
+            }
+            else { // if(target > nums[mid])
+                low = mid + 1;
+            }
+            if(nums[mid] == target) {
+                res = mid;
+            }
+        }
+        return res;
+    }
+
+    int searchHigh(vector<int>& nums, int target){
+        int res = -1;
+        int low = 0;
+        int high = nums.size() - 1;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(target < nums[mid]) {
+                high = mid - 1;
+            }
+            else { // if(target > nums[mid])
+                low = mid + 1;
+            }
+            if(nums[mid] == target) {
+                res = mid;
+            }
+        }
+        return res;
+    }
+
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res(2);
+        res[0] = searchLow(nums, target);
+        res[1] = searchHigh(nums, target);
+        return res;
+    }
+};
+
+class Solution {
+public:
+    int searchLow(vector<int>& nums, int target){
         int n = nums.size();
         int low = 0;
         int high = n - 1;
