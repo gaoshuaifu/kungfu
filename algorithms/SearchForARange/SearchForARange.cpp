@@ -35,7 +35,7 @@ public:
             if(target < nums[mid]) {
                 high = mid - 1;
             }
-            else { // if(target > nums[mid])
+            else { // if(target >= nums[mid])
                 low = mid + 1;
             }
             if(nums[mid] == target) {
