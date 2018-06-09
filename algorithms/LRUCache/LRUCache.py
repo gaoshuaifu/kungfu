@@ -28,6 +28,7 @@ class LRUCache(object):
         if key in self.mp:
             node = self.mp[key]
             self._remove(node)
+            del self.mp[key]
 
         node = Node(key, value)
         self._add_to_front(node)
