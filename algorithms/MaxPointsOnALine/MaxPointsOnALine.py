@@ -10,7 +10,7 @@ class Solution(object):
 
         import collections
         d = collections.defaultdict(int)
-        res = 0
+        max_count = 0
         for i in range(len(points)):
             d.clear()
             same_point = 0
@@ -23,5 +23,5 @@ class Solution(object):
                 slope = 'inf' if dx == 0 else dy * 1.0 / dx
                 d[slope] += 1
             other_point = max(d.values()) if d.values() else 0
-            res = max(res, other_point + same_point + 1)
-        return res
+            max_count = max(max_count, other_point + same_point + 1)
+        return max_count
