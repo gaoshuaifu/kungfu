@@ -4,7 +4,8 @@ using namespace std;
 
 class Solution {
 public:
-    bool wordBreak(string s, unordered_set<string>& wordDict) {
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
         int n = s.size();
 
         // dp[i] represents that substring from 0 to i can be broken or not
@@ -14,7 +15,7 @@ public:
             string word = s.substr(0, i + 1);
 
             // Check if the substring from 0 to i is in dict or not
-            if(wordDict.count(word) > 0) {
+            if(wordSet.count(word) > 0) {
                 dp[i] = true;
                 continue;
             }
@@ -23,7 +24,7 @@ public:
             for(int j = 0 ; j < i; j++) {
                 if(dp[j]) {
                     string right = s.substr(j + 1, i - j);
-                    if(wordDict.count(right) > 0) {
+                    if(wordSet.count(right) > 0) {
                         dp[i] = true;
                         break;
                     }
