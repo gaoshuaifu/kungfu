@@ -19,9 +19,9 @@ class Solution(object):
                 dy = points[i].y - points[j].y
                 if dx == 0 and dy == 0:
                     same_point += 1
-                    continue
-                slope = 'inf' if dx == 0 else dy * 1.0 / dx
-                d[slope] += 1
+                else:
+                    slope = 'inf' if dx == 0 else dy * 1.0 / dx
+                    d[slope] += 1
             other_point = max(d.values()) if d.values() else 0
             max_count = max(max_count, other_point + same_point + 1)
         return max_count
