@@ -41,14 +41,18 @@ public:
             return;
 
         path.push_back(root->val);
-        if(!root->left && !root->right && sum == root->val){
-            res.push_back(path);
+        sum -= root->val;
+
+        if(!root->left && !root->right){
+            if(sum == 0) {
+                res.push_back(path);
+            }
             path.pop_back();
             return;
         }
 
-        pathSumHelper(root->left, sum - root->val, path, res);
-        pathSumHelper(root->right, sum - root->val, path, res);
+        pathSumHelper(root->left, sum, path, res);
+        pathSumHelper(root->right, sum, path, res);
 
         path.pop_back();
     }
