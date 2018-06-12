@@ -1,4 +1,25 @@
 class Solution(object):
+    def wordBreak(self, s, wordDict):        
+        wordSet = set(wordDict)
+        n = len(s)
+        dp = [False] * n
+        
+        for i in range(n):
+            word = s[:i + 1]
+            
+            if word in wordSet:
+                dp[i] = True
+                continue
+            
+            for j in range(i):
+                right = s[j + 1:i + 1]
+                if dp[j] and right in wordDict:
+                    dp[i] = True
+                    break
+        
+        return dp[n - 1]
+
+class Solution(object):
     def wordBreakHelper(self, s, wordSet, start, cache):
         if start == len(s):
             return True
