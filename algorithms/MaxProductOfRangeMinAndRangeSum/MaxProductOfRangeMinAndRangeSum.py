@@ -10,7 +10,7 @@ class Solution(object):
             accu_sum += nums[i];
             accu_sums[i] = accu_sum
 
-        # The monotone stack. The elements in the stack have increasing order.
+        # The monotone stack. The elements in the stack are in increasing order.
         stk = []
 
         # From left to right
@@ -40,6 +40,7 @@ class Solution(object):
                 right[i] = n - 1
             stk.append(i)
             
+        # Take each element as min, find out the range and calculate product.
         max_product = 0
         for i in range(n):
             range_min = nums[i]
