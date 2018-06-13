@@ -7,7 +7,7 @@ class Solution(object):
 
         head = tail = ListNode(0)
 
-        from heapq import *        
+        from heapq import heapify, heappush, heappop        
         heap = [(node.val, node) for node in lists if node]
         heapify(heap)
     
