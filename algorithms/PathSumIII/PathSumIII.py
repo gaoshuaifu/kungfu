@@ -1,16 +1,16 @@
 class Solution(object):
-    def pathSumHelper(self, root, target, sum_so_far, pre_sum):
+    def pathSumHelper(self, root, target, sum_from_root, pre_sum):
         if not root:
-            return 0
+            return 
 
-        sum_so_far += root.val
-        if (sum_so_far - target) in pre_sum:
-            self.count += pre_sum[sum_so_far - target]
+        sum_from_root += root.val
+        if (sum_from_root - target) in pre_sum:
+            self.count += pre_sum[sum_from_root - target]
 
-        pre_sum[sum_so_far] += 1
-        self.pathSumHelper(root.left, target, sum_so_far, pre_sum)
-        self.pathSumHelper(root.right, target, sum_so_far, pre_sum)
-        pre_sum[sum_so_far] -= 1
+        pre_sum[sum_from_root] += 1
+        self.pathSumHelper(root.left, target, sum_from_root, pre_sum)
+        self.pathSumHelper(root.right, target, sum_from_root, pre_sum)
+        pre_sum[sum_from_root] -= 1
 
 
     def pathSum(self, root, target):
