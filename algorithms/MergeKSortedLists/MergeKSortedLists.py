@@ -14,9 +14,9 @@ class Solution(object):
         while heap:
             val, node = heappop(heap)
             tail.next = node
+            tail = tail.next
             if node.next:
                 heappush(heap, (node.next.val, node.next))
-            tail = tail.next
                 
         return head.next
         
