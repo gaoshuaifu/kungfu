@@ -17,3 +17,6 @@ class Solution(object):
             res.pop(0)
 
         return "".join(res) if res else "0"
+
+s = Solution()
+print(s.removeKdigits("789111", 3))
