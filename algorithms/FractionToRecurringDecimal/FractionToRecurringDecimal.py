@@ -14,8 +14,8 @@ class Solution(object):
         has_seen = {}
         while remainder and remainder not in has_seen:
             has_seen[remainder] = len(res)
-            digit, remainder = divmod(10 * remainder, denominator)
-            res += str(digit)
+            div, remainder = divmod(10 * remainder, denominator)
+            res += str(div)
 
         if remainder in has_seen:
             index = has_seen[remainder]
