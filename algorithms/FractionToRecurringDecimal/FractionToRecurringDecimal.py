@@ -8,19 +8,18 @@ class Solution(object):
         if not remainder:
             return res
 
-        # The dict keeps track of where (which index) a remainder has seen.
+        res += "."
+
+        # The dict keeps track of where (which index) a remainder has been seen.
         has_seen = {}
-        digits = []
-        while remainder not in has_seen:
-            has_seen[remainder] = len(digits)
+        while remainder and remainder not in has_seen:
+            has_seen[remainder] = len(res)
             digit, remainder = divmod(10 * remainder, denominator)
-            digits.append(str(digit))
+            res += str(digit)
 
-        if digits[-1] == "0":
-            digits.pop()
+        if remainder in has_seen:
+            index = has_seen[remainder]
+            res = res[:index] + "(" + res[index:]
+            res += ")"
 
-        index = has_seen[remainder]
-        res += "." + "".join(digits[:index])
-        if index != len(digits):
-            res += "(" + "".join(digits[index:]) + ")"
         return res
