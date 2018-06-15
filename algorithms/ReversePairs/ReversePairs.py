@@ -10,8 +10,8 @@ class Solution(object):
             i += 1
 
         # merge left and right into a single sorted list
-        i, j = 0, 0
         nums = []
+        i, j = 0, 0
         while i < len(left) and j < len(right):
             if left[i] <= right[j]:
                 nums.append(left[i])
