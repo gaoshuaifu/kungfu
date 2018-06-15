@@ -1,24 +1,50 @@
 class Solution(object):
-    def _mergesort_and_count(self, nums, low, high):
-        if low >= high:
-            return 0
-
-        count, mid = 0, (low + high) / 2
-        count += self._mergesort_and_count(nums, low, mid)
-        count += self._mergesort_and_count(nums, mid + 1, high)
-
-        i, j = low, mid + 1
-        while i <= mid:
-            while j <= high and nums[i] > nums[j] * 2:
+    def _merge(self, left, right):
+        # count reverse pairs between left and right
+        count = 0
+        i, j = 0, 0
+        while i < len(left):
+            while j < len(right) and left[i] > right[j] * 2:
                 j += 1
-            count += j - (mid + 1)
+            count += j
             i += 1
 
-        nums[low: high + 1] = sorted(nums[low: high + 1])
-        return count
+        # merge left and right into a single sorted list
+        i, j = 0, 0
+        nums = []
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                nums.append(left[i])
+                i += 1
+            else:
+                nums.append(right[j])
+                j += 1
+
+        if i < len(left):
+            nums.extend(left[i:])
+        else:
+            nums.extend(right[j:])
+
+        return count, nums
+
+    def _mergesort_and_count(self, nums):
+        n = len(nums)
+        if n <= 1:
+            return 0, nums
+
+        mid = n / 2
+        left, right = nums[:mid], nums[mid:]
+
+        count_left, left = self._mergesort_and_count(left)
+        count_right, right = self._mergesort_and_count(right)
+
+        count_cross, nums = self._merge(left, right)
+
+        return count_left + count_right + count_cross, nums
 
     def reversePairs(self, nums):
-        return self._mergesort_and_count(nums, 0, len(nums) - 1)
+        count, _ = self._mergesort_and_count(nums)
+        return count
 
 
 
