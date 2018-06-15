@@ -27,6 +27,7 @@ class Solution(object):
 
         return count, nums
 
+
     def _mergesort_and_count(self, nums):
         n = len(nums)
         if n <= 1:
@@ -41,6 +42,7 @@ class Solution(object):
         count_cross, nums = self._merge(left, right)
 
         return count_left + count_right + count_cross, nums
+
 
     def reversePairs(self, nums):
         count, _ = self._mergesort_and_count(nums)
